@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity(name = "restaurant")
 public class Restaurant extends Place{
-
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
 }

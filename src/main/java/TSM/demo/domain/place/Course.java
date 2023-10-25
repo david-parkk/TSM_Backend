@@ -14,7 +14,7 @@ public class Course {
 
     @Id
     @Column(name = "course_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name")
@@ -25,10 +25,10 @@ public class Course {
     @Size(min=2,max=50)
     private String region;
     @Column(name = "description")
-    @Size(min=2,max=50)
+    @Size(min=2,max=2000)
     private String description;
     @Column(name = "url")
-    @Size(min=2,max=50)
+    @Size(min=2,max=2000)
     private String url;
 
     @OneToOne(fetch = FetchType.LAZY)

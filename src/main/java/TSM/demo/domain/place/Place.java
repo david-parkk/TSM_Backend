@@ -3,21 +3,21 @@ package TSM.demo.domain.place;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
+@MappedSuperclass
 public abstract class Place {
 
-    @Id @GeneratedValue(strategy = GenerationType.TABLE)
-    private int id;
+
 
     @Column(name = "name")
     @Size(min=2,max=50)
     private String name;
 
     @Column(name = "description")
+    @Size(min=2,max=2000)
     private String description;
     @Column(name = "url")
-    @Size(min=2,max=50)
+    @Size(min=2,max=2000)
     private String url;
 
 

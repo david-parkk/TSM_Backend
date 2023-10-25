@@ -26,15 +26,15 @@ public class User {
     @Size(min=2,max=50)
     private String phone_num;
 
-    @Column(name = "user_type")
-    private int user_type;
+    @Column(name = "is_volunteer")
+    private boolean isVolunteer;
 
     @Column(name = "name")
     @Size(min=2,max=50)
     private String name;
 
     @Column(name = "access_token")
-    @Size(min=2,max=50)
+    @Size(min=2,max=2000)
     private String access_token;
 
 
@@ -45,14 +45,15 @@ public class User {
     public User(){
 
     }
-    public User(String email, String phone_num, int user_type, String name, String access_token) {
 
+    public User(@NotNull String email, @NotNull String phone_num, boolean isVolunteer, String name, String access_token) {
         this.email = email;
         this.phone_num = phone_num;
-        this.user_type = user_type;
+        this.isVolunteer = isVolunteer;
         this.name = name;
         this.access_token = access_token;
     }
+
 
     public void setUserHealth(UserHealth userHealth) {
         this.userHealth = userHealth;
