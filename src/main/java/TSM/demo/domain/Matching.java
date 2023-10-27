@@ -10,11 +10,13 @@ import java.sql.Timestamp;
 
 @Entity(name = "matching")
 class Matching {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "matching_id")
     @NotNull
     private int id;
+
+    @Column(name = "state")
+    private String state;
 
     @Column(name = "sick_id")
     private int sick_id ;
