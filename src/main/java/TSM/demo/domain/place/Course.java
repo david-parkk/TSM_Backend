@@ -3,6 +3,7 @@ package TSM.demo.domain.place;
 import TSM.demo.domain.UserHealth;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "course")
+@Getter
 public class Course {
 
     @Id
@@ -47,4 +49,15 @@ public class Course {
 
     @OneToMany(mappedBy = "course")
     private List<Restaurant> tourPlace=new ArrayList<>();
+
+    public Course(){
+
+    }
+
+    public Course(String name, String region, String description, String url) {
+        this.name = name;
+        this.region = region;
+        this.description = description;
+        this.url = url;
+    }
 }

@@ -29,28 +29,28 @@ public class PlaceRepository {
         em.persist(travelPlace);
     }
 
-    public Restaurant findRestaurant(int id){
+    public Restaurant findRestaurantById(int id){
         return em.find(Restaurant.class,id);
     }
     public List<Restaurant> findAllRestaurant(){
         return em.createQuery("select i from restaurant i",Restaurant.class)
                 .getResultList();
     }
-    public Room findRoom(int id){
+    public Room findRoomById(int id){
         return em.find(Room.class,id);
     }
     public List<Room> findAllRoom(){
         return em.createQuery("select i from room i",Room.class)
                 .getResultList();
     }
-    public Transport findTransport(int id){
+    public Transport findTransportById(int id){
         return em.find(Transport.class,id);
     }
     public List<Transport> findAllTransport(){
         return em.createQuery("select i from transport i",Transport.class)
                 .getResultList();
     }
-    public TravelPlace findTravelPlace(int id){
+    public TravelPlace findTravelPlaceById(int id){
         return em.find(TravelPlace.class,id);
     }
 
