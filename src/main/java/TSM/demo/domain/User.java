@@ -37,6 +37,9 @@ public class User {
     @Size(min=2,max=2000)
     private String access_token;
 
+    @Column(name = "rating")
+    private int rating;
+
 
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "health_id")
