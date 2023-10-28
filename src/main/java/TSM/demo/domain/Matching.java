@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 @Entity(name = "matching")
 class Matching {
 
+    @Id
     @Column(name = "matching_id")
     @NotNull
     private int id;
@@ -30,11 +31,11 @@ class Matching {
     @Column(name = "end_time")
     private Timestamp end_time;
 
-    @Column(name = "require_type")
-    private int require_type;
+    @Column(name = "request_type")
+    private int request_type;
 
-    @Column(name = "require_id")
-    private int require_id;
+    @Column(name = "request_id")
+    private int request_id;
 
 
     @OneToOne(fetch = FetchType.LAZY)
