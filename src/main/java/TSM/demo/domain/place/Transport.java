@@ -3,10 +3,13 @@ package TSM.demo.domain.place;
 
 import jakarta.persistence.*;
 
-@Entity
+@Entity(name = "transport")
 public class Transport extends Place{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
+    public Transport(){
+
+    }
+    public Transport(String name, String description, String url) {
+        super(name, description, url);
+    }
 }

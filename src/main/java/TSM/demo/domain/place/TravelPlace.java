@@ -7,7 +7,11 @@ import jakarta.persistence.Id;
 
 @Entity(name = "travel_place")
 public class TravelPlace extends Place{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+
+    public TravelPlace(){
+
+    }
+    public TravelPlace(String name, String description, String url) {
+        super(name, description, url);
+    }
 }

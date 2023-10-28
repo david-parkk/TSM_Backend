@@ -4,8 +4,11 @@ import jakarta.persistence.*;
 
 @Entity(name = "room")
 public class Room extends Place{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
+    public Room(){
+
+    }
+    public Room(String name, String description, String url) {
+        super(name, description, url);
+    }
 }
