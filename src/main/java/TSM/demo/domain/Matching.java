@@ -13,8 +13,13 @@ class Matching {
 
     @Id
     @Column(name = "matching_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     private int id;
+
+    @Column(name = "matching_group_id")
+    @NotNull
+    private int group_id;
 
     @Column(name = "state")
     private String state;
