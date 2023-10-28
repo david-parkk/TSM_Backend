@@ -1,6 +1,8 @@
 package TSM.demo.service;
 
+import TSM.demo.repository.UserRepository;
 import com.fasterxml.jackson.databind.JsonNode;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -9,14 +11,12 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @Service
+@RequiredArgsConstructor
 public class LoginService {
 
     private final Environment env;
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public LoginService(Environment env) {
-        this.env = env;
-    }
     public void socialLogin(String code, String registrationId) {
         String accessToken = getAccessToken(code, registrationId);
         JsonNode userResourceNode = getUserResource(accessToken, registrationId);
