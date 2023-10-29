@@ -39,4 +39,6 @@ public abstract class Place {
         this.description = description;
         this.url = url;
     }
+
+
 }
