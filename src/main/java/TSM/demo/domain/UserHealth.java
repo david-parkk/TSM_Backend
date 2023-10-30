@@ -45,13 +45,13 @@ public class UserHealth {
 
     }
 
-    public UserHealth(@NotNull int walk, @NotNull int see, @NotNull int talk, @NotNull int listen, @NotNull int depression, @NotNull int bioplarDisorder, @NotNull int iq) {
+    public UserHealth(@NotNull int walk, @NotNull int see, @NotNull int talk, @NotNull int listen, @NotNull int depression, @NotNull int bipolarDisorder, @NotNull int iq) {
         this.walk = walk;
         this.see = see;
         this.talk = talk;
         this.listen = listen;
         this.depression = depression;
-        this.bipolarDisorder = bioplarDisorder;
+        this.bipolarDisorder = bipolarDisorder;
         this.iq = iq;
     }
 
