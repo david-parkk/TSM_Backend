@@ -2,12 +2,11 @@ package TSM.demo.controller;
 
 
 import TSM.demo.domain.User;
+import TSM.demo.domain.UserHealth;
 import TSM.demo.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,8 +22,17 @@ public class UserController {
 
     //회원가입 POST 요청
     @PostMapping("/signup")
-    public String createUser(User user) {
+    public String createUser(User user, HttpSession httpSession, @RequestParam("walk") int walk,
+                             @RequestParam("see") int see,
+                             @RequestParam("talk") int talk,
+                             @RequestParam("listen") int listen,
+                             @RequestParam("depression") int depression,
+                             @RequestParam("bipolar_disorder") int bipolarDisorder,
+                             @RequestParam("iq") int iq) {
+        UserHealth userHealth = new UserHealth(walk, see, talk, listen, depression, bipolarDisorder, iq);
+        user.setUserHealth(userHealth);
         userService.join(user);
-        return "redirect:/";
+        httpSession.setAttribute("email", user.getEmail());
+        return "forward:/";
     }
 }

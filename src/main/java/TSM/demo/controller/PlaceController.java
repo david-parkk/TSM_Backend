@@ -23,17 +23,18 @@ public class PlaceController {
     private final RestaurantQueryRepository restaurantQueryRepository;
 
     @PostMapping("/api/place/restaurant")
-    public CreatePlaceResponse createRestaurant(@RequestBody @Valid Restaurant restaurant){
-        int id=placeService.save(restaurant);
+    public CreatePlaceResponse createRestaurant(@RequestBody @Valid Restaurant restaurant) {
+        int id = placeService.save(restaurant);
         return new CreatePlaceResponse(id);
     }
 
     @GetMapping("/api/place/restaurants")
-    public List<RestaurantQueryDto> showRestaurants(){
+    public List<RestaurantQueryDto> showRestaurants() {
         return restaurantQueryRepository.restaurantQueryDtoList();
     }
+
     @GetMapping("/api/place/restaurant/{id}")
-    public RestaurantQueryDto showRestaurant(@PathVariable int id){
+    public RestaurantQueryDto showRestaurant(@PathVariable int id) {
         return restaurantQueryRepository.findRestaurantById(id);
     }
 
@@ -41,10 +42,11 @@ public class PlaceController {
     @Setter
     @Getter
     @ToString
-    static class CreatePlaceResponse{
+    static class CreatePlaceResponse {
         private int id;
-        public CreatePlaceResponse(int id){
-            this.id=id;
+
+        public CreatePlaceResponse(int id) {
+            this.id = id;
         }
     }
 }

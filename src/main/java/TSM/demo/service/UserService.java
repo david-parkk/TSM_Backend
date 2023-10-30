@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UserService {
     private final UserRepository userRepository;
 
@@ -21,10 +22,12 @@ public class UserService {
     }
 
     //회원 조회
+    @Transactional(readOnly = true)
     public List<User> findMembers() {
         return userRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public User findOne(int userId) {
         return userRepository.findOne(userId);
     }
