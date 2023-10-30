@@ -1,5 +1,7 @@
 package TSM.demo.domain;
 
+import TSM.demo.controller.LoginController;
+import TSM.demo.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -9,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.junit.runner.Runner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.env.Environment;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -48,6 +51,13 @@ public class UserTest {
         System.out.println(pk);
         User findUser=em.find(User.class,pk);
         Assertions.assertThat(findUser.getName()).isEqualTo("김건대");
+    }
+
+    @Test
+    public void user_repository_test() {
+        User user=new User("naver@naver.com","+8210-000-0000",true,"김건대","XXXX");
+
+        
     }
 
     @Test

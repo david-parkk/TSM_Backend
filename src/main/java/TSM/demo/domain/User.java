@@ -4,17 +4,18 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Cascade;
 
 @Entity(name = "user")
 @Getter
+@Setter
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     @NotNull
     private int id;
-
 
     @Column(name="email")
     @NotNull
@@ -57,8 +58,7 @@ public class User {
         this.access_token = access_token;
     }
 
-
-    public void setUserHealth(UserHealth userHealth) {
-        this.userHealth = userHealth;
-    }
+//    public void setUserHealth(UserHealth userHealth) {
+//        this.userHealth = userHealth;
+//    }
 }
