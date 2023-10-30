@@ -28,7 +28,7 @@ public class User {
     private String phone_num;
 
     @Column(name = "is_volunteer")
-    private boolean isVolunteer;
+    private int is_volunteer;
 
     @Column(name = "name")
     @Size(min=2,max=50)
@@ -50,10 +50,10 @@ public class User {
 
     }
 
-    public User(@NotNull String email, @NotNull String phone_num, boolean isVolunteer, String name, String access_token) {
+    public User(@NotNull String email, @NotNull String phone_num, int is_volunteer, String name, String access_token) {
         this.email = email;
         this.phone_num = phone_num;
-        this.isVolunteer = isVolunteer;
+        this.is_volunteer = is_volunteer;
         this.name = name;
         this.access_token = access_token;
     }
