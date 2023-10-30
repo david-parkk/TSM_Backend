@@ -17,4 +17,11 @@ public class RoomQueryDto {
     private String description;
 
     private String url;
+
+    public RoomQueryDto(int roomId, String name, String description, String url) {
+        this.roomId = roomId;
+        this.name = name;
+        this.description = description;
+        this.url = url;
+    }
 }

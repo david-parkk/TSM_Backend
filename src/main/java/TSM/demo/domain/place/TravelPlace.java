@@ -14,4 +14,6 @@ public class TravelPlace extends Place{
     public TravelPlace(String name, String description, String url) {
         super(name, description, url);
     }
+
+
 }

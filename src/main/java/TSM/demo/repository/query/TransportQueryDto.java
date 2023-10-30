@@ -17,4 +17,11 @@ public class TransportQueryDto {
     private String description;
 
     private String url;
+
+    public TransportQueryDto(int transportId, String name, String description, String url) {
+        this.transportId = transportId;
+        this.name = name;
+        this.description = description;
+        this.url = url;
+    }
 }
