@@ -34,8 +34,8 @@ public class UserHealth {
     private int depression;
 
     @NotNull
-    @Column(name = "bioplar_disorder")
-    private int bioplarDisorder;
+    @Column(name = "bipolar_disorder")
+    private int bipolarDisorder;
 
     @NotNull
     @Column(name = "iq")
@@ -51,7 +51,7 @@ public class UserHealth {
         this.talk = talk;
         this.listen = listen;
         this.depression = depression;
-        this.bioplarDisorder = bioplarDisorder;
+        this.bipolarDisorder = bioplarDisorder;
         this.iq = iq;
     }
 
