@@ -8,7 +8,13 @@ import java.util.List;
 
 @Entity(name = "restaurant")
 public class Restaurant extends Place{
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+
+
+    public Restaurant(){
+
+    }
+    public Restaurant(String name, String description, String url) {
+        super(name, description, url);
+    }
 
 }

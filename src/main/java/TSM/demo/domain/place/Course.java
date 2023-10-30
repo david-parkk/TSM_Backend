@@ -3,13 +3,13 @@ package TSM.demo.domain.place;
 import TSM.demo.domain.UserHealth;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "course")
+@Getter
 public class Course {
 
     @Id
@@ -37,14 +37,35 @@ public class Course {
 
 
     @OneToMany(mappedBy = "course")
-    private List<Restaurant> restaurant=new ArrayList<>();
+    private List<Restaurant> restaurantList=new ArrayList<>();
 
     @OneToMany(mappedBy = "course")
-    private List<Room> room=new ArrayList<>();
+    private List<Room> roomList=new ArrayList<>();
 
     @OneToMany(mappedBy = "course")
-    private List<Transport> transports=new ArrayList<>();
+    private List<Transport> transportList=new ArrayList<>();
 
     @OneToMany(mappedBy = "course")
-    private List<Restaurant> tourPlace=new ArrayList<>();
+    private List<TravelPlace> travelPlaces=new ArrayList<>();
+
+    public Course(){
+
+    }
+
+    public Course(String name, String region, String description, String url) {
+        this.name = name;
+        this.region = region;
+        this.description = description;
+        this.url = url;
+    }
+    public void addRestaurant(Restaurant restaurant){
+        this.restaurantList.add(restaurant);
+    }
+    public void addRoom(Room room){
+        this.roomList.add(room);
+    }
+    public void addTransport(Transport transport){
+        this.transportList.add(transport);
+    }
+    public void addTravelPlace(TravelPlace travelPlace){ this.travelPlaces.add(travelPlace); }
 }
