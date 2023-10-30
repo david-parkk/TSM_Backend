@@ -22,5 +22,10 @@ public class RestaurantQueryDto {
 
     private String url;
 
-
+    public RestaurantQueryDto(int restaurantId, String name, String description, String url) {
+        this.restaurantId = restaurantId;
+        this.name = name;
+        this.description = description;
+        this.url = url;
+    }
 }

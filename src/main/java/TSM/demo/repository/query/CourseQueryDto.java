@@ -24,10 +24,7 @@ public class CourseQueryDto {
 
     private String url;
 
-
     private UserHealthQueryDto userHealth;
-
-
 
     private List<RestaurantQueryDto> restaurantList;
 
@@ -41,7 +38,7 @@ public class CourseQueryDto {
     private List<TravelPlaceQueryDto> travelPlaces;
 
     public CourseQueryDto(int courseId, String name, String region, String description, String url) {
-        CourseId = courseId;
+        this.courseId = courseId;
         this.name = name;
         this.region = region;
         this.description = description;
