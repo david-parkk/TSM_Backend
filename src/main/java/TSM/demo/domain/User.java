@@ -25,10 +25,10 @@ public class User {
     @Column(name="phone_num")
     @NotNull
     @Size(min=2,max=50)
-    private String phone_num;
+    private String phoneNum;
 
     @Column(name = "is_volunteer")
-    private int is_volunteer;
+    private int isVolunteer;
 
     @Column(name = "name")
     @Size(min=2,max=50)
@@ -36,7 +36,7 @@ public class User {
 
     @Column(name = "access_token")
     @Size(min=2,max=2000)
-    private String access_token;
+    private String accessToken;
 
     @Column(name = "rating")
     private int rating;
@@ -50,12 +50,12 @@ public class User {
 
     }
 
-    public User(@NotNull String email, @NotNull String phone_num, int is_volunteer, String name, String access_token) {
+    public User(@NotNull String email, @NotNull String phoneNum, int isVolunteer, String name, String accessToken) {
         this.email = email;
-        this.phone_num = phone_num;
-        this.is_volunteer = is_volunteer;
+        this.phoneNum = phoneNum;
+        this.isVolunteer = isVolunteer;
         this.name = name;
-        this.access_token = access_token;
+        this.accessToken = accessToken;
     }
 
 //    public void setUserHealth(UserHealth userHealth) {

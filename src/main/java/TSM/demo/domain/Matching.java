@@ -19,28 +19,28 @@ class Matching {
 
     @Column(name = "matching_group_id")
     @NotNull
-    private int group_id;
+    private int groupId;
 
     @Column(name = "state")
     private String state;
 
     @Column(name = "sick_id")
-    private int sick_id ;
+    private int sickId ;
     @Column(name = "volunteer_id")
     @NotNull
-    private int volunteer_id ;
+    private int volunteerId ;
 
     @Column(name = "start_time")
-    private Timestamp start_time;
+    private Timestamp startTime;
 
     @Column(name = "end_time")
-    private Timestamp end_time;
+    private Timestamp endTime;
 
     @Column(name = "request_type")
-    private int request_type;
+    private int requestType;
 
     @Column(name = "request_id")
-    private int request_id;
+    private int requestId;
 
 
     @OneToOne(fetch = FetchType.LAZY)
