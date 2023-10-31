@@ -17,7 +17,7 @@ public class LoginService {
     private final Environment env;
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public void socialLogin(String code, String registrationId) {
+    public String socialLogin(String code, String registrationId) {
         String accessToken = getAccessToken(code, registrationId);
         JsonNode userResourceNode = getUserResource(accessToken, registrationId);
         System.out.println("userResourceNode = " + userResourceNode);
@@ -30,6 +30,8 @@ public class LoginService {
         System.out.println("id = " + id);
         System.out.println("email = " + email);
         System.out.println("nickname = " + nickname);
+
+        return email;
     }
 
     private String getAccessToken(String authorizationCode, String registrationId) {

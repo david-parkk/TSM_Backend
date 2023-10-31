@@ -42,7 +42,7 @@ public class UserTest {
     @Test
     @Transactional
     public void user도메인테스트1(){
-        User user=new User("naver@naver.com","+8210-000-0000",true,"김건대","XXXX");
+        User user=new User("naver@naver.com","+8210-000-0000",1,"김건대","XXXX");
 
         em.persist(user);
         em.flush();
@@ -55,7 +55,7 @@ public class UserTest {
 
     @Test
     public void user_repository_test() {
-        User user=new User("naver@naver.com","+8210-000-0000",true,"김건대","XXXX");
+        User user=new User("naver@naver.com","+8210-000-0000",1,"김건대","XXXX");
 
         
     }
@@ -63,7 +63,7 @@ public class UserTest {
     @Test
     @Transactional
     public void user와userhealth종속성테스트1(){
-        User user=new User("naver@naver.com","+8210-000-0000",true,"김건대","XXXX");
+        User user=new User("naver@naver.com","+8210-000-0000",1,"김건대","XXXX");
         UserHealth userHealth=new UserHealth(1,1,1,1,1,1,1);
         user.setUserHealth(userHealth);
         em.persist(user);
@@ -79,7 +79,7 @@ public class UserTest {
     @Test
     @Transactional
     public void user와userhealth종속성테스트2(){
-        User user=new User("naver@naver.com","+8210-000-0000",true,"김건대","XXXX");
+        User user=new User("naver@naver.com","+8210-000-0000",1,"김건대","XXXX");
         UserHealth userHealth=new UserHealth(1,1,1,1,1,1,1);
         user.setUserHealth(userHealth);
         em.persist(user);

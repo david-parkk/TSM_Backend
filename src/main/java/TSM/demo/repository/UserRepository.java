@@ -1,6 +1,7 @@
 package TSM.demo.repository;
 
 import TSM.demo.domain.User;
+import TSM.demo.domain.UserHealth;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -27,4 +28,11 @@ public class UserRepository {
                 .setParameter("name", name)
                 .getSingleResult();
     }
+
+    public User findByEmail(String email) {
+        return em.createQuery("select u from user u where u.email = :email", User.class)
+                .setParameter("email", email)
+                .getSingleResult();
+    }
+
 }
