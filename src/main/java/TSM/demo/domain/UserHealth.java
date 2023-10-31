@@ -42,6 +42,7 @@ public class UserHealth {
     @Column(name = "iq")
     private int iq;
 
+    
     public UserHealth(){
 
     }
@@ -54,6 +55,9 @@ public class UserHealth {
         this.depression = depression;
         this.bipolarDisorder = bipolarDisorder;
         this.iq = iq;
+    }
+    public UserHealth copyUserHealth(){
+        return new UserHealth(this.walk, this.see,this.talk,this.listen,this.depression,this.bipolarDisorder,this.iq);
     }
 
     public boolean isPossibleCourse(UserHealth courseDifficulty) {

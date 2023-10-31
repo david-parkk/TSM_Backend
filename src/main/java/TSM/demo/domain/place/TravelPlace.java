@@ -12,8 +12,4 @@ public class TravelPlace extends Place{
     public TravelPlace(String name, String description, String url) {
         super(name, description, url);
     }
-
-    public TravelPlaceDto toDto() {
-        return new TravelPlaceDto(getName(), getDescription(), getUrl());
-    }
 }

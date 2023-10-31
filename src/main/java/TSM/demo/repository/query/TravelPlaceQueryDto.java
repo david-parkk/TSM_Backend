@@ -17,4 +17,11 @@ public class TravelPlaceQueryDto {
     private String description;
 
     private String url;
+
+    public TravelPlaceQueryDto(int travelPlaceId, String name, String description, String url) {
+        this.travelPlaceId = travelPlaceId;
+        this.name = name;
+        this.description = description;
+        this.url = url;
+    }
 }

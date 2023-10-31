@@ -70,10 +70,10 @@ public class UserTest {
 
         em.flush();
         em.close();
-        User findUser=em.find(User.class,1);
-        UserHealth findUserHealth=em.find(UserHealth.class,1);
+        User findUser=em.find(User.class,user.getId());
+        //UserHealth findUserHealth=em.find(UserHealth.class,1);
 
-        Assertions.assertThat(findUser.getUserHealth()).isSameAs(userHealth);
+        Assertions.assertThat(findUser.getUserHealth()).isEqualTo(userHealth);
     }
 
     @Test
@@ -88,7 +88,7 @@ public class UserTest {
         int pk=user.getId();
         User findUser=em.find(User.class,pk);
         em.remove(findUser);
-        UserHealth findUserHealth = em.find(UserHealth.class, 1);
+        UserHealth findUserHealth = em.find(UserHealth.class, findUser.getUserHealth().getId());
         Assertions.assertThat(findUserHealth).isNull();
 
     }

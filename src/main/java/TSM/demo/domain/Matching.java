@@ -3,13 +3,14 @@ package TSM.demo.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 import java.sql.Timestamp;
 
 @Entity(name = "matching")
-class Matching {
+@Getter
+public class Matching {
 
     @Id
     @Column(name = "matching_id")
@@ -22,7 +23,8 @@ class Matching {
     private int groupId;
 
     @Column(name = "state")
-    private String state;
+    @Enumerated(EnumType.STRING)
+    private State state;
 
     @Column(name = "sick_id")
     private int sickId ;
@@ -43,8 +45,41 @@ class Matching {
     private int requestId;
 
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @Cascade(CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "health_id")
     private UserHealth userHealth;
+
+    public Matching() {
+
+    }
+
+    public Matching(@NotNull int groupId, State state, int sickId, @NotNull int volunteerId, Timestamp startTime, Timestamp endTime, int requestType, int requestId) {
+        this.groupId = groupId;
+        this.state = state;
+        this.sickId = sickId;
+        this.volunteerId = volunteerId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.requestType = requestType;
+        this.requestId = requestId;
+    }
+    public Matching(@NotNull int groupId, State state, int sickId, @NotNull int volunteerId, Timestamp startTime, Timestamp endTime, int requestType, int requestId,UserHealth userHealth) {
+        this.groupId = groupId;
+        this.state = state;
+        this.sickId = sickId;
+        this.volunteerId = volunteerId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.requestType = requestType;
+        this.requestId = requestId;
+        this.userHealth=userHealth;
+    }
+    public void setUserHealth(UserHealth userHealth){ this.userHealth=userHealth; }
+
+    public void setSuccess(){
+        this.state=State.SUCCESS;
+    }
+    public void setFail(){
+        this.state=State.FAIL;
+    }
 }
