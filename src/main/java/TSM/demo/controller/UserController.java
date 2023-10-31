@@ -29,9 +29,7 @@ public class UserController {
                              @RequestParam("depression") int depression,
                              @RequestParam("bipolar_disorder") int bipolarDisorder,
                              @RequestParam("iq") int iq) {
-        UserHealth userHealth = new UserHealth(walk, see, talk, listen, depression, bipolarDisorder, iq);
-        user.setUserHealth(userHealth);
-        userService.join(user);
+        userService.join(user, new UserHealth(walk, see, talk, listen, depression, bipolarDisorder, iq));
         httpSession.setAttribute("email", user.getEmail());
         return "forward:/";
     }

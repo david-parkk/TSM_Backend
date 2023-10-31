@@ -55,5 +55,13 @@ public class UserHealth {
         this.iq = iq;
     }
 
-
+    public boolean isPossibleCourse(UserHealth courseDifficulty) {
+        return this.see >= courseDifficulty.getSee()
+                && this.walk >= courseDifficulty.getWalk()
+                && this.talk >= courseDifficulty.getTalk()
+                && this.listen >= courseDifficulty.getListen()
+                && this.iq >= courseDifficulty.getIq()
+                && this.bipolarDisorder >= courseDifficulty.getBipolarDisorder()
+                && this.depression >= courseDifficulty.getDepression();
+    }
 }

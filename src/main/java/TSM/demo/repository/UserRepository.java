@@ -30,14 +30,9 @@ public class UserRepository {
     }
 
     public User findByEmail(String email) {
-        return em.createQuery("select u from user u where u.email = email", User.class)
+        return em.createQuery("select u from user u where u.email = :email", User.class)
                 .setParameter("email", email)
                 .getSingleResult();
     }
 
-//    public UserHealth findUserHealthByEmail(String email) {
-//        return em.createQuery("select uh from user_health uh, user u where uh.health_id = u.user_id", UserHealth.class)
-//                .setParameter("email", email)
-//                .getSingleResult();
-//    }
 }
