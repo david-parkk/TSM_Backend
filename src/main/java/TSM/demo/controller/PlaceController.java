@@ -22,61 +22,68 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class PlaceController {
     private final PlaceService placeService;
-    private final RestaurantQueryRepository restaurantQueryRepository;
-    private final RoomQueryRepository roomQueryRepository;
-    private final TransportQueryRepository transportQueryRepository;
-    private final TravelPlaceQueryRepository travelPlaceQueryRepository;
 
-    @PostMapping("/api/place/restaurant")
+
+    @PostMapping("/place/restaurant")
     public CreatePlaceResponse createRestaurant(@RequestBody @Valid Restaurant restaurant){
         int id=placeService.save(restaurant);
         return new CreatePlaceResponse(id);
     }
 
-    @GetMapping("/api/place/restaurants")
+    @GetMapping("/place/restaurants")
     public List<RestaurantQueryDto> showRestaurants(){
-        return restaurantQueryRepository.restaurantQueryDtoList();
+        return placeService.findAllRestaurants();
+
     }
-    @GetMapping("/api/place/restaurant/{id}")
+    @GetMapping("/place/restaurant/{id}")
     public RestaurantQueryDto showRestaurant(@PathVariable int id){
-        return restaurantQueryRepository.findRestaurantById(id);
+        return placeService.findRestaurantById(id);
     }
 
-    @PostMapping("/api/place/room")
+    @PostMapping("/place/room")
     public CreatePlaceResponse createRoom(@RequestBody @Valid Room room){
         int id=placeService.save(room);
         return new CreatePlaceResponse(id);
     }
-    @GetMapping("/api/place/rooms")
+    @GetMapping("/place/rooms")
     public List<RoomQueryDto> showRooms(){
-        return roomQueryRepository.roomQueryDtoList();
-    }
-    @GetMapping("/api/place/room/{id}")
-    public RoomQueryDto showRoom(@PathVariable int id){ return roomQueryRepository.findRoomById(id); }
 
-    @PostMapping("/api/place/transport")
+        return placeService.findAllRooms();
+    }
+    @GetMapping("/place/room/{id}")
+    public RoomQueryDto showRoom(@PathVariable int id){
+        return placeService.findRoomById(id);
+    }
+
+    @PostMapping("/place/transport")
     public CreatePlaceResponse createTransport(@RequestBody @Valid Transport transport){
         int id=placeService.save(transport);
         return new CreatePlaceResponse(id);
     }
-    @GetMapping("/api/place/transports")
+    @GetMapping("/place/transports")
     public List<TransportQueryDto> showTransports(){
-        return transportQueryRepository.transportQueryDtoList();
-    }
-    @GetMapping("/api/place/transport/{id}")
-    public TransportQueryDto showTransport(@PathVariable int id){ return transportQueryRepository.findTransportById(id); }
 
-    @PostMapping("/api/place/travelPlace")
+        return placeService.findAllTransports();
+    }
+    @GetMapping("/place/transport/{id}")
+    public TransportQueryDto showTransport(@PathVariable int id){
+        return placeService.findTransportById(id);
+    }
+
+    @PostMapping("/place/travelPlace")
     public CreatePlaceResponse createTravelPlace(@RequestBody @Valid TravelPlace travelPlace){
         int id=placeService.save(travelPlace);
         return new CreatePlaceResponse(id);
     }
-    @GetMapping("/api/place/travelPlaces")
+    @GetMapping("/place/travelPlaces")
     public List<TravelPlaceQueryDto> showTravelPlaces(){
-        return travelPlaceQueryRepository.travelPlaceQueryDtoList();
+
+        return placeService.findAllTravelPlaces();
     }
-    @GetMapping("/api/place/travelPlace/{id}")
-    public TravelPlaceQueryDto showTravelPlace(@PathVariable int id){ return travelPlaceQueryRepository.findTravelPlaceById(id); }
+    @GetMapping("/place/travelPlace/{id}")
+    public TravelPlaceQueryDto showTravelPlace(@PathVariable int id){
+        return placeService.findTravelPlaceByid(id);
+    }
 
     @Setter
     @Getter
