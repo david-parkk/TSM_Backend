@@ -1,10 +1,10 @@
 package TSM.demo.service;
 
-import TSM.demo.domain.User;
 import TSM.demo.domain.UserHealth;
 import TSM.demo.domain.place.Course;
 import TSM.demo.repository.CourseRepository;
 import TSM.demo.repository.UserRepository;
+import TSM.demo.repository.query.*;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
@@ -15,15 +15,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true)
 public class CourseService {
-
     private final CourseRepository courseRepository;
     private final UserRepository userRepository;
 
-    @Transactional(readOnly = true)
-    public List<Course> recommendCourse(String email) {
-        List<Course> recommendedCourse = new ArrayList<>();
+    public List<String> recommendCourse(String email) {
+        List<String> recommendedCourse = new ArrayList<>();
         UserHealth userHealth = (UserHealth) Hibernate.unproxy(userRepository.findByEmail(email).getUserHealth());
 
         List<Course> courseList = courseRepository.findAll();
@@ -31,10 +29,13 @@ public class CourseService {
             UserHealth courseDifficulty = (UserHealth) Hibernate.unproxy(course.getUserHealth());
             // user 가 갈 수 있는 course 만 리턴
             if(userHealth.isPossibleCourse(courseDifficulty)) {
-//              courseList.remove(course);
-                recommendedCourse.add(course);
+                recommendedCourse.add(course.getName());
             }
         }
         return recommendedCourse;
+    }
+
+    public CourseDto findCourse(String courseName) {
+        return courseRepository.findByName(courseName).toDto();
     }
 }

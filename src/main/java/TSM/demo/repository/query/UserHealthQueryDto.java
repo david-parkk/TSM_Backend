@@ -5,18 +5,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
 public class UserHealthQueryDto {
-
-
-    private int userHealthId;
 
 
     private int walk;
@@ -31,9 +25,18 @@ public class UserHealthQueryDto {
     private int depression;
 
 
-    private int bioplarDisorder;
+    private int bipolarDisorder;
 
 
     private int iq;
 
+    public UserHealthQueryDto(int walk, int see, int talk, int listen, int depression, int bipolarDisorder, int iq) {
+        this.walk = walk;
+        this.see = see;
+        this.talk = talk;
+        this.listen = listen;
+        this.depression = depression;
+        this.bipolarDisorder = bipolarDisorder;
+        this.iq = iq;
+    }
 }

@@ -1,5 +1,6 @@
 package TSM.demo.domain;
 
+import TSM.demo.repository.query.UserHealthQueryDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -67,5 +68,9 @@ public class UserHealth {
                 && this.iq >= courseDifficulty.getIq()
                 && this.bipolarDisorder >= courseDifficulty.getBipolarDisorder()
                 && this.depression >= courseDifficulty.getDepression();
+    }
+
+    public UserHealthQueryDto toDto() {
+        return new UserHealthQueryDto(walk, see, talk, listen, depression, bipolarDisorder, iq);
     }
 }

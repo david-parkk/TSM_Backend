@@ -1,15 +1,19 @@
 package TSM.demo.domain.place;
 
 import TSM.demo.domain.UserHealth;
+import TSM.demo.repository.query.CourseDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.Hibernate;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "course")
 @Getter
+@Setter
 public class Course {
 
     @Id
@@ -58,6 +62,7 @@ public class Course {
         this.description = description;
         this.url = url;
     }
+
     public void addRestaurant(Restaurant restaurant){
         this.restaurantList.add(restaurant);
     }
@@ -68,4 +73,18 @@ public class Course {
         this.transportList.add(transport);
     }
     public void addTravelPlace(TravelPlace travelPlace){ this.travelPlaces.add(travelPlace); }
+
+    public CourseDto toDto() {
+        CourseDto courseDto = new CourseDto(name, region, description, url);
+        // UserHealth 엔티티를 UserHealthQueryDto로 변환하여 설정
+        if (userHealth != null) {
+            userHealth =  (UserHealth) Hibernate.unproxy(userHealth);
+            courseDto.setUserHealth(userHealth.toDto());
+        }
+        courseDto.setRestaurantList(restaurantList);
+        courseDto.setRoomList(roomList);
+        courseDto.setTransportList(transportList);
+        courseDto.setTravelPlaces(travelPlaces);
+        return courseDto;
+    }
 }
