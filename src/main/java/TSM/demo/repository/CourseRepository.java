@@ -30,6 +30,12 @@ public class CourseRepository {
                 .getResultList();
     }
 
+    public Course findByName(String name) {
+        return em.createQuery("select c from course c where c.name = :name", Course.class)
+                .setParameter("name", name)
+                .getSingleResult();
+    }
+
 //    public List<UserHealth> findUserHealth() {
 //        return em.createQuery("select uh from user_health uh, course c where uh.health_id = c.course_id", UserHealth.class)
 //                .getResultList();
