@@ -3,13 +3,14 @@ package TSM.demo.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 import java.sql.Timestamp;
 
 @Entity(name = "matching")
-class Matching {
+@Getter
+public class Matching {
 
     @Id
     @Column(name = "matching_id")
@@ -19,19 +20,20 @@ class Matching {
 
     @Column(name = "matching_group_id")
     @NotNull
-    private int group_id;
+    private int groupId;
 
     @Column(name = "state")
-    private String state;
+    @Enumerated(EnumType.STRING)
+    private State state;
 
     @Column(name = "sick_id")
-    private int sick_id ;
+    private int sickId ;
     @Column(name = "volunteer_id")
     @NotNull
-    private int volunteer_id ;
+    private int volunteerId ;
 
     @Column(name = "start_time")
-    private Timestamp start_time;
+    private Timestamp startTime;
 
     @Column(name = "end_time")
     private Timestamp end_time;
@@ -43,8 +45,23 @@ class Matching {
     private int request_id;
 
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @Cascade(CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "health_id")
     private UserHealth userHealth;
+
+    public Matching() {
+
+    }
+
+    public Matching(@NotNull int groupId, State state, int sickId, @NotNull int volunteerId, Timestamp startTime, Timestamp end_time, int request_type, int request_id) {
+        this.groupId = groupId;
+        this.state = state;
+        this.sickId = sickId;
+        this.volunteerId = volunteerId;
+        this.startTime = startTime;
+        this.end_time = end_time;
+        this.request_type = request_type;
+        this.request_id = request_id;
+    }
+    public void setUserHealth(UserHealth userHealth){ this.userHealth=userHealth; }
 }

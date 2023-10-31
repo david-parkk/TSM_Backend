@@ -31,7 +31,7 @@ public class Course {
     @Size(min=2,max=2000)
     private String url;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "health_id")
     private UserHealth userHealth;
 
