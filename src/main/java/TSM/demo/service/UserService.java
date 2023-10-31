@@ -18,7 +18,9 @@ public class UserService {
     //회원 가입
     @Transactional
     public int join(User user, UserHealth userHealth) {
-        user.setUserHealth(userHealth);
+        if(userHealth != null){
+            user.setUserHealth(userHealth);
+        }
         userRepository.save(user);
         return user.getId();
     }
