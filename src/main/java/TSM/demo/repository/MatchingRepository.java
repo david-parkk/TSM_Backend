@@ -1,12 +1,16 @@
 package TSM.demo.repository;
 
 import TSM.demo.domain.Matching;
+import TSM.demo.domain.State;
+import TSM.demo.domain.UserHealth;
 import TSM.demo.domain.place.Course;
 import TSM.demo.repository.query.MatchingQueryDto;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -43,8 +47,9 @@ public class MatchingRepository {
                 .getResultList();
     }
     public List<MatchingQueryDto> findAllInfoWithCourseByVolunteerId(int volunteerId){
-        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.endTime, m.requestType, m.requestId)" +
+        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.endTime, m.requestType, m.requestId,m.userHealth.id)" +
                         " from matching m " +
+                        " join m.userHealth h" +
                         " where m.volunteerId= :volunteerId and" +
                         " m.requestType= 0", MatchingQueryDto.class)
                 .setParameter("volunteerId",volunteerId)
@@ -152,5 +157,10 @@ public class MatchingRepository {
         return matchingQueryDtos;
     }
 
+    public void addMatchingByVolunteer(int sickId, int volunteerId, int requestType, int requestId, Timestamp startTime, Timestamp endTime, UserHealth userHealth){
+
+        Matching matching =new Matching(requestId, State.WAIT,sickId,volunteerId,startTime,endTime,requestType,requestId,userHealth);
+        save(matching);
+    }
 
 }

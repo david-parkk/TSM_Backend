@@ -34,5 +34,10 @@ public class UserRepository {
                 .setParameter("email", email)
                 .getSingleResult();
     }
-
+    public List<User> findByIsVolunteer(int isVolunteer){
+        return em.createQuery("select u from user u" +
+                        " where isVolunteer = :isVolunteer", User.class)
+                .setParameter("isVolunteer",isVolunteer)
+                .getResultList();
+    }
 }

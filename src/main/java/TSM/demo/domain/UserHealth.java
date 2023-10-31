@@ -54,6 +54,9 @@ public class UserHealth {
         this.bipolarDisorder = bipolarDisorder;
         this.iq = iq;
     }
+    public UserHealth copyUserHealth(){
+        return new UserHealth(this.walk, this.see,this.talk,this.listen,this.depression,this.bipolarDisorder,this.iq);
+    }
 
     public boolean isPossibleCourse(UserHealth courseDifficulty) {
         return this.see >= courseDifficulty.getSee()

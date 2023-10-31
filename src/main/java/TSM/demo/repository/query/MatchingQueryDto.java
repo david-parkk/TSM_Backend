@@ -45,9 +45,11 @@ public class MatchingQueryDto {
 
 
 
-    private UserHealth userHealth;
+
 
     private Course course;
+
+    private int userHealthId;
     public MatchingQueryDto(){
 
     }
@@ -63,6 +65,16 @@ public class MatchingQueryDto {
         this.request_type = request_type;
         this.request_id = request_id;
     }
-
+    public MatchingQueryDto(int id, int groupId, State state, int sickId, int volunteerId, Timestamp startTime, Timestamp end_time, int request_type, int request_id,int userHealthId) {
+        this.id = id;
+        this.groupId = groupId;
+        this.state = state;
+        this.sickId = sickId;
+        this.volunteerId = volunteerId;
+        this.startTime = startTime;
+        this.end_time = end_time;
+        this.request_type = request_type;
+        this.request_id = request_id;
+    }
 
 }

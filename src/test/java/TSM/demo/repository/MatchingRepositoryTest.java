@@ -2,6 +2,7 @@ package TSM.demo.repository;
 
 import TSM.demo.domain.Matching;
 import TSM.demo.domain.State;
+import TSM.demo.domain.UserHealth;
 import TSM.demo.domain.place.Course;
 import TSM.demo.repository.query.MatchingQueryDto;
 import jakarta.persistence.EntityManager;
@@ -79,7 +80,45 @@ public class MatchingRepositoryTest {
             System.out.println("matching = " + matching);
         }
     }
+    @Test
+    @Transactional(readOnly = false)
+    public void MatchingRepository테스트1_course조회_userHealth1() {
+        Course course1 =new Course("TSM 코스","광진구","성공시 박지원 퇴근1","www..wwww.www");
+        Course course2 =new Course("TSM 코스","광진구","성공시 박지원 퇴근2","www..wwww.www");
+        Course course3 =new Course("TSM 코스","광진구","성공시 박지원 퇴근3","www..wwww.www");
+        em.persist(course1);
+        em.persist(course2);
+        em.persist(course3);
+        int id1=course1.getId();
+        int id2=course2.getId();
+        int id3=course3.getId();
 
+        LocalDateTime specificDateTime = LocalDateTime.of(2023, 10, 30, 12, 0, 0); // 예시: 2023년 10월 30일 12:00:00
+        Timestamp specificTimestamp = Timestamp.valueOf(specificDateTime);
+        
+        Matching matching1=new Matching(1, State.FAIL,1,1,specificTimestamp,specificTimestamp,0,id1);
+        UserHealth userHealth1=new UserHealth(1,1,1,1,1,1,1);
+        matching1.setUserHealth(userHealth1);
+        em.persist(matching1);
+        Matching matching2=new Matching(1,State.FAIL,1,1,specificTimestamp,specificTimestamp,0,id2);
+        UserHealth userHealth2=new UserHealth(2,2,2,2,2,2,2);
+        matching2.setUserHealth(userHealth2);
+        
+        Matching matching3=new Matching(1,State.FAIL,3,1,specificTimestamp,specificTimestamp,1,id3);
+
+        em.persist(matching2);
+        em.persist(matching3);
+        em.flush();
+        List<MatchingQueryDto> allInfoByVolunteerId = matchingRepository.findAllInfoByVolunteerId(1);
+        for (MatchingQueryDto matchingQueryDto : allInfoByVolunteerId) {
+            System.out.println("matchingQueryDto = " + matchingQueryDto);
+            System.out.println("matchingQueryDto.getCourse().getName() = " + matchingQueryDto.getCourse().getName());
+            System.out.println("matchingQueryDto.getCourse().getDescription() = " + matchingQueryDto.getCourse().getDescription());
+            if(matchingQueryDto.getRequest_type()==0)
+                System.out.println("matchingQueryDto.getUserHealth().getSee() = " + matchingQueryDto.getUserHealthId());
+        }
+    
+    }
     @Test
     @Transactional(readOnly = false)
     public void MatchingRepository테스트1_course포함전체조회1(){

@@ -63,5 +63,16 @@ public class Matching {
         this.requestType = requestType;
         this.requestId = requestId;
     }
+    public Matching(@NotNull int groupId, State state, int sickId, @NotNull int volunteerId, Timestamp startTime, Timestamp endTime, int requestType, int requestId,UserHealth userHealth) {
+        this.groupId = groupId;
+        this.state = state;
+        this.sickId = sickId;
+        this.volunteerId = volunteerId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.requestType = requestType;
+        this.requestId = requestId;
+        this.userHealth=userHealth;
+    }
     public void setUserHealth(UserHealth userHealth){ this.userHealth=userHealth; }
 }
