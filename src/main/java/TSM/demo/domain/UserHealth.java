@@ -41,6 +41,7 @@ public class UserHealth {
     @Column(name = "iq")
     private int iq;
 
+    
     public UserHealth(){
 
     }

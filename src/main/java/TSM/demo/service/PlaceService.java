@@ -70,7 +70,7 @@ public class PlaceService {
     public List<TravelPlaceQueryDto> findAllTravelPlaces(){
         return travelPlaceQueryRepository.travelPlaceQueryDtoList();
     }
-    public TravelPlaceQueryDto findTravelPlaceByid(int id){
+    public TravelPlaceQueryDto findTravelPlaceById(int id){
         return travelPlaceQueryRepository.findTravelPlaceById(id);
     }
 

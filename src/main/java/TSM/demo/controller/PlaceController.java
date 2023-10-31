@@ -82,7 +82,7 @@ public class PlaceController {
     }
     @GetMapping("/place/travelPlace/{id}")
     public TravelPlaceQueryDto showTravelPlace(@PathVariable int id){
-        return placeService.findTravelPlaceByid(id);
+        return placeService.findTravelPlaceById(id);
     }
 
     @Setter

@@ -1,5 +1,6 @@
 package TSM.demo.service;
 
+import TSM.demo.domain.Matching;
 import TSM.demo.domain.User;
 import TSM.demo.domain.UserHealth;
 import TSM.demo.domain.place.*;
@@ -28,7 +29,7 @@ public class MatchingService {
         return matchingRepository.findAllInfoByVolunteerId(id);
     }
     @Transactional(readOnly = false)
-    public void addMatchingByVolunteer(int sickId, int requestType, int requestId, Timestamp startTime, Timestamp endTime){
+    public void addMatchingByUnwell(int sickId, int requestType, int requestId, Timestamp startTime, Timestamp endTime){
         User findUser = userRepository.findOne(sickId);
 
         List<User> Volunteers = userRepository.findByIsVolunteer(1);
@@ -38,7 +39,16 @@ public class MatchingService {
             matchingRepository.addMatchingByVolunteer(sickId,volunteer.getId(),requestType,requestId,startTime,endTime,userHealth);
         }
     }
-    
 
+    @Transactional(readOnly = false)
+    public void selectMatchingByVolunteer(int volunteerId,int requestId){
+        List<Matching> findMatchings = matchingRepository.findAllByRequestId(requestId);
+        for (Matching findMatching : findMatchings) {
+            if(findMatching.getVolunteerId()==volunteerId)
+                findMatching.setSuccess();
+            else
+                findMatching.setFail();
+        }
+    }
 
 }

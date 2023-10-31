@@ -75,4 +75,11 @@ public class Matching {
         this.userHealth=userHealth;
     }
     public void setUserHealth(UserHealth userHealth){ this.userHealth=userHealth; }
+
+    public void setSuccess(){
+        this.state=State.SUCCESS;
+    }
+    public void setFail(){
+        this.state=State.FAIL;
+    }
 }

@@ -29,10 +29,15 @@ public class MatchingController {
 
     @PostMapping("/matching")
     public CreateMatchingResponse CreateMatchingRequest(@RequestBody @Valid MatchingRequest matchingRequest){
-        matchingService.addMatchingByVolunteer(matchingRequest.getSickId(),matchingRequest.getRequestType(),matchingRequest.getRequestId(),matchingRequest.getStartTime(),matchingRequest.getEndTime());
+        matchingService.addMatchingByUnwell(matchingRequest.getSickId(),matchingRequest.getRequestType(),matchingRequest.getRequestId(),matchingRequest.getStartTime(),matchingRequest.getEndTime());
         return new CreateMatchingResponse("success");
     }
 
+    @PostMapping("/select/v")
+    public CreateMatchingResponse selectMatchingRequest(@RequestBody HashMap<String, Integer> map){
+        matchingService.selectMatchingByVolunteer(map.get("id"),map.get("course_id"));
+        return new CreateMatchingResponse("success");
+    }
 
     @Setter
     @Getter
