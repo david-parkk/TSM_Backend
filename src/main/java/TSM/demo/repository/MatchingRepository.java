@@ -43,10 +43,10 @@ public class MatchingRepository {
                 .getResultList();
     }
     public List<MatchingQueryDto> findAllInfoWithCourseByVolunteerId(int volunteerId){
-        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.end_time, m.request_type, m.request_id)" +
+        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.endTime, m.requestType, m.requestId)" +
                         " from matching m " +
                         " where m.volunteerId= :volunteerId and" +
-                        " m.request_type= 0", MatchingQueryDto.class)
+                        " m.requestType= 0", MatchingQueryDto.class)
                 .setParameter("volunteerId",volunteerId)
                 .getResultList();
         List<Integer>courseIds=matchingQueryDtos.stream()
@@ -63,10 +63,10 @@ public class MatchingRepository {
         return matchingQueryDtos;
     }
     public List<MatchingQueryDto> findAllInfoWithRestaurantByVolunteerId(int volunteerId){
-        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.end_time, m.request_type, m.request_id)" +
+        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.endTime, m.requestType, m.requestId)" +
                         " from matching m " +
                         " where m.volunteerId= :volunteerId and" +
-                        " m.request_type= 1", MatchingQueryDto.class)
+                        " m.requestType= 1", MatchingQueryDto.class)
                 .setParameter("volunteerId",volunteerId)
                 .getResultList();
         List<Integer>courseIds=matchingQueryDtos.stream()
@@ -83,10 +83,10 @@ public class MatchingRepository {
         return matchingQueryDtos;
     }
     public List<MatchingQueryDto> findAllInfoWithRoomByVolunteerId(int volunteerId){
-        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.end_time, m.request_type, m.request_id)" +
+        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.endTime, m.requestType, m.requestId)" +
                         " from matching m " +
                         " where m.volunteerId= :volunteerId and" +
-                        " m.request_type= 2", MatchingQueryDto.class)
+                        " m.requestType= 2", MatchingQueryDto.class)
                 .setParameter("volunteerId",volunteerId)
                 .getResultList();
         List<Integer>courseIds=matchingQueryDtos.stream()
@@ -103,10 +103,10 @@ public class MatchingRepository {
         return matchingQueryDtos;
     }
     public List<MatchingQueryDto> findAllInfoWithTransportByVolunteerId(int volunteerId){
-        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.end_time, m.request_type, m.request_id)" +
+        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.endTime, m.requestType, m.requestId)" +
                         " from matching m " +
                         " where m.volunteerId= :volunteerId and" +
-                        " m.request_type= 3", MatchingQueryDto.class)
+                        " m.requestType= 3", MatchingQueryDto.class)
                 .setParameter("volunteerId",volunteerId)
                 .getResultList();
         List<Integer>courseIds=matchingQueryDtos.stream()
@@ -123,10 +123,10 @@ public class MatchingRepository {
         return matchingQueryDtos;
     }
     public List<MatchingQueryDto> findAllInfoWithTravelPlaceByVolunteerId(int volunteerId){
-        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.end_time, m.request_type, m.request_id)" +
+        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.endTime, m.requestType, m.requestId)" +
                         " from matching m " +
                         " where m.volunteerId= :volunteerId and" +
-                        " m.request_type= 4", MatchingQueryDto.class)
+                        " m.requestType= 4", MatchingQueryDto.class)
                 .setParameter("volunteerId",volunteerId)
                 .getResultList();
         List<Integer>courseIds=matchingQueryDtos.stream()

@@ -53,15 +53,15 @@ public class Matching {
 
     }
 
-    public Matching(@NotNull int groupId, State state, int sickId, @NotNull int volunteerId, Timestamp startTime, Timestamp end_time, int request_type, int request_id) {
+    public Matching(@NotNull int groupId, State state, int sickId, @NotNull int volunteerId, Timestamp startTime, Timestamp endTime, int requestType, int requestId) {
         this.groupId = groupId;
         this.state = state;
         this.sickId = sickId;
         this.volunteerId = volunteerId;
         this.startTime = startTime;
-        this.end_time = end_time;
-        this.request_type = request_type;
-        this.request_id = request_id;
+        this.endTime = endTime;
+        this.requestType = requestType;
+        this.requestId = requestId;
     }
     public void setUserHealth(UserHealth userHealth){ this.userHealth=userHealth; }
 }
