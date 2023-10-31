@@ -36,13 +36,13 @@ public class Matching {
     private Timestamp startTime;
 
     @Column(name = "end_time")
-    private Timestamp end_time;
+    private Timestamp endTime;
 
     @Column(name = "request_type")
-    private int request_type;
+    private int requestType;
 
     @Column(name = "request_id")
-    private int request_id;
+    private int requestId;
 
 
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)

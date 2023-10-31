@@ -34,8 +34,8 @@ public class UserHealth {
     private int depression;
 
     @NotNull
-    @Column(name = "bioplar_disorder")
-    private int bioplarDisorder;
+    @Column(name = "bipolar_disorder")
+    private int bipolarDisorder;
 
     @NotNull
     @Column(name = "iq")
@@ -45,15 +45,23 @@ public class UserHealth {
 
     }
 
-    public UserHealth(@NotNull int walk, @NotNull int see, @NotNull int talk, @NotNull int listen, @NotNull int depression, @NotNull int bioplarDisorder, @NotNull int iq) {
+    public UserHealth(@NotNull int walk, @NotNull int see, @NotNull int talk, @NotNull int listen, @NotNull int depression, @NotNull int bipolarDisorder, @NotNull int iq) {
         this.walk = walk;
         this.see = see;
         this.talk = talk;
         this.listen = listen;
         this.depression = depression;
-        this.bioplarDisorder = bioplarDisorder;
+        this.bipolarDisorder = bipolarDisorder;
         this.iq = iq;
     }
 
-
+    public boolean isPossibleCourse(UserHealth courseDifficulty) {
+        return this.see >= courseDifficulty.getSee()
+                && this.walk >= courseDifficulty.getWalk()
+                && this.talk >= courseDifficulty.getTalk()
+                && this.listen >= courseDifficulty.getListen()
+                && this.iq >= courseDifficulty.getIq()
+                && this.bipolarDisorder >= courseDifficulty.getBipolarDisorder()
+                && this.depression >= courseDifficulty.getDepression();
+    }
 }

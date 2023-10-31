@@ -1,9 +1,9 @@
 package TSM.demo;
 
 import TSM.demo.domain.User;
+import TSM.demo.domain.UserHealth;
 import TSM.demo.repository.UserRepository;
 import TSM.demo.service.UserService;
-import jakarta.persistence.EntityManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 @Transactional
 public class UserServiceTest {
-    @Autowired EntityManager em;
     @Autowired UserService userService;
 
     @Autowired UserRepository userRepository;
@@ -25,13 +24,17 @@ public class UserServiceTest {
     @Test
     public void 회원가입() throws Exception {
         //given
-        User user=new User("naver@naver.com","+8210-000-0000",true,"김건대","XXXX");
+        User user=new User("naver@naver.com","+8210-000-0000",1,"김건대","XXXX");
+        UserHealth userHealth = new UserHealth(0,1,0,1,0,1,1);
 
         //when
-        int saveId = userService.join(user);
+        int saveId = userService.join(user, userHealth);
 
         //then
         assertEquals(user, userRepository.findOne(saveId));
         assertEquals(user, userRepository.findByName(user.getName()));
+        assertEquals(user, userRepository.findByEmail(user.getEmail()));
+        assertEquals(userHealth, userRepository.findByEmail(user.getEmail()).getUserHealth());
+        System.out.println("hi");
     }
 }

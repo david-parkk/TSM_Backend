@@ -1,6 +1,7 @@
 package TSM.demo.repository;
 
 
+import TSM.demo.domain.UserHealth;
 import TSM.demo.domain.place.Course;
 import TSM.demo.domain.place.TravelPlace;
 import jakarta.persistence.Entity;
@@ -16,15 +17,21 @@ public class CourseRepository {
 
     private final EntityManager em;
 
-    public void save(Course course){
+    public void save(Course course) {
         em.persist(course);
     }
-    public Course findOneById(int id){
-        return em.find(Course.class,id);
+
+    public Course findOneById(int id) {
+        return em.find(Course.class, id);
     }
-    public List<Course> findAll(){
-        return em.createQuery("select i from course i", Course.class)
+
+    public List<Course> findAll() {
+        return em.createQuery("select c from course c", Course.class)
                 .getResultList();
     }
 
+//    public List<UserHealth> findUserHealth() {
+//        return em.createQuery("select uh from user_health uh, course c where uh.health_id = c.course_id", UserHealth.class)
+//                .getResultList();
+//    }
 }
