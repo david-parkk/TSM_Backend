@@ -169,4 +169,18 @@ public class MatchingRepository {
         save(matching);
     }
 
+    public int getMaxGroupId() {
+        try {
+            return em.createQuery("select MAX(m.groupId) from matching m", Integer.class).getSingleResult();
+        }catch (NullPointerException e) {
+            return 0;
+        }
+    }
+
+    public void addMatchingRowByUnwell(int sickId, int requestType, Timestamp startTime, Timestamp endTime, int requestId) {
+        int maxGroupId = getMaxGroupId();
+        Matching matching = new Matching(++maxGroupId, null, sickId, 0, startTime, endTime, requestType, requestId);
+        this.save(matching);
+    }
+
 }

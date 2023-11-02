@@ -1,14 +1,13 @@
 package TSM.demo.controller;
 
-import TSM.demo.repository.MatchingRepository;
 import TSM.demo.repository.query.MatchingQueryDto;
 import TSM.demo.service.MatchingService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -23,32 +22,45 @@ public class MatchingController {
     private final MatchingService matchingService;
 
     @PostMapping("/matchings")
-    public List<MatchingQueryDto> showAllMatchingById(@RequestBody HashMap<String, Integer> map){
+    public List<MatchingQueryDto> showAllMatchingById(@RequestBody HashMap<String, Integer> map) {
         return matchingService.findAllByVolunteerId(map.get("id"));
     }
 
     @PostMapping("/matching")
-    public CreateMatchingResponse CreateMatchingRequest(@RequestBody @Valid MatchingRequest matchingRequest){
-        matchingService.addMatchingByUnwell(matchingRequest.getSickId(),matchingRequest.getRequestType(),matchingRequest.getRequestId(),matchingRequest.getStartTime(),matchingRequest.getEndTime());
+    public CreateMatchingResponse CreateMatchingRequest(@RequestBody @Valid MatchingRequest matchingRequest) {
+        matchingService.addMatchingByUnwell(matchingRequest.getSickId(), matchingRequest.getRequestType(), matchingRequest.getRequestId(), matchingRequest.getStartTime(), matchingRequest.getEndTime());
         return new CreateMatchingResponse("success");
     }
 
     @PostMapping("/select/v")
-    public CreateMatchingResponse selectMatchingRequest(@RequestBody HashMap<String, Integer> map){
-        matchingService.selectMatchingByVolunteer(map.get("id"),map.get("course_id"));
+    public CreateMatchingResponse selectMatchingRequest(@RequestBody HashMap<String, Integer> map) {
+        matchingService.selectMatchingByVolunteer(map.get("id"), map.get("course_id"));
         return new CreateMatchingResponse("success");
+    }
+
+    @PostMapping("/request")
+    public String requestHelp(@RequestParam int sickId,
+                              @RequestParam String startTime,
+                              @RequestParam String endTime,
+                              @RequestParam int requestType,
+                              @RequestParam int requestId
+            , HttpSession httpSession) {
+        //int sickId = (int) httpSession.getAttribute("userId");
+        matchingService.requestHelpByUnwell(sickId, requestType, Timestamp.valueOf(startTime), Timestamp.valueOf(endTime), requestId);
+        return "/";
     }
 
     @Setter
     @Getter
     @ToString
-    static class MatchingRequest{
+    static class MatchingRequest {
         private int sickId;
         private int requestType;
         private int requestId;
         private Timestamp startTime;
         private Timestamp endTime;
-        public MatchingRequest(){
+
+        public MatchingRequest() {
 
         }
 
@@ -60,10 +72,11 @@ public class MatchingController {
             this.endTime = endTime;
         }
     }
+
     @Setter
     @Getter
     @ToString
-    static class CreateMatchingResponse{
+    static class CreateMatchingResponse {
         private String result;
 
         public CreateMatchingResponse(String result) {

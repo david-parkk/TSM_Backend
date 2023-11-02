@@ -3,10 +3,7 @@ package TSM.demo.service;
 import TSM.demo.domain.Matching;
 import TSM.demo.domain.User;
 import TSM.demo.domain.UserHealth;
-import TSM.demo.domain.place.*;
-import TSM.demo.repository.CourseRepository;
 import TSM.demo.repository.MatchingRepository;
-import TSM.demo.repository.PlaceRepository;
 import TSM.demo.repository.UserRepository;
 import TSM.demo.repository.query.MatchingQueryDto;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +16,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class MatchingService {
 
     private final MatchingRepository matchingRepository;
@@ -28,7 +25,7 @@ public class MatchingService {
     public List<MatchingQueryDto> findAllByVolunteerId(int id){
         return matchingRepository.findAllInfoByVolunteerId(id);
     }
-    @Transactional(readOnly = false)
+
     public void addMatchingByUnwell(int sickId, int requestType, int requestId, Timestamp startTime, Timestamp endTime){
         User findUser = userRepository.findOne(sickId);
 
@@ -40,7 +37,6 @@ public class MatchingService {
         }
     }
 
-    @Transactional(readOnly = false)
     public void selectMatchingByVolunteer(int volunteerId,int requestId){
         List<Matching> findMatchings = matchingRepository.findAllByRequestId(requestId);
         for (Matching findMatching : findMatchings) {
@@ -51,4 +47,7 @@ public class MatchingService {
         }
     }
 
+    public void requestHelpByUnwell(int sickId, int requestType, Timestamp startTime, Timestamp endTime, int requestId) {
+        matchingRepository.addMatchingRowByUnwell(sickId, requestType, startTime, endTime, requestId);
+    }
 }

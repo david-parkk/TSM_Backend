@@ -1,11 +1,11 @@
 package TSM.demo.domain;
 
+import TSM.demo.repository.query.UserQueryDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Cascade;
 
 @Entity(name = "user")
 @Getter
@@ -58,7 +58,13 @@ public class User {
         this.accessToken = accessToken;
     }
 
-//    public void setUserHealth(UserHealth userHealth) {
-//        this.userHealth = userHealth;
-//    }
+    public UserQueryDto toDto() {
+        return UserQueryDto.builder()
+                .email(this.email)
+                .isVolunteer(this.isVolunteer)
+                .name(this.name)
+                .phoneNum(this.phoneNum)
+                .rating(this.rating)
+                .build();
+    }
 }
