@@ -28,8 +28,9 @@ public class CourseController {
         return courseService.recommendCourse(email);
     }
 
-    @GetMapping("/description")
-    public CourseDto requestCourse(@RequestParam(value = "name") String courseName) {
-        return courseService.findCourse(courseName);
+    @GetMapping("/description/{name}")
+    public CourseDto requestCourseDescription(@PathVariable("name") String name) {
+        return courseService.findCourse(name);
     }
+
 }
