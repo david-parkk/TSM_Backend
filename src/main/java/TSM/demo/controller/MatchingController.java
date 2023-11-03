@@ -26,15 +26,17 @@ public class MatchingController {
         return matchingService.findAllByVolunteerId(map.get("id"));
     }
 
-    @PostMapping("/matching")
-    public CreateMatchingResponse CreateMatchingRequest(@RequestBody @Valid MatchingRequest matchingRequest) {
-        matchingService.addMatchingByUnwell(matchingRequest.getSickId(), matchingRequest.getRequestType(), matchingRequest.getRequestId(), matchingRequest.getStartTime(), matchingRequest.getEndTime());
+    @PostMapping("/select")
+    public CreateMatchingResponse CreateMatchingRequest(@RequestBody @Valid MatchingSelect matchingSelect) {
+        if(matchingSelect.getIsVolunteer()==1)
+            matchingService.addMatchingByUnwell(matchingSelect.getUserId(),matchingSelect.getMatchingGroupId());
+
         return new CreateMatchingResponse("success");
     }
 
-    @PostMapping("/select/v")
+    @PostMapping("/approve")
     public CreateMatchingResponse selectMatchingRequest(@RequestBody HashMap<String, Integer> map) {
-        matchingService.selectMatchingByVolunteer(map.get("id"), map.get("course_id"));
+        matchingService.selectMatchingByVolunteer(map.get("id"), map.get("Group_id"));
         return new CreateMatchingResponse("success");
     }
 
@@ -72,7 +74,21 @@ public class MatchingController {
             this.endTime = endTime;
         }
     }
+    @Setter
+    @Getter
+    @ToString
+    static class MatchingSelect {
+        private int matchingGroupId;
+        private int isVolunteer;
+        private int userId;
+        public MatchingSelect(int matchingGroupId,int isVolunteer,int userId){
+            this.matchingGroupId=matchingGroupId;
+            this.isVolunteer=isVolunteer;
+            this.userId=userId;
+        }
 
+
+    }
     @Setter
     @Getter
     @ToString

@@ -7,6 +7,7 @@ import TSM.demo.repository.MatchingRepository;
 import TSM.demo.repository.UserRepository;
 import TSM.demo.repository.query.MatchingQueryDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.expression.spel.ast.NullLiteral;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,25 +21,35 @@ import java.util.List;
 public class MatchingService {
 
     private final MatchingRepository matchingRepository;
-    private final UserRepository userRepository;
+
 
     public List<MatchingQueryDto> findAllByVolunteerId(int id){
         return matchingRepository.findAllInfoByVolunteerId(id);
     }
-
-    public void addMatchingByUnwell(int sickId, int requestType, int requestId, Timestamp startTime, Timestamp endTime){
-        User findUser = userRepository.findOne(sickId);
-
-        List<User> Volunteers = userRepository.findByIsVolunteer(1);
-
-        for (User volunteer : Volunteers) {
-            UserHealth userHealth =findUser.getUserHealth().copyUserHealth();
-            matchingRepository.addMatchingByVolunteer(sickId,volunteer.getId(),requestType,requestId,startTime,endTime,userHealth);
-        }
+    public List<Matching> findAllByGroupId(int groupId){
+        return matchingRepository.findAllByGroupId(groupId);
     }
 
-    public void selectMatchingByVolunteer(int volunteerId,int requestId){
-        List<Matching> findMatchings = matchingRepository.findAllByRequestId(requestId);
+    public void addMatchingByUnwell(int volunteerId, int matchingGroupId){
+        List<Matching> matchingList= matchingRepository.findAllByGroupId(matchingGroupId);
+
+        Matching matching=matchingList.get(0);
+        if(matching.getState()== null) {
+            matching.setWait();
+            matching.setVolunteerId(volunteerId);
+        }
+        else{
+
+            matchingRepository.addMatchingByVolunteer(volunteerId,matching);
+        }
+
+
+        
+
+    }
+
+    public void selectMatchingByVolunteer(int volunteerId,int groupId){
+        List<Matching> findMatchings = matchingRepository.findAllByGroupId(groupId);
         for (Matching findMatching : findMatchings) {
             if(findMatching.getVolunteerId()==volunteerId)
                 findMatching.setSuccess();
