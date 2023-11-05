@@ -82,4 +82,7 @@ public class Matching {
     public void setFail(){
         this.state=State.FAIL;
     }
+    public void setWait(){this.state=State.WAIT;}
+
+    public void setVolunteerId(int volunteerId){this.volunteerId=volunteerId;}
 }

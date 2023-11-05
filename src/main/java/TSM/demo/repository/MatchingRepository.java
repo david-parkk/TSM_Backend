@@ -29,6 +29,13 @@ public class MatchingRepository {
         return em.find(Matching.class,id);
     }
 
+    public List<Matching> findAllByGroupId(int groupId){
+        return em.createQuery("select i from matching i" +
+                        " where i.groupId= :groupId")
+                .setParameter("groupId",groupId)
+                .getResultList();
+    }
+
     public List<Matching> findAll(){
         return em.createQuery("select i from matching i", Matching.class)
                 .getResultList();
@@ -79,10 +86,10 @@ public class MatchingRepository {
         return matchings;
     }
 
-    public void addMatchingByVolunteer(int sickId, int volunteerId, int requestType, int requestId, Timestamp startTime, Timestamp endTime, UserHealth userHealth){
+    public void addMatchingByVolunteer(int volunteerId,Matching matching){
 
-        Matching matching =new Matching(requestId, State.WAIT,sickId,volunteerId,startTime,endTime,requestType,requestId,userHealth);
-        save(matching);
+        Matching newMatching =new Matching(matching.getRequestId(), State.WAIT,matching.getSickId(),volunteerId,matching.getStartTime(),matching.getEndTime(),matching.getRequestType(),matching.getRequestId(),matching.getUserHealth());
+        em.persist(newMatching);
     }
 
     public int getMaxGroupId() {
