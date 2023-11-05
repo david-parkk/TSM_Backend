@@ -5,7 +5,7 @@ import TSM.demo.domain.User;
 import TSM.demo.domain.UserHealth;
 import TSM.demo.repository.MatchingRepository;
 import TSM.demo.repository.UserRepository;
-import TSM.demo.repository.query.MatchingQueryDto;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +22,9 @@ public class MatchingService {
     private final MatchingRepository matchingRepository;
     private final UserRepository userRepository;
 
-    public List<MatchingQueryDto> findAllByVolunteerId(int id){
-        return matchingRepository.findAllInfoByVolunteerId(id);
+    public List<Matching> findAllByVolunteerId(int id){
+        List<Matching> matchings = matchingRepository.findAllInfoByVolunteerId(id);
+        return matchings;
     }
 
     public void addMatchingByUnwell(int sickId, int requestType, int requestId, Timestamp startTime, Timestamp endTime){

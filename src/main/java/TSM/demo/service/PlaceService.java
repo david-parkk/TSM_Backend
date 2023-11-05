@@ -19,10 +19,7 @@ import java.util.List;
 public class PlaceService {
 
     private final PlaceRepository placeRepository;
-    private final RestaurantQueryRepository restaurantQueryRepository;
-    private final RoomQueryRepository roomQueryRepository;
-    private final TransportQueryRepository transportQueryRepository;
-    private final TravelPlaceQueryRepository travelPlaceQueryRepository;
+
     @Transactional(readOnly = false)
     public int save(Restaurant restaurant){
         placeRepository.save(restaurant);
@@ -46,32 +43,19 @@ public class PlaceService {
         placeRepository.save(travelPlace);
         return travelPlace.getId();
     }
+    public List<Restaurant> findAllRestaurants(){
+        return placeRepository.findAllRestaurant();
+    }
+    public Restaurant findRestaurantById(int id){ return placeRepository.findRestaurantById(id); };
 
-    public List<RestaurantQueryDto> findAllRestaurants(){
-        return restaurantQueryRepository.restaurantQueryDtoList();
-    }
-    public RestaurantQueryDto findRestaurantById(int id){
-        return restaurantQueryRepository.findRestaurantById(id);
-    }
-    public List<RoomQueryDto> findAllRooms(){
-        return roomQueryRepository.roomQueryDtoList();
-    }
-    public RoomQueryDto findRoomById(int id){
-        return roomQueryRepository.findRoomById(id);
-    }
+    public List<Room> findAllRooms(){ return placeRepository.findAllRoom(); }
+    public Room findRoomById(int id){ return placeRepository.findRoomById(id); }
 
-    public List<TransportQueryDto> findAllTransports(){
-        return transportQueryRepository.transportQueryDtoList();
-    }
-    public TransportQueryDto findTransportById(int id){
-        return transportQueryRepository.findTransportById(id);
-    }
+    public List<Transport> findAllTransports(){ return placeRepository.findAllTransport(); }
+    public Transport findTransportById(int id){ return placeRepository.findTransportById(id); }
 
-    public List<TravelPlaceQueryDto> findAllTravelPlaces(){
-        return travelPlaceQueryRepository.travelPlaceQueryDtoList();
-    }
-    public TravelPlaceQueryDto findTravelPlaceById(int id){
-        return travelPlaceQueryRepository.findTravelPlaceById(id);
-    }
+    public List<TravelPlace> findAllTravelPlaces(){ return placeRepository.findAllTravelPlace(); }
+    public TravelPlace findTravelPlaceById(int id){ return placeRepository.findTravelPlaceById(id); }
+
 
 }

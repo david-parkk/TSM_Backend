@@ -1,6 +1,8 @@
 package TSM.demo.controller;
 
-import TSM.demo.repository.query.MatchingQueryDto;
+import TSM.demo.domain.Matching;
+import TSM.demo.repository.query.MatchingDto;
+
 import TSM.demo.service.MatchingService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,8 +25,15 @@ public class MatchingController {
     private final MatchingService matchingService;
 
     @PostMapping("/matchings")
-    public List<MatchingQueryDto> showAllMatchingById(@RequestBody HashMap<String, Integer> map) {
-        return matchingService.findAllByVolunteerId(map.get("id"));
+    public List<MatchingDto> showAllMatchingById(@RequestBody HashMap<String, Integer> map) {
+        List<MatchingDto> matchingDtos=new ArrayList<>();
+        if(map.get("isVolunteer")==1){
+            matchingService.findAllByVolunteerId(map.get("id")).stream()
+                    .forEach(o->matchingDtos.add(new MatchingDto(o)));
+
+        }
+        return matchingDtos;
+
     }
 
     @PostMapping("/matching")

@@ -23,7 +23,7 @@ public class CourseDto {
 
     private String url;
 
-    private UserHealthQueryDto userHealth;
+    private UserHealthDto userHealth;
 
     private List<RestaurantDto> restaurantList;
 

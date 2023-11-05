@@ -1,16 +1,11 @@
 package TSM.demo.repository.query;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
 @Setter
 @ToString
-public class UserHealthQueryDto {
+public class UserHealthDto {
 
 
     private int walk;
@@ -30,7 +25,7 @@ public class UserHealthQueryDto {
 
     private int iq;
 
-    public UserHealthQueryDto(int walk, int see, int talk, int listen, int depression, int bipolarDisorder, int iq) {
+    public UserHealthDto(int walk, int see, int talk, int listen, int depression, int bipolarDisorder, int iq) {
         this.walk = walk;
         this.see = see;
         this.talk = talk;

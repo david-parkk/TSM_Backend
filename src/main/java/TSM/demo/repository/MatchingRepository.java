@@ -4,7 +4,6 @@ import TSM.demo.domain.Matching;
 import TSM.demo.domain.State;
 import TSM.demo.domain.UserHealth;
 import TSM.demo.domain.place.Course;
-import TSM.demo.repository.query.MatchingQueryDto;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -52,115 +51,32 @@ public class MatchingRepository {
                 .setParameter("sick_id",sickId)
                 .getResultList();
     }
-    public List<MatchingQueryDto> findAllInfoWithCourseByVolunteerId(int volunteerId){
-        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.endTime, m.requestType, m.requestId,m.userHealth.id)" +
-                        " from matching m " +
-                        " join m.userHealth h" +
-                        " where m.volunteerId= :volunteerId and" +
-                        " m.requestType= 1", MatchingQueryDto.class)
+    public List<Matching> findAllInfoWithCourseByVolunteerId(int volunteerId){
+        return em.createQuery("select m from matching m " +
+                " join fetch m.userHealth h" +
+                " where m.volunteerId=:volunteerId and" +
+                " m.requestType=1",Matching.class)
                 .setParameter("volunteerId",volunteerId)
                 .getResultList();
-        List<Integer>courseIds=matchingQueryDtos.stream()
-                .map(o->o.getRequest_id())
-                .collect(Collectors.toList());
-        List<Course> courses=em.createQuery(
-                        "select c from course c " +
-                                " where c.id in :courseIds", Course.class)
-                .setParameter("courseIds",courseIds)
-                .getResultList();
-        Map<Integer,Course> courseMap=courses.stream()
-                .collect(Collectors.toMap(Course::getId, course -> course));
-        matchingQueryDtos.forEach(o->o.setCourse(courseMap.get(o.getRequest_id())));
-        return matchingQueryDtos;
     }
-    public List<MatchingQueryDto> findAllInfoWithRestaurantByVolunteerId(int volunteerId){
-        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.endTime, m.requestType, m.requestId)" +
-                        " from matching m " +
-                        " where m.volunteerId= :volunteerId and" +
-                        " m.requestType= 2", MatchingQueryDto.class)
+    public List<Matching> findAllInfoWithPlaceByVolunteerId(int volunteerId,int requestType){
+        return em.createQuery("select m from matching m " +
+                        " join fetch m.userHealth h" +
+                        " where m.volunteerId=:volunteerId and" +
+                        " m.requestType=:requestType",Matching.class)
                 .setParameter("volunteerId",volunteerId)
+                .setParameter("requestType",requestType)
                 .getResultList();
-        List<Integer>courseIds=matchingQueryDtos.stream()
-                .map(o->o.getRequest_id())
-                .collect(Collectors.toList());
-        List<Course> courses=em.createQuery(
-                        "select c from course c " +
-                                " where c.id in :courseIds", Course.class)
-                .setParameter("courseIds",courseIds)
-                .getResultList();
-        Map<Integer,Course> courseMap=courses.stream()
-                .collect(Collectors.toMap(Course::getId, course -> course));
-        matchingQueryDtos.forEach(o->o.setCourse(courseMap.get(o.getRequest_id())));
-        return matchingQueryDtos;
     }
-    public List<MatchingQueryDto> findAllInfoWithRoomByVolunteerId(int volunteerId){
-        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.endTime, m.requestType, m.requestId)" +
-                        " from matching m " +
-                        " where m.volunteerId= :volunteerId and" +
-                        " m.requestType= 3", MatchingQueryDto.class)
-                .setParameter("volunteerId",volunteerId)
-                .getResultList();
-        List<Integer>courseIds=matchingQueryDtos.stream()
-                .map(o->o.getRequest_id())
-                .collect(Collectors.toList());
-        List<Course> courses=em.createQuery(
-                        "select c from course c " +
-                                " where c.id in :courseIds", Course.class)
-                .setParameter("courseIds",courseIds)
-                .getResultList();
-        Map<Integer,Course> courseMap=courses.stream()
-                .collect(Collectors.toMap(Course::getId, course -> course));
-        matchingQueryDtos.forEach(o->o.setCourse(courseMap.get(o.getRequest_id())));
-        return matchingQueryDtos;
-    }
-    public List<MatchingQueryDto> findAllInfoWithTransportByVolunteerId(int volunteerId){
-        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.endTime, m.requestType, m.requestId)" +
-                        " from matching m " +
-                        " where m.volunteerId= :volunteerId and" +
-                        " m.requestType= 4", MatchingQueryDto.class)
-                .setParameter("volunteerId",volunteerId)
-                .getResultList();
-        List<Integer>courseIds=matchingQueryDtos.stream()
-                .map(o->o.getRequest_id())
-                .collect(Collectors.toList());
-        List<Course> courses=em.createQuery(
-                        "select c from course c " +
-                                " where c.id in :courseIds", Course.class)
-                .setParameter("courseIds",courseIds)
-                .getResultList();
-        Map<Integer,Course> courseMap=courses.stream()
-                .collect(Collectors.toMap(Course::getId, course -> course));
-        matchingQueryDtos.forEach(o->o.setCourse(courseMap.get(o.getRequest_id())));
-        return matchingQueryDtos;
-    }
-    public List<MatchingQueryDto> findAllInfoWithTravelPlaceByVolunteerId(int volunteerId){
-        List<MatchingQueryDto> matchingQueryDtos=em.createQuery("select new TSM.demo.repository.query.MatchingQueryDto(m.id,m.groupId,m.state,m.sickId,m.volunteerId, m.startTime, m.endTime, m.requestType, m.requestId)" +
-                        " from matching m " +
-                        " where m.volunteerId= :volunteerId and" +
-                        " m.requestType= 5", MatchingQueryDto.class)
-                .setParameter("volunteerId",volunteerId)
-                .getResultList();
-        List<Integer>courseIds=matchingQueryDtos.stream()
-                .map(o->o.getRequest_id())
-                .collect(Collectors.toList());
-        List<Course> courses=em.createQuery(
-                        "select c from course c " +
-                                " where c.id in :courseIds", Course.class)
-                .setParameter("courseIds",courseIds)
-                .getResultList();
-        Map<Integer,Course> courseMap=courses.stream()
-                .collect(Collectors.toMap(Course::getId, course -> course));
-        matchingQueryDtos.forEach(o->o.setCourse(courseMap.get(o.getRequest_id())));
-        return matchingQueryDtos;
-    }
-    public List<MatchingQueryDto> findAllInfoByVolunteerId(int volunteerId){
-        List<MatchingQueryDto>matchingQueryDtos=new ArrayList<>();
-        matchingQueryDtos.addAll(findAllInfoWithCourseByVolunteerId(volunteerId));
-        matchingQueryDtos.addAll(findAllInfoWithRestaurantByVolunteerId(volunteerId));
-        matchingQueryDtos.addAll(findAllInfoWithRoomByVolunteerId(volunteerId));
-        matchingQueryDtos.addAll(findAllInfoWithTransportByVolunteerId(volunteerId));
-        matchingQueryDtos.addAll(findAllInfoWithTravelPlaceByVolunteerId(volunteerId));
-        return matchingQueryDtos;
+
+    public List<Matching> findAllInfoByVolunteerId(int volunteerId){
+
+        List<Matching>matchings=new ArrayList<>();
+        matchings.addAll(findAllInfoWithCourseByVolunteerId(volunteerId));
+        for(int i=2;i<=5;i++){
+            matchings.addAll(findAllInfoWithPlaceByVolunteerId(volunteerId,i));
+        }
+        return matchings;
     }
 
     public void addMatchingByVolunteer(int sickId, int volunteerId, int requestType, int requestId, Timestamp startTime, Timestamp endTime, UserHealth userHealth){

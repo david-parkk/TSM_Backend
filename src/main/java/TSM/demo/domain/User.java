@@ -1,6 +1,6 @@
 package TSM.demo.domain;
 
-import TSM.demo.repository.query.UserQueryDto;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -58,7 +58,7 @@ public class User {
         this.accessToken = accessToken;
     }
 
-    public UserQueryDto toDto() {
+    /*public UserQueryDto toDto() {
         return UserQueryDto.builder()
                 .email(this.email)
                 .isVolunteer(this.isVolunteer)
@@ -66,5 +66,5 @@ public class User {
                 .phoneNum(this.phoneNum)
                 .rating(this.rating)
                 .build();
-    }
+    }*/
 }

@@ -4,7 +4,8 @@ import TSM.demo.domain.Matching;
 import TSM.demo.domain.State;
 import TSM.demo.domain.UserHealth;
 import TSM.demo.domain.place.Course;
-import TSM.demo.repository.query.MatchingQueryDto;
+
+import TSM.demo.repository.query.MatchingDto;
 import jakarta.persistence.EntityManager;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
@@ -109,13 +110,12 @@ public class MatchingRepositoryTest {
         em.persist(matching2);
         em.persist(matching3);
         em.flush();
-        List<MatchingQueryDto> allInfoByVolunteerId = matchingRepository.findAllInfoByVolunteerId(1);
-        for (MatchingQueryDto matchingQueryDto : allInfoByVolunteerId) {
+        List<Matching> allInfoByVolunteerId = matchingRepository.findAllInfoByVolunteerId(1);
+        for (Matching matchingQueryDto : allInfoByVolunteerId) {
             System.out.println("matchingQueryDto = " + matchingQueryDto);
-            System.out.println("matchingQueryDto.getCourse().getName() = " + matchingQueryDto.getCourse().getName());
-            System.out.println("matchingQueryDto.getCourse().getDescription() = " + matchingQueryDto.getCourse().getDescription());
-            if(matchingQueryDto.getRequest_type()==0)
-                System.out.println("matchingQueryDto.getUserHealth().getSee() = " + matchingQueryDto.getUserHealthId());
+
+
+
         }
     
     }
@@ -141,12 +141,8 @@ public class MatchingRepositoryTest {
         em.persist(matching2);
         em.persist(matching3);
 
-        List<MatchingQueryDto> allInfoByVolunteerId = matchingRepository.findAllInfoByVolunteerId(1);
-        for (MatchingQueryDto matchingQueryDto : allInfoByVolunteerId) {
-            System.out.println("matchingQueryDto = " + matchingQueryDto);
-            System.out.println("matchingQueryDto.getCourse().getName() = " + matchingQueryDto.getCourse().getName());
-            System.out.println("matchingQueryDto.getCourse().getDescription() = " + matchingQueryDto.getCourse().getDescription());
-        }
+        List<Matching> allInfoByVolunteerId = matchingRepository.findAllInfoByVolunteerId(1);
+
 
 
     }
@@ -172,12 +168,7 @@ public class MatchingRepositoryTest {
         em.persist(matching2);
         em.persist(matching3);
 
-        List<MatchingQueryDto> allInfoByVolunteerId = matchingRepository.findAllInfoWithCourseByVolunteerId(1);
-        for (MatchingQueryDto matchingQueryDto : allInfoByVolunteerId) {
-            System.out.println("matchingQueryDto = " + matchingQueryDto);
-            System.out.println("matchingQueryDto.getCourse().getName() = " + matchingQueryDto.getCourse().getName());
-            System.out.println("matchingQueryDto.getCourse().getDescription() = " + matchingQueryDto.getCourse().getDescription());
-        }
+        List<Matching> allInfoByVolunteerId = matchingRepository.findAllInfoWithCourseByVolunteerId(1);
 
 
     }
