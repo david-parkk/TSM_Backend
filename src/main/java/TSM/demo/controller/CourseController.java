@@ -1,6 +1,7 @@
 package TSM.demo.controller;
 
 import TSM.demo.repository.query.CourseDto;
+import TSM.demo.repository.query.RecommendCourseResponseDto;
 import TSM.demo.service.CourseService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -14,15 +15,8 @@ import java.util.List;
 public class CourseController {
     private final CourseService courseService;
 
-//    @GetMapping()
-//    public List<CourseQueryDto> requestCourseList(HttpSession httpSession) {
-//        //세션 데이터 추가
-//        String email = httpSession.getAttribute("email").toString();
-//        return courseService.recommendCourse(email);
-//    }
-
     @GetMapping()
-    public List<String> requestCourseNameList(HttpSession httpSession) {
+    public List<RecommendCourseResponseDto> requestCourseList(HttpSession httpSession) {
         //세션 데이터 추가
         String email = httpSession.getAttribute("email").toString();
         return courseService.recommendCourse(email);
