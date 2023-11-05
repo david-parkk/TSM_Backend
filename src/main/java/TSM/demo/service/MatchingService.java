@@ -47,7 +47,7 @@ public class MatchingService {
         }
     }
 
-    public void requestHelpByUnwell(int sickId, int requestType, Timestamp startTime, Timestamp endTime, int requestId) {
-        matchingRepository.addMatchingRowByUnwell(sickId, requestType, startTime, endTime, requestId);
+    public void requestHelpByUnwell(int sickId, int requestType, Timestamp startTime, Timestamp endTime, int requestId, UserHealth userHealth) {
+        matchingRepository.addMatchingRowByUnwell(sickId, requestType, startTime, endTime, requestId, userHealth);
     }
 }
