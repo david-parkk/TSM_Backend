@@ -1,5 +1,7 @@
 package TSM.demo.controller;
 
+import TSM.demo.domain.User;
+import TSM.demo.domain.UserHealth;
 import TSM.demo.repository.query.MatchingQueryDto;
 import TSM.demo.service.MatchingService;
 import jakarta.servlet.http.HttpSession;
@@ -43,10 +45,10 @@ public class MatchingController {
                               @RequestParam String startTime,
                               @RequestParam String endTime,
                               @RequestParam int requestType,
-                              @RequestParam int requestId
-            , HttpSession httpSession) {
-        //int sickId = (int) httpSession.getAttribute("userId");
-        matchingService.requestHelpByUnwell(sickId, requestType, Timestamp.valueOf(startTime), Timestamp.valueOf(endTime), requestId);
+                              @RequestParam int requestId,
+                              HttpSession httpSession) {
+        UserHealth userHealth = (UserHealth) httpSession.getAttribute("userHealth");
+        matchingService.requestHelpByUnwell(sickId, requestType, Timestamp.valueOf(startTime), Timestamp.valueOf(endTime), requestId, userHealth);
         return "/";
     }
 
