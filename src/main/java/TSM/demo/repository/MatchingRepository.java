@@ -179,7 +179,7 @@ public class MatchingRepository {
 
     public void addMatchingRowByUnwell(int sickId, int requestType, Timestamp startTime, Timestamp endTime, int requestId, UserHealth userHealth) {
         int maxGroupId = getMaxGroupId();
-        Matching matching = new Matching(++maxGroupId, null, sickId, 0, startTime, endTime, requestType, requestId, userHealth);
+        Matching matching = new Matching(++maxGroupId, null, sickId, 0, startTime, endTime, requestType, requestId, userHealth.copyUserHealth());
         this.save(matching);
     }
 }
