@@ -10,7 +10,9 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 
 import java.sql.Timestamp;
@@ -22,6 +24,12 @@ import java.util.List;
 @RequestMapping("/matching")
 public class MatchingController {
     private final MatchingService matchingService;
+
+    @GetMapping()
+    public ModelAndView volunteerMatching(ModelAndView mav) {
+        mav.setViewName("volunteer_matching");
+        return mav;
+    }
 
     @PostMapping("/matchings")
     public List<MatchingQueryDto> showAllMatchingById(@RequestBody HashMap<String, Integer> map) {

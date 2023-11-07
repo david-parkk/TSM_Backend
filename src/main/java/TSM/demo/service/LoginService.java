@@ -42,7 +42,7 @@ public class LoginService {
         System.out.println("email = " + email);
         System.out.println("nickname = " + nickname);
 
-        return new LoginResponseDto(email, id, userHealth);
+        return new LoginResponseDto(email, id, nickname, userHealth);
     }
 
     private String getAccessToken(String authorizationCode, String registrationId) {
