@@ -48,7 +48,6 @@ public class CourseRepositoryTest {
         courseRepository.save(course);
         Course findCourse = courseRepository.findOneById(course.getId());
         Assertions.assertThat(findCourse.getName()).isSameAs(course.getName());
-
     }
 
     @Test
@@ -59,9 +58,8 @@ public class CourseRepositoryTest {
         courseRepository.save(course1);
         courseRepository.save(course2);
         List<Course> courseList = courseRepository.findAll();
-        for (Course course : courseList) {
-            System.out.println("course.getName() = " + course.getName());
-        }
+        Assertions.assertThat(courseList.size()).isEqualTo(2);
+
     }
 
 }

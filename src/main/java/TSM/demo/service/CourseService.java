@@ -1,7 +1,9 @@
 package TSM.demo.service;
 
+import TSM.demo.domain.Matching;
 import TSM.demo.domain.UserHealth;
 import TSM.demo.domain.place.Course;
+import TSM.demo.domain.place.TravelPlace;
 import TSM.demo.repository.CourseRepository;
 import TSM.demo.repository.UserRepository;
 import TSM.demo.repository.query.*;
@@ -11,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -37,5 +41,23 @@ public class CourseService {
 
     public CourseDto findCourse(String courseName) {
         return courseRepository.findByName(courseName).toDto();
+    }
+
+
+    public List<Course> findAllCourseByMatching(List<Matching>matchings){
+        List<Course> Courses=courseRepository.findAll();
+        Map<Integer,Integer> map=new HashMap<>();
+        for (Matching matching : matchings) {
+            map.put(matching.getRequestId(),1);
+
+        }
+        List<Course> result= new ArrayList<>();
+        for (Course course : Courses) {
+            Integer value=map.get(course.getId());
+            if (value != null && value == 1) {
+                result.add(course);
+            }
+        }
+        return result;
     }
 }

@@ -3,7 +3,7 @@ package TSM.demo.repository.query;
 import TSM.demo.domain.Matching;
 import TSM.demo.domain.State;
 import TSM.demo.domain.UserHealth;
-import TSM.demo.domain.place.Course;
+import TSM.demo.domain.place.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -34,6 +34,10 @@ public class MatchingDto {
     private int request_id;
 
     private Course course;
+    private Restaurant restaurant;
+    private Room room;
+    private Transport transport;
+    private TravelPlace travelPlace;
 
     private UserHealth userHealth;
     public MatchingDto(Matching matching){
@@ -49,7 +53,7 @@ public class MatchingDto {
 
     }
 
-    public MatchingDto(int id, int groupId, State state, int sickId, int volunteerId, Timestamp startTime, Timestamp end_time, int request_type, int request_id, Course course, UserHealth userHealth) {
+    public MatchingDto(int id, int groupId, State state, int sickId, int volunteerId, Timestamp startTime, Timestamp end_time, int request_type, int request_id,UserHealth userHealth) {
         this.id = id;
         this.groupId = groupId;
         this.state = state;
@@ -59,7 +63,6 @@ public class MatchingDto {
         this.end_time = end_time;
         this.request_type = request_type;
         this.request_id = request_id;
-        this.course = course;
-        this.userHealth = userHealth;
+        this.userHealth=userHealth;
     }
 }

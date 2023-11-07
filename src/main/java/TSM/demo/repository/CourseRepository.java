@@ -36,8 +36,5 @@ public class CourseRepository {
                 .getSingleResult();
     }
 
-//    public List<UserHealth> findUserHealth() {
-//        return em.createQuery("select uh from user_health uh, course c where uh.health_id = c.course_id", UserHealth.class)
-//                .getResultList();
-//    }
+
 }

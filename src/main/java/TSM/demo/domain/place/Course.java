@@ -50,7 +50,7 @@ public class Course {
     private List<Transport> transportList=new ArrayList<>();
 
     @OneToMany(mappedBy = "course")
-    private List<TravelPlace> travelPlaces=new ArrayList<>();
+    private List<TravelPlace> travelPlaceList=new ArrayList<>();
 
     public Course(){
 
@@ -72,7 +72,7 @@ public class Course {
     public void addTransport(Transport transport){
         this.transportList.add(transport);
     }
-    public void addTravelPlace(TravelPlace travelPlace){ this.travelPlaces.add(travelPlace); }
+    public void addTravelPlace(TravelPlace travelPlace){ this.travelPlaceList.add(travelPlace); }
 
     public CourseDto toDto() {
         CourseDto courseDto = new CourseDto(name, region, description, url);
@@ -84,7 +84,7 @@ public class Course {
         courseDto.setRestaurantList(restaurantList);
         courseDto.setRoomList(roomList);
         courseDto.setTransportList(transportList);
-        courseDto.setTravelPlaces(travelPlaces);
+        courseDto.setTravelPlaces(travelPlaceList);
         return courseDto;
     }
 }

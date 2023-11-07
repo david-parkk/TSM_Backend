@@ -1,6 +1,8 @@
 package TSM.demo.domain;
 
 
+import TSM.demo.domain.place.Course;
+import TSM.demo.repository.query.MatchingDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -85,4 +87,6 @@ public class Matching {
     public void setWait(){this.state=State.WAIT;}
 
     public void setVolunteerId(int volunteerId){this.volunteerId=volunteerId;}
+
+
 }

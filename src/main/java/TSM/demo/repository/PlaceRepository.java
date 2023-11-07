@@ -1,5 +1,6 @@
 package TSM.demo.repository;
 
+import TSM.demo.domain.Matching;
 import TSM.demo.domain.place.*;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -58,4 +59,5 @@ public class PlaceRepository {
         return em.createQuery("select i from travel_place i",TravelPlace.class)
                 .getResultList();
     }
+
 }

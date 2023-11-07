@@ -7,8 +7,10 @@ import TSM.demo.domain.place.Course;
 
 import TSM.demo.repository.query.MatchingDto;
 import jakarta.persistence.EntityManager;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,9 +79,8 @@ public class MatchingRepositoryTest {
 
 
         List<Matching> allBySickId = matchingRepository.findAllBySickId(1);
-        for (Matching matching : allBySickId) {
-            System.out.println("matching = " + matching);
-        }
+        Assertions.assertThat(allBySickId.size()).isEqualTo(1);
+
     }
     @Test
     @Transactional(readOnly = false)
@@ -97,20 +98,25 @@ public class MatchingRepositoryTest {
         LocalDateTime specificDateTime = LocalDateTime.of(2023, 10, 30, 12, 0, 0); // 예시: 2023년 10월 30일 12:00:00
         Timestamp specificTimestamp = Timestamp.valueOf(specificDateTime);
         
-        Matching matching1=new Matching(1, State.FAIL,1,1,specificTimestamp,specificTimestamp,0,id1);
+        Matching matching1=new Matching(1, State.FAIL,1,1,specificTimestamp,specificTimestamp,1,id1);
         UserHealth userHealth1=new UserHealth(1,1,1,1,1,1,1);
         matching1.setUserHealth(userHealth1);
-        em.persist(matching1);
-        Matching matching2=new Matching(1,State.FAIL,1,1,specificTimestamp,specificTimestamp,0,id2);
+
+        Matching matching2=new Matching(2,State.FAIL,1,1,specificTimestamp,specificTimestamp,1,id2);
         UserHealth userHealth2=new UserHealth(2,2,2,2,2,2,2);
         matching2.setUserHealth(userHealth2);
-        
-        Matching matching3=new Matching(1,State.FAIL,3,1,specificTimestamp,specificTimestamp,1,id3);
 
+        Matching matching3=new Matching(3,State.FAIL,3,1,specificTimestamp,specificTimestamp,1,id3);
+        UserHealth userHealth3=new UserHealth(2,2,2,2,2,2,2);
+        matching3.setUserHealth(userHealth3);
+
+        em.persist(matching1);
         em.persist(matching2);
         em.persist(matching3);
         em.flush();
+
         List<Matching> allInfoByVolunteerId = matchingRepository.findAllInfoByVolunteerId(1);
+        Assertions.assertThat(allInfoByVolunteerId.size()).isEqualTo(3);
         for (Matching matchingQueryDto : allInfoByVolunteerId) {
             System.out.println("matchingQueryDto = " + matchingQueryDto);
 

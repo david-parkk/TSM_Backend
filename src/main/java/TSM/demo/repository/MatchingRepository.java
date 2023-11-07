@@ -3,16 +3,15 @@ package TSM.demo.repository;
 import TSM.demo.domain.Matching;
 import TSM.demo.domain.State;
 import TSM.demo.domain.UserHealth;
-import TSM.demo.domain.place.Course;
+import TSM.demo.domain.place.*;
+import TSM.demo.repository.query.MatchingDto;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
@@ -83,6 +82,7 @@ public class MatchingRepository {
         for(int i=2;i<=5;i++){
             matchings.addAll(findAllInfoWithPlaceByVolunteerId(volunteerId,i));
         }
+        System.out.println("size: "+matchings.size());
         return matchings;
     }
 
@@ -105,5 +105,6 @@ public class MatchingRepository {
         Matching matching = new Matching(++maxGroupId, null, sickId, 0, startTime, endTime, requestType, requestId);
         this.save(matching);
     }
+
 
 }

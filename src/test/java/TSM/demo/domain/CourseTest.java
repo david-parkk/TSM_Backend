@@ -3,6 +3,7 @@ package TSM.demo.domain;
 import TSM.demo.domain.place.*;
 import TSM.demo.repository.CourseRepository;
 import jakarta.persistence.EntityManager;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -52,8 +53,9 @@ public class CourseTest {
         em.close();
         restaurant1.setCourse(course);
         restaurant2.setCourse(course);
-        System.out.println(restaurant1.getCourse().getName());
-        System.out.println(restaurant2.getCourse().getName());
+        Assertions.assertThat(restaurant1.getCourse().getRestaurantList().get(0).getName()).isEqualTo(restaurant1.getName());
+        Assertions.assertThat(restaurant1.getCourse().getRestaurantList().get(1).getName()).isEqualTo(restaurant2.getName());
+
     }
 
     @Test
@@ -71,8 +73,8 @@ public class CourseTest {
         em.close();
         room1.setCourse(course);
         room2.setCourse(course);
-        System.out.println(room1.getCourse().getName());
-        System.out.println(room2.getCourse().getName());
+        Assertions.assertThat(room1.getCourse().getRoomList().get(0).getName()).isEqualTo(room1.getName());
+        Assertions.assertThat(room1.getCourse().getRoomList().get(1).getName()).isEqualTo(room2.getName());
     }
 
     @Test
@@ -90,8 +92,8 @@ public class CourseTest {
         em.close();
         transport1.setCourse(course);
         transport2.setCourse(course);
-        System.out.println(transport1.getCourse().getName());
-        System.out.println(transport2.getCourse().getName());
+        Assertions.assertThat(transport1.getCourse().getTransportList().get(0).getName()).isEqualTo(transport1.getName());
+        Assertions.assertThat(transport1.getCourse().getTransportList().get(1).getName()).isEqualTo(transport2.getName());
     }
 
     @Test
@@ -109,7 +111,7 @@ public class CourseTest {
         em.close();
         travelPlace1.setCourse(course);
         travelPlace2.setCourse(course);
-        System.out.println(travelPlace1.getCourse().getName());
-        System.out.println(travelPlace2.getCourse().getName());
+        Assertions.assertThat(travelPlace1.getCourse().getTravelPlaceList().get(0).getName()).isEqualTo(travelPlace1.getName());
+        Assertions.assertThat(travelPlace1.getCourse().getTravelPlaceList().get(1).getName()).isEqualTo(travelPlace2.getName());
     }
 }
