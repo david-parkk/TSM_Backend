@@ -3,6 +3,7 @@ package TSM.demo.repository;
 import TSM.demo.domain.User;
 import TSM.demo.domain.UserHealth;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -30,14 +31,29 @@ public class UserRepository {
     }
 
     public User findByEmail(String email) {
-        return em.createQuery("select u from user u where u.email = :email", User.class)
-                .setParameter("email", email)
-                .getSingleResult();
+        try {
+            return em.createQuery("select u from user u where u.email = :email", User.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        }catch (NoResultException e) {
+            return null;
+        }
     }
     public List<User> findByIsVolunteer(int isVolunteer){
         return em.createQuery("select u from user u" +
                         " where isVolunteer = :isVolunteer", User.class)
                 .setParameter("isVolunteer",isVolunteer)
                 .getResultList();
+    }
+
+    public boolean findUserByOauthId(String oauthId) {
+        try {
+            User user = em.createQuery("select u from user u where u.oauthId = :oauthId", User.class)
+                    .setParameter("oauthId", oauthId)
+                    .getSingleResult();
+        }catch(NoResultException e) {
+            return false;
+        }
+        return true;
     }
 }

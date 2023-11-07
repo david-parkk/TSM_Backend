@@ -24,8 +24,8 @@ public class CourseService {
     private final CourseRepository courseRepository;
     private final UserRepository userRepository;
 
-    public List<String> recommendCourse(String email) {
-        List<String> recommendedCourse = new ArrayList<>();
+    public List<RecommendCourseResponseDto> recommendCourse(String email) {
+        List<RecommendCourseResponseDto> recommendedCourse = new ArrayList<>();
         UserHealth userHealth = (UserHealth) Hibernate.unproxy(userRepository.findByEmail(email).getUserHealth());
 
         List<Course> courseList = courseRepository.findAll();
@@ -33,7 +33,7 @@ public class CourseService {
             UserHealth courseDifficulty = (UserHealth) Hibernate.unproxy(course.getUserHealth());
             // user 가 갈 수 있는 course 만 리턴
             if(userHealth.isPossibleCourse(courseDifficulty)) {
-                recommendedCourse.add(course.getName());
+                recommendedCourse.add(new RecommendCourseResponseDto(course.getName(), course.getUrl()));
             }
         }
         return recommendedCourse;

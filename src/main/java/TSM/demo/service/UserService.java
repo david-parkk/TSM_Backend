@@ -14,6 +14,7 @@ import java.util.List;
 @Transactional
 public class UserService {
     private final UserRepository userRepository;
+    private final String phoneNumPrefix = "+84";
 
     //회원 가입
     @Transactional
@@ -21,6 +22,7 @@ public class UserService {
         if(userHealth != null){
             user.setUserHealth(userHealth);
         }
+        user.setPhoneNum(phoneNumPrefix + user.getPhoneNum());
         userRepository.save(user);
         return user.getId();
     }

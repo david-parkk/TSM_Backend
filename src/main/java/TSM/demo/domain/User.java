@@ -34,12 +34,12 @@ public class User {
     @Size(min=2,max=50)
     private String name;
 
-    @Column(name = "access_token")
+    @Column(name = "oauth_id")
     @Size(min=2,max=2000)
-    private String accessToken;
+    private String oauthId;
 
     @Column(name = "rating")
-    private int rating;
+    private Integer rating;
 
 
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
@@ -50,13 +50,14 @@ public class User {
 
     }
 
-    public User(@NotNull String email, @NotNull String phoneNum, int isVolunteer, String name, String accessToken) {
+    public User(@NotNull String email, @NotNull String phoneNum, int isVolunteer, String name, String oauthId) {
         this.email = email;
         this.phoneNum = phoneNum;
         this.isVolunteer = isVolunteer;
         this.name = name;
-        this.accessToken = accessToken;
+        this.oauthId = oauthId;
     }
+
 
     /*public UserQueryDto toDto() {
         return UserQueryDto.builder()
@@ -67,4 +68,15 @@ public class User {
                 .rating(this.rating)
                 .build();
     }*/
+
+//    public UserQueryDto toDto() {
+//        return UserQueryDto.builder()
+//                .email(this.email)
+//                .isVolunteer(this.isVolunteer)
+//                .name(this.name)
+//                .phoneNum(this.phoneNum)
+//                .rating(this.rating)
+//                .build();
+//    }
+
 }

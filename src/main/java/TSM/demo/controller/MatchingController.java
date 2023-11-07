@@ -1,11 +1,17 @@
 package TSM.demo.controller;
 
+
 import TSM.demo.domain.Matching;
 import TSM.demo.domain.place.*;
 import TSM.demo.repository.PlaceRepository;
 import TSM.demo.repository.query.MatchingDto;
 
 import TSM.demo.service.CourseService;
+
+import TSM.demo.domain.User;
+import TSM.demo.domain.UserHealth;
+
+
 import TSM.demo.service.MatchingService;
 import TSM.demo.service.PlaceService;
 import jakarta.servlet.http.HttpSession;
@@ -14,7 +20,9 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 
 import java.sql.Timestamp;
@@ -29,6 +37,12 @@ public class MatchingController {
     private final MatchingService matchingService;
     private final PlaceService placeService;
     private final CourseService courseService;
+
+    @GetMapping()
+    public ModelAndView volunteerMatching(ModelAndView mav) {
+        mav.setViewName("volunteer_matching");
+        return mav;
+    }
 
     @PostMapping("/matchings")
     public List<MatchingDto> showAllMatchingById(@RequestBody HashMap<String, Integer> map) {
@@ -117,10 +131,10 @@ public class MatchingController {
                               @RequestParam String startTime,
                               @RequestParam String endTime,
                               @RequestParam int requestType,
-                              @RequestParam int requestId
-            , HttpSession httpSession) {
-        //int sickId = (int) httpSession.getAttribute("userId");
-        matchingService.requestHelpByUnwell(sickId, requestType, Timestamp.valueOf(startTime), Timestamp.valueOf(endTime), requestId);
+                              @RequestParam int requestId,
+                              HttpSession httpSession) {
+        UserHealth userHealth = (UserHealth) httpSession.getAttribute("userHealth");
+        matchingService.requestHelpByUnwell(sickId, requestType, Timestamp.valueOf(startTime), Timestamp.valueOf(endTime), requestId, userHealth);
         return "/";
     }
 
