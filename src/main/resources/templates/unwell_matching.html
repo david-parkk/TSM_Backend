@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/css/globals.css" />
+    <link rel="stylesheet" href="/css/unwell_matching.css" />
+    <link rel="stylesheet" href="/css/unwell_tabbar.css" />
+  </head>
+  <body>
+    <div class="unwell">
+      <div class="div">
+        <div class="logo">
+          <div class="logo-text">Matching Result</div>
+          <img class="logo-line" src="/img/unwell/line-5.svg" />
+        </div>
+
+<!-- @TODO HERE -->
+<!-- CASE #1 - MATCHED -->
+        <div class="matching">
+
+        <div class="match-overlay">
+          <a class="match-name">Match A</a>
+          <a class="match-info">Course Name : Konkuk University</a>
+          <a class="match-info">Type Of Help : Transportation</a>
+          <a class="match-info">Start Date : 2023-11-15</a>
+          <a class="match-info">End Date : 2023-11-17</a>
+        </div>
+
+        <div class="table-outer">
+          <div class="table-inner">
+            <div class="row">
+              <div class="cell-color-title">
+                <div class="cell-content"><div class="cell-content-text">Volunteer Name</div></div>
+              </div>
+              <div class="cell">
+                <div class="cell-content"><div class="cell-content-text">Lee Jae Meong Yoon Seok Yeol</div></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell-color-title">
+                <div class="cell-content"><div class="cell-content-text">E-mail</div></div>
+              </div>
+              <div class="cell">
+                <div class="cell-content"><div class="cell-content-text">master@dwer.kr</div></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell-color-title">
+                <div class="cell-content"><div class="cell-content-text">Phone Number</div></div>
+              </div>
+              <div class="cell">
+                <div class="cell-content"><div class="cell-content-text">+82 10-3299-6574-1234</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <img class="matching-line" src="/img/unwell/line-5.svg" />
+
+        </div>
+<!-- @TODO HERE -->
+
+<!-- @TODO HERE -->
+<!-- CASE #2 - WAIT_ONE_MORE -->
+        <div class="matching">
+
+        <div class="match-overlay">
+          <a class="match-name">Match B</a>
+          <a class="match-info">Course Name : Lotte Tower</a>
+          <a class="match-info">Type Of Help : Restaurant</a>
+          <a class="match-info">Start Date : 2023-11-17</a>
+          <a class="match-info">End Date : 2023-11-17</a>
+        </div>
+
+        <div class="table-outer">
+          <div class="table-inner">
+            <div class="row">
+              <div class="cell-color-title">
+                <div class="cell-content"><div class="cell-content-text">Volunteer Name</div></div>
+              </div>
+              <div class="cell-color-title">
+                <div class="cell-content"><div class="cell-content-text">Rating</div></div>
+              </div>
+              <div class="cell-color-title">
+                <div class="cell-content"><div class="cell-content-text">Status</div></div>
+              </div>
+            </div>
+
+<form action="http://localhost:8080/matching/select" method="post" class="form">
+<input type="hidden" class="groupId" name="groupId" value=1111 />
+<input type="hidden" class="userId" name="userId" value=1 />
+<input type="hidden" class="isVolunteer" name="isVolunteer" value=0 />
+            <div class="row">
+              <div class="cell">
+                <div class="cell-content"><div class="cell-content-text">Lee Myung Bak</div></div>
+              </div>
+              <div class="cell">
+                <div class="cell-content"><div class="cell-content-text">2 / 5<br>None</div></div>
+              </div>
+              <div class="cell-color-button request-area">
+                <div class="cell-content"><div class="cell-content-text">Accept</div></div>
+              </div>
+            </div>
+</form>
+
+<form action="http://localhost:8080/matching/select" method="post" class="form">
+<input type="hidden" class="groupId" name="groupId" value=2222 />
+<input type="hidden" class="userId" name="userId" value=2 />
+<input type="hidden" class="isVolunteer" name="isVolunteer" value=0 />
+            <div class="row">
+              <div class="cell">
+                <div class="cell-content"><div class="cell-content-text">Park Gyun Hae</div></div>
+              </div>
+              <div class="cell">
+                <div class="cell-content"><div class="cell-content-text">4 / 5<br>CPR License</div></div>
+              </div>
+              <div class="cell-color-button request-area">
+                <div class="cell-content"><div class="cell-content-text">Accept</div></div>
+              </div>
+            </div>
+</form>
+
+<form action="http://localhost:8080/matching/select" method="post" class="form">
+<input type="hidden" class="groupId" name="groupId" value=3333 />
+<input type="hidden" class="userId" name="userId" value=3 />
+<input type="hidden" class="isVolunteer" name="isVolunteer" value=0 />
+            <div class="row">
+              <div class="cell">
+                <div class="cell-content"><div class="cell-content-text">Moon Jae In</div></div>
+              </div>
+              <div class="cell">
+                <div class="cell-content"><div class="cell-content-text">3 / 5<br>None</div></div>
+              </div>
+              <div class="cell-color-button request-area">
+                <div class="cell-content"><div class="cell-content-text">Accept</div></div>
+              </div>
+            </div>
+</form>
+
+          </div>
+        </div>
+
+        <img class="matching-line" src="/img/unwell/line-5.svg" />
+
+        </div>
+<!-- @TODO HERE -->
+
+<!-- @TODO HERE -->
+<!-- CASE #3 - WAIT_NO_ONE -->
+        <div class="matching">
+
+        <div class="match-overlay">
+          <a class="match-name">Match C</a>
+          <a class="match-info">Course Name : Blue House</a>
+          <a class="match-info">Type Of Help : Lodgment</a>
+          <a class="match-info">Start Date : 2023-12-24</a>
+          <a class="match-info">End Date : 2023-12-25</a>
+        </div>
+
+        <div class="table-outer">
+          <div class="table-inner">
+            <div class="row">
+              <div class="cell-color-title">
+                <div class="cell-content"><div class="cell-content-text">Volunteer Name</div></div>
+              </div>
+              <div class="cell-color-title">
+                <div class="cell-content"><div class="cell-content-text">Rating</div></div>
+              </div>
+              <div class="cell-color-title">
+                <div class="cell-content"><div class="cell-content-text">Status</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <img class="matching-line" src="/img/unwell/line-5.svg" />
+
+        </div>
+<!-- @TODO HERE -->
+
+<br><br><br><br>
+
+        <div class="menubar-sudong">
+          <div class="nav-item-sudong" onclick='location.href="unwell_search.html"'>
+            <img class="img-sudong" src="/img/unwell/find.svg" />
+            <div class="text-wrapper-sudong">Explore</div>
+          </div>
+          <div class="nav-item-sudong" onclick='location.href="unwell_matching.html"'>
+            <img class="img-sudong" src="/img/unwell/table.svg" />
+            <div class="text-wrapper-sudong">Result</div>
+          </div>
+          <div class="nav-item-sudong" onclick='location.href="unwell_personalize.html"'>
+            <img class="img-sudong" src="/img/unwell/recommend.svg" />
+            <div class="text-wrapper-sudong">Recommend</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+<script src="/js/unwell_matching.js"></script>
+
+  </body>
+</html>
