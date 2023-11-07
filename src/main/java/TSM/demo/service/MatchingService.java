@@ -6,6 +6,7 @@ import TSM.demo.domain.UserHealth;
 import TSM.demo.repository.MatchingRepository;
 import TSM.demo.repository.UserRepository;
 
+import TSM.demo.repository.query.MatchingDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.expression.spel.ast.NullLiteral;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -62,4 +64,20 @@ public class MatchingService {
     public void requestHelpByUnwell(int sickId, int requestType, Timestamp startTime, Timestamp endTime, int requestId, UserHealth userHealth) {
         matchingRepository.addMatchingRowByUnwell(sickId, requestType, startTime, endTime, requestId, userHealth);
     }
+    public List<Matching>findAll(){
+        return matchingRepository.findAll();
+    }
+    public List<Matching>findALLUnMatchingByVolunteer(){
+        List<Matching> matchings = findAll();
+        List<Matching> result=new ArrayList<>();
+        for (Matching matching : matchings) {
+            if(matching.getVolunteerId()!=0)
+                continue;
+            result.add(matching);
+
+
+        }
+        return result;
+    }
+
 }

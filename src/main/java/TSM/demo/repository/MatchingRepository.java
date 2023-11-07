@@ -36,7 +36,9 @@ public class MatchingRepository {
     }
 
     public List<Matching> findAll(){
-        return em.createQuery("select i from matching i", Matching.class)
+        return em.createQuery("select m from matching m " +
+                " join fetch m.userHealth h"
+                ,Matching.class)
                 .getResultList();
     }
 

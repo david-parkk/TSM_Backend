@@ -126,6 +126,70 @@ public class MatchingController {
         return new CreateMatchingResponse("success");
     }
 
+    @GetMapping("/matchings")
+    public List<MatchingDto> requestHelp(@RequestParam int walk,
+                              @RequestParam int see,
+                              @RequestParam int talk,
+                              @RequestParam int listen,
+                              @RequestParam int depression,
+                              @RequestParam int bipolar_disorder){
+
+        List<Matching> matchings = matchingService.findALLUnMatchingByVolunteer();
+        List<MatchingDto>matchingDtos=new ArrayList<>();
+        for(Matching matching:matchings){
+            matchingDtos.add(new MatchingDto(matching));
+        }
+        List<Course>courses=courseService.findAllCourseByMatching(matchings);
+        List<Restaurant> restaurants = placeService.findAllRestaurantByMatching(matchings);
+        List<Room> rooms = placeService.findAllRoomByMatching(matchings);
+        List<Transport> transports = placeService.findAllTransportByMatching(matchings);
+        List<TravelPlace> travelPlaces=placeService.findAllTravelPlaceByMatching(matchings);
+        for(MatchingDto matchingDto:matchingDtos){
+            if(matchingDto.getRequest_type()==1){
+                for(Course course: courses){
+                    if(course.getId()==matchingDto.getRequest_id()){
+                        matchingDto.setCourse(course);
+                        break;
+                    }
+                }
+            }
+            else if(matchingDto.getRequest_type()==2){
+                for(Restaurant restaurant:restaurants){
+                    if(restaurant.getId()==matchingDto.getRequest_id()){
+                        matchingDto.setRestaurant(restaurant);
+                        break;
+                    }
+                }
+            }
+            else if(matchingDto.getRequest_type()==3){
+                for(Room room:rooms){
+                    if(room.getId()==matchingDto.getRequest_id()){
+                        matchingDto.setRoom(room);
+                        break;
+                    }
+                }
+            }
+            else if(matchingDto.getRequest_type()==4){
+                for(Transport transport:transports){
+                    if(transport.getId()==matchingDto.getRequest_id()){
+                        matchingDto.setTransport(transport);
+                        break;
+                    }
+                }
+            }
+            else if(matchingDto.getRequest_type()==5){
+                for(TravelPlace travelPlace:travelPlaces){
+                    if(travelPlace.getId()==matchingDto.getRequest_id()){
+                        matchingDto.setTravelPlace(travelPlace);
+                        break;
+                    }
+                }
+            }
+        }
+        return matchingDtos;
+
+    }
+
     @PostMapping("/request")
     public String requestHelp(@RequestParam int sickId,
                               @RequestParam String startTime,
