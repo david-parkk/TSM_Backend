@@ -22,8 +22,12 @@ public class CourseController {
         String email = httpSession.getAttribute("email").toString();
 
         mav.setViewName("unwell_search");
-        mav.addObject(courseService.recommendCourse(email));
-
+        List<RecommendCourseResponseDto>recommendCourseResponseDtos=courseService.recommendCourse(email);
+        for (RecommendCourseResponseDto recommendCourseResponseDto : recommendCourseResponseDtos) {
+            System.out.println("recommendCourseResponseDto.getName() = " + recommendCourseResponseDto.getName());
+        }
+        mav.addObject("courses",courseService.recommendCourse(email));
+        
         return mav;
     }
 
