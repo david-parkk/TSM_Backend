@@ -34,7 +34,7 @@ public class UserController {
         int isVolunteer = 0;
         if (data.get("walk") == null) isVolunteer = 1;
         String oauthId = (String) httpSession.getAttribute("oauthId");
-        User user = new User(email, data.get("phoneNum"), isVolunteer, name, oauthId);
+        User user = new User(email, phoneNum, isVolunteer, name, oauthId);
         try {
             userService.join(user,
                     new UserHealth(Integer.parseInt(data.get("walk")),
@@ -45,7 +45,7 @@ public class UserController {
                             Integer.parseInt(data.get("bipolar_disorder")),
                             Integer.parseInt(data.get("iq"))));
             httpSession.setAttribute("userHealth", user.getUserHealth());
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException e) {
             userService.join(user, null);
         }
         return "unwell_search";

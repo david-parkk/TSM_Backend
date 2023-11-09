@@ -29,6 +29,7 @@ public class LoginService {
         String id = userResourceNode.get("id").asText();
         String email = userResourceNode.get("email").asText();
         String nickname = userResourceNode.get("name").asText();
+        int isVolunteer = 0;
 
         UserHealth userHealth;
         try {
@@ -37,12 +38,14 @@ public class LoginService {
             userHealth = null;
         }
 
+        if(userHealth == null) isVolunteer = 1;
+
         System.out.println("accessToken = " + accessToken);
         System.out.println("id = " + id);
         System.out.println("email = " + email);
         System.out.println("nickname = " + nickname);
 
-        return new LoginResponseDto(email, id, nickname, userHealth);
+        return new LoginResponseDto(email, id, nickname, userHealth, isVolunteer);
     }
 
     private String getAccessToken(String authorizationCode, String registrationId) {

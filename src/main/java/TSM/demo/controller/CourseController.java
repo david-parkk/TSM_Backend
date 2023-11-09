@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,8 +21,8 @@ public class CourseController {
         String email = httpSession.getAttribute("email").toString();
 
         mav.setViewName("unwell_search");
-        mav.addObject(courseService.recommendCourse(email));
-
+        mav.addObject("course", courseService.recommendCourse(email));
+        mav.addObject("test", "test");
         return mav;
     }
 
