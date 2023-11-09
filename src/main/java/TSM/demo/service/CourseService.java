@@ -31,6 +31,7 @@ public class CourseService {
         List<Course> courseList = courseRepository.findAll();
         for (Course course : courseList) {
             UserHealth courseDifficulty = (UserHealth) Hibernate.unproxy(course.getUserHealth());
+
             // user 가 갈 수 있는 course 만 리턴
             if(userHealth.isPossibleCourse(courseDifficulty)) {
                 recommendedCourse.add(new RecommendCourseResponseDto(course.getName(), course.getUrl()));

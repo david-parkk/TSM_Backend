@@ -19,11 +19,11 @@
 
 <!-- @TODO HERE -->
 
-            <div class="overlap-wrapper" th:each="course : ${courses}" th:href="@{'http://localhost:8080/course/description/' + ${course.getUrl()}}">
-
+            <div class="overlap-wrapper" th:each="course : ${courses}" th:onclick="|location.href='@{http://localhost:8080/course/description/{Url}(Url=${course.getName()})}'|">
+<!--th:onclick="'location.href=http://localhost:8080/course/description/\''+ @{${course.getUrl()}} + '\''"-->
                 <img class="desc_img" th:src="@{'https://cdn.dwicd.com/konkuk/lab/img'+${course.getUrl()}}" />
 
-                <div class="desc_text" src="" th:text="${course.getName()}"></div>
+                <div class="desc_text"  th:text="${course.getName()}"></div>
 
             </div>
 

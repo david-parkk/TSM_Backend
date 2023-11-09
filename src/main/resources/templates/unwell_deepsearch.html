@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/unwell_tabbar.css" />
   </head>
   <body>
+
     <div class="unwell">
       <div class="div">
 
@@ -16,15 +17,14 @@
 
 <!-- @TODO HERE -->
             <!-- IMG -->
-            <img class="img-wrapper" src="/img/unwell/image-8.png" />
+            <img class="img-wrapper" th:src="@{'https://cdn.dwicd.com/konkuk/lab/img'+${course.getUrl()}}" />
             <!-- TITLE -->
-            <div class="title-wrapper">
-              Konkuk Univ
+            <div class="title-wrapper" th:text="${course.getName()}">
+
             </div>
             <!-- DESC -->
-            <div class="desc-wrapper">
-              Konkuk Univ., located in Seoul<br>
-              They think student is just a money.
+            <div class="desc-wrapper" th:text="${course.getDescription()}">
+
             </div>
 <!-- @TODO HERE -->
 
@@ -51,29 +51,16 @@
 
 <!-- @TODO HERE -->
             <!-- IMG #1 -->
-            <img class="img-wrapper" src="/img/unwell/image-10.png" />
-            <!-- TITLE #1 -->
-            <div class="title-wrapper">
-              Konkuk Univ Cow (mascot KU)
-            </div>
-            <!-- DESC #1 -->
-            <div class="desc-wrapper">
-              You can ride cow in campus.<br>
-              Bull is also meaning "떡상" in Korea.
+
+            <div th:each="tranport : ${course.getTransportList()}" >
+
+                <img class="img-wrapper" th:src="@{'https://cdn.dwicd.com/konkuk/lab/img'+${tranport.getUrl()}}" />
+                <div class="title-wrapper" th:text="${tranport.getName()}">
+                </div>
+                <div class="desc-wrapper" th:text="${tranport.getDescription()}">
+                </div>
             </div>
 
-            <!-- IMG #2 -->
-            <img class="img-wrapper" src="/img/unwell/image-11.png" />
-            <!-- TITLE #2 -->
-            <div class="title-wrapper">
-              Helicopter Site
-            </div>
-            <!-- DESC #2 -->
-            <div class="desc-wrapper">
-              You can also use Helipcopter in campus.<br>
-              It costs about KRW 100,000.<br>
-              Konkuk is money-making company, not a university.
-            </div>
 <!-- @TODO HERE -->
 
 <form action="http://localhost:8080/matching/request" method="post" class="form">
@@ -98,30 +85,15 @@
             <img class="line-wrapper" src="/img/unwell/line-7.svg" />
 
 <!-- @TODO HERE -->
-            <!-- IMG #1 -->
-            <img class="img-wrapper" src="/img/unwell/image-10.png" />
-            <!-- TITLE #1 -->
-            <div class="title-wrapper">
-              Konkuk Univ Cow (mascot KU)
-            </div>
-            <!-- DESC #1 -->
-            <div class="desc-wrapper">
-              You can ride cow in campus.<br>
-              Bull is also meaning "떡상" in Korea.
+            <div th:each="room : ${course.getRoomList()}" >
+
+                <img class="img-wrapper" th:src="@{'https://cdn.dwicd.com/konkuk/lab/img'+${room.getUrl()}}" />
+                <div class="title-wrapper" th:text="${room.getName()}">
+                </div>
+                <div class="desc-wrapper" th:text="${room.getDescription()}">
+                </div>
             </div>
 
-            <!-- IMG #2 -->
-            <img class="img-wrapper" src="/img/unwell/image-11.png" />
-            <!-- TITLE #2 -->
-            <div class="title-wrapper">
-              Helicopter Site
-            </div>
-            <!-- DESC #2 -->
-            <div class="desc-wrapper">
-              You can also use Helipcopter in campus.<br>
-              It costs about KRW 100,000.<br>
-              Konkuk is money-making company, not a university.
-            </div>
 <!-- @TODO HERE -->
 
 <form action="http://localhost:8080/matching/request" method="post" class="form">
@@ -146,29 +118,13 @@
             <img class="line-wrapper" src="/img/unwell/line-7.svg" />
 
 <!-- @TODO HERE -->
-            <!-- IMG #1 -->
-            <img class="img-wrapper" src="/img/unwell/image-10.png" />
-            <!-- TITLE #1 -->
-            <div class="title-wrapper">
-              Konkuk Univ Cow (mascot KU)
-            </div>
-            <!-- DESC #1 -->
-            <div class="desc-wrapper">
-              You can ride cow in campus.<br>
-              Bull is also meaning "떡상" in Korea.
-            </div>
+            <div th:each="restaurant : ${course.getRestaurantList()}" >
 
-            <!-- IMG #2 -->
-            <img class="img-wrapper" src="/img/unwell/image-11.png" />
-            <!-- TITLE #2 -->
-            <div class="title-wrapper">
-              Helicopter Site
-            </div>
-            <!-- DESC #2 -->
-            <div class="desc-wrapper">
-              You can also use Helipcopter in campus.<br>
-              It costs about KRW 100,000.<br>
-              Konkuk is money-making company, not a university.
+                <img class="img-wrapper" th:src="@{'https://cdn.dwicd.com/konkuk/lab/img'+${restaurant.getUrl()}}" />
+                <div class="title-wrapper" th:text="${restaurant.getName()}">
+                </div>
+                <div class="desc-wrapper" th:text="${restaurant.getDescription()}">
+                </div>
             </div>
 <!-- @TODO HERE -->
 
@@ -194,29 +150,13 @@
             <img class="line-wrapper" src="/img/unwell/line-7.svg" />
 
 <!-- @TODO HERE -->
-            <!-- IMG #1 -->
-            <img class="img-wrapper" src="/img/unwell/image-10.png" />
-            <!-- TITLE #1 -->
-            <div class="title-wrapper">
-              Konkuk Univ Cow (mascot KU)
-            </div>
-            <!-- DESC #1 -->
-            <div class="desc-wrapper">
-              You can ride cow in campus.<br>
-              Bull is also meaning "떡상" in Korea.
-            </div>
+            <div th:each="travelPlace : ${course.getTravelPlaceList()}" >
 
-            <!-- IMG #2 -->
-            <img class="img-wrapper" src="/img/unwell/image-11.png" />
-            <!-- TITLE #2 -->
-            <div class="title-wrapper">
-              Helicopter Site
-            </div>
-            <!-- DESC #2 -->
-            <div class="desc-wrapper">
-              You can also use Helipcopter in campus.<br>
-              It costs about KRW 100,000.<br>
-              Konkuk is money-making company, not a university.
+                <img class="img-wrapper" th:src="@{'https://cdn.dwicd.com/konkuk/lab/img'+${travelPlace.getUrl()}}" />
+                <div class="title-wrapper" th:text="${travelPlace.getName()}">
+                </div>
+                <div class="desc-wrapper" th:text="${travelPlace.getDescription()}">
+                </div>
             </div>
 <!-- @TODO HERE -->
 

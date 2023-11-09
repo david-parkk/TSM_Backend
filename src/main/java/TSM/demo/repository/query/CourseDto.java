@@ -31,7 +31,7 @@ public class CourseDto {
     
     private List<TransportDto> transportList;
 
-    private List<TravelPlaceDto> travelPlaces;
+    private List<TravelPlaceDto> travelPlaceList;
 
     public CourseDto(String name, String region, String description, String url) {
         this.name = name;
@@ -41,7 +41,7 @@ public class CourseDto {
         restaurantList = new ArrayList<>();
         roomList = new ArrayList<>();
         transportList = new ArrayList<>();
-        travelPlaces = new ArrayList<>();
+        travelPlaceList = new ArrayList<>();
     }
 
     public void setRestaurantList(List<Restaurant> restaurantList) {
@@ -71,7 +71,7 @@ public class CourseDto {
     public void setTravelPlaces(List<TravelPlace> travelPlaces) {
         if(!travelPlaces.isEmpty()) {
             for (TravelPlace travelPlace : travelPlaces) {
-                this.travelPlaces.add(travelPlace.toDto());
+                this.travelPlaceList.add(travelPlace.toDto());
             }
         }
     }

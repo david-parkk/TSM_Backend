@@ -23,10 +23,8 @@ public class CourseController {
 
         mav.setViewName("unwell_search");
         List<RecommendCourseResponseDto>recommendCourseResponseDtos=courseService.recommendCourse(email);
-        for (RecommendCourseResponseDto recommendCourseResponseDto : recommendCourseResponseDtos) {
-            System.out.println("recommendCourseResponseDto.getName() = " + recommendCourseResponseDto.getName());
-        }
-        mav.addObject("courses",courseService.recommendCourse(email));
+
+        mav.addObject("courses",recommendCourseResponseDtos);
         
         return mav;
     }
@@ -34,7 +32,10 @@ public class CourseController {
     @GetMapping("/description/{name}")
     public ModelAndView requestCourseDescription(@PathVariable("name") String name, ModelAndView mav) {
         mav.setViewName("unwell_deepsearch");
-        //mav.addObject(courseService.findCourse(name));
+
+        CourseDto courseDto=courseService.findCourse(name);
+
+        mav.addObject("course",courseService.findCourse(name));
         return mav;
     }
 
