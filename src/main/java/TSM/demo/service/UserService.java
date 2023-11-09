@@ -37,4 +37,10 @@ public class UserService {
     public User findOne(int userId) {
         return userRepository.findOne(userId);
     }
+
+    @Transactional(readOnly = false)
+    public User findOneByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+
 }

@@ -15,10 +15,18 @@ public class RecommendCourseResponseDto {
 
     private String name;
     private String url;
+    private int id;
 
     public RecommendCourseResponseDto(String name, String url) {
         this.name = name;
         this.url = url;
     }
+
+    public RecommendCourseResponseDto(String name, String url,int id) {
+        this.name = name;
+        this.url = url;
+        this.id = id;
+    }
+
 
 }

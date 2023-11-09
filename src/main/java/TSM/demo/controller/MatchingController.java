@@ -14,6 +14,7 @@ import TSM.demo.domain.UserHealth;
 
 import TSM.demo.service.MatchingService;
 import TSM.demo.service.PlaceService;
+import TSM.demo.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.Getter;
@@ -37,7 +38,7 @@ public class MatchingController {
     private final MatchingService matchingService;
     private final PlaceService placeService;
     private final CourseService courseService;
-
+    private final UserService userService;
     @GetMapping()
     public ModelAndView volunteerMatching(ModelAndView mav) {
         mav.setViewName("volunteer_matching");
@@ -190,15 +191,20 @@ public class MatchingController {
 
     }
 
+    //매칭 생성 API
     @PostMapping("/request")
-    public String requestHelp(@RequestParam int sickId,
-                              @RequestParam String startTime,
-                              @RequestParam String endTime,
-                              @RequestParam int requestType,
-                              @RequestParam int requestId,
+    public String requestHelp(
+                              @RequestParam("startDateTime") String startDataTime,
+                              @RequestParam("endDateTime") String endDataTime,
+                              @RequestParam("typeId") int requestType,
+                              @RequestParam("uId") int requestId,
                               HttpSession httpSession) {
+
+        System.out.println("startTime = " + startDataTime);
+        System.out.println("endTime = " + endDataTime);
+        User finduser = userService.findOneByEmail((String) httpSession.getAttribute("email"));
         UserHealth userHealth = (UserHealth) httpSession.getAttribute("userHealth");
-        matchingService.requestHelpByUnwell(sickId, requestType, Timestamp.valueOf(startTime), Timestamp.valueOf(endTime), requestId, userHealth);
+        matchingService.requestHelpByUnwell(finduser, requestType, Timestamp.valueOf(startDataTime), Timestamp.valueOf(endDataTime), requestId, userHealth);
         return "/";
     }
 

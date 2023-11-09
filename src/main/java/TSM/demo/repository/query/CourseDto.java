@@ -14,9 +14,9 @@ import java.util.List;
 @Setter
 @ToString
 public class CourseDto {
-
+    private int id;
     private String name;
-    
+
     private String region;
 
     private String description;
@@ -33,7 +33,8 @@ public class CourseDto {
 
     private List<TravelPlaceDto> travelPlaceList;
 
-    public CourseDto(String name, String region, String description, String url) {
+    public CourseDto(int id,String name, String region, String description, String url) {
+        this.id=id;
         this.name = name;
         this.region = region;
         this.description = description;

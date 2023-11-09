@@ -75,7 +75,7 @@ public class Course {
     public void addTravelPlace(TravelPlace travelPlace){ this.travelPlaceList.add(travelPlace); }
 
     public CourseDto toDto() {
-        CourseDto courseDto = new CourseDto(name, region, description, url);
+        CourseDto courseDto = new CourseDto(id,name, region, description, url);
         // UserHealth 엔티티를 UserHealthQueryDto로 변환하여 설정
         if (userHealth != null) {
             userHealth =  (UserHealth) Hibernate.unproxy(userHealth);

@@ -24,7 +24,6 @@ public class MatchingService {
 
     private final MatchingRepository matchingRepository;
 
-
     public List<Matching> findAllByVolunteerId(int id){
         List<Matching> matchings = matchingRepository.findAllInfoByVolunteerId(id);
         return matchings;
@@ -61,8 +60,8 @@ public class MatchingService {
         }
     }
 
-    public void requestHelpByUnwell(int sickId, int requestType, Timestamp startTime, Timestamp endTime, int requestId, UserHealth userHealth) {
-        matchingRepository.addMatchingRowByUnwell(sickId, requestType, startTime, endTime, requestId, userHealth);
+    public void requestHelpByUnwell(User unwell, int requestType, Timestamp startTime, Timestamp endTime, int requestId, UserHealth userHealth) {
+        matchingRepository.addMatchingRowByUnwell(unwell.getId(), requestType, startTime, endTime, requestId, userHealth);
     }
     public List<Matching>findAll(){
         return matchingRepository.findAll();
