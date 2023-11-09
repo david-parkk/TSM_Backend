@@ -22,10 +22,9 @@ public class LoginController {
     }
 
     @GetMapping(value = "/oauth2/code/{registrationId}", produces = "application/json")
-    public String googleLogin(@RequestParam String code, @PathVariable String registrationId, HttpSession httpSession, HttpServletResponse response) throws IOException {
+    public void googleLogin(@RequestParam String code, @PathVariable String registrationId, HttpSession httpSession, HttpServletResponse response) throws IOException {
         LoginResponseDto loginResponseDto = loginService.socialLogin(code, registrationId);
         // 회원
-        response.sendRedirect("/auth/signup");
         httpSession.setAttribute("email", loginResponseDto.getEmail());
         httpSession.setAttribute("name", loginResponseDto.getName());
         httpSession.setAttribute("oauthId", loginResponseDto.getOauthId());
@@ -33,9 +32,15 @@ public class LoginController {
             //세션 데이터 추가
             httpSession.setAttribute("userHealth", loginResponseDto.getUserHealth());
             // unwell, volunteer 페이지 구분
-            return "redirect:/";
+            if (loginResponseDto.getIsVolunteer() == 1) {
+                response.sendRedirect("/matching");
+                return;
+            } else {
+                response.sendRedirect("/course");
+                return;
+            }
         }
         //비회원
-        return "login_signup_select";
+        response.sendRedirect("/auth/signup");
     }
 }

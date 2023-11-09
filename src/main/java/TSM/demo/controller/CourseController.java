@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/course")
@@ -22,10 +23,12 @@ public class CourseController {
         String email = httpSession.getAttribute("email").toString();
 
         mav.setViewName("unwell_search");
-        List<RecommendCourseResponseDto>recommendCourseResponseDtos=courseService.recommendCourse(email);
+
+        List<RecommendCourseResponseDto> recommendCourseResponseDtos=courseService.recommendCourse(email);
 
         mav.addObject("courses",recommendCourseResponseDtos);
         
+
         return mav;
     }
 
