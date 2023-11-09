@@ -26,6 +26,11 @@ public class MatchingService {
 
     public List<Matching> findAllByVolunteerId(int id){
         List<Matching> matchings = matchingRepository.findAllInfoByVolunteerId(id);
+
+        return matchings;
+    }
+    public List<Matching> findAllByUnwellId(int id){
+        List<Matching> matchings=matchingRepository.findAllInfoByUnwellId(id);
         return matchings;
     }
     public List<Matching> findAllByGroupId(int groupId){

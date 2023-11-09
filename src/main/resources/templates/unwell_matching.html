@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
   <head>
-    <link rel="stylesheet" href="/css/globals.css" />
+    <link rel="stylesheet" href="./css/globals.css" />
     <link rel="stylesheet" href="/css/unwell_matching.css" />
     <link rel="stylesheet" href="/css/unwell_tabbar.css" />
   </head>
@@ -15,46 +15,121 @@
 
 <!-- @TODO HERE -->
 <!-- CASE #1 - MATCHED -->
-        <div class="matching">
+        <div class="matching" th:each="matching : ${matchings}">
+          <div class="match-overlay">
+            <a class="match-name" th:text="'Match ' + ${matching.getGroupId()}"></a>
+            <a class="match-info" th:text="'Course Name  ' + ${matching.getName()}"></a>
+            <a class="match-info" th:text="'Type Of Help  '+ ${matching.getRequestType()}"></a>
+            <a class="match-info" th:text="'Start Date ' + ${matching.getStartTime()}">: 2023-11-15</a>
+            <a class="match-info" th:text="'End Date ' +${matching.getStartTime()}"></a>
 
-        <div class="match-overlay">
-          <a class="match-name">Match A</a>
-          <a class="match-info">Course Name : Konkuk University</a>
-          <a class="match-info">Type Of Help : Transportation</a>
-          <a class="match-info">Start Date : 2023-11-15</a>
-          <a class="match-info">End Date : 2023-11-17</a>
+          </div>
+          <div class="table-outer">
+            <div class="table-inner">
+              <div class="row">
+                <div class="cell-color-title">
+                  <div class="cell-content"><div class="cell-content-text">Volunteer Name</div></div>
+                </div>
+                <div class="cell-color-title">
+                  <div class="cell-content"><div class="cell-content-text">Rating</div></div>
+                </div>
+                <div class="cell-color-title">
+                  <div class="cell-content"><div class="cell-content-text">Status</div></div>
+                </div>
+              </div>
+
+              <form action="http://localhost:8080/matching/select" method="post" class="form">
+                <input type="hidden" class="groupId" name="groupId" value=1111 />
+                <input type="hidden" class="userId" name="userId" value=1 />
+                <input type="hidden" class="isVolunteer" name="isVolunteer" value=0 />
+                <div class="row">
+                  <div class="cell">
+                    <div class="cell-content"><div class="cell-content-text" th:text="${matching.getVolunteerId()}"></div></div>
+                  </div>
+                  <div class="cell">
+                    <div class="cell-content"><div class="cell-content-text">2 / 5<br>None</div></div>
+                  </div>
+                  <div class="cell-color-button request-area">
+                    <div class="cell-content"><div class="cell-content-text"  th:text="${matching.getState()}"></div></div>
+                  </div>
+                </div>
+              </form>
+
+
+
+            </div>
+          </div>
+          <img class="matching-line" src="/img/unwell/line-5.svg" />
         </div>
-
-        <div class="table-outer">
-          <div class="table-inner">
-            <div class="row">
-              <div class="cell-color-title">
-                <div class="cell-content"><div class="cell-content-text">Volunteer Name</div></div>
+          <div class="table-outer">
+            <div class="table-inner">
+              <div class="row">
+                <div class="cell-color-title">
+                  <div class="cell-content"><div class="cell-content-text">Volunteer Name</div></div>
+                </div>
+                <div class="cell">
+                  <div class="cell-content"><div class="cell-content-text">Lee Jae Meong Yoon Seok Yeol</div></div>
+                </div>
               </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">Lee Jae Meong Yoon Seok Yeol</div></div>
+              <div class="row">
+                <div class="cell-color-title">
+                  <div class="cell-content"><div class="cell-content-text">E-mail</div></div>
+                </div>
+                <div class="cell">
+                  <div class="cell-content"><div class="cell-content-text">master@dwer.kr</div></div>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="cell-color-title">
-                <div class="cell-content"><div class="cell-content-text">E-mail</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">master@dwer.kr</div></div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="cell-color-title">
-                <div class="cell-content"><div class="cell-content-text">Phone Number</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">+82 10-3299-6574-1234</div></div>
+              <div class="row">
+                <div class="cell-color-title">
+                  <div class="cell-content"><div class="cell-content-text">Phone Number</div></div>
+                </div>
+                <div class="cell">
+                  <div class="cell-content"><div class="cell-content-text">+82 10-3299-6574-1234</div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="matching">
 
-        <img class="matching-line" src="/img/unwell/line-5.svg" />
+          <div class="match-overlay">
+            <a class="match-name">Match A</a>
+            <a class="match-info">Course Name : Konkuk University</a>
+            <a class="match-info">Type Of Help : Transportation</a>
+            <a class="match-info">Start Date : 2023-11-15</a>
+            <a class="match-info">End Date : 2023-11-17</a>
+          </div>
+
+          <div class="table-outer">
+            <div class="table-inner">
+              <div class="row">
+                <div class="cell-color-title">
+                  <div class="cell-content"><div class="cell-content-text">Volunteer Name</div></div>
+                </div>
+                <div class="cell">
+                  <div class="cell-content"><div class="cell-content-text">Lee Jae Meong Yoon Seok Yeol</div></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="cell-color-title">
+                  <div class="cell-content"><div class="cell-content-text">E-mail</div></div>
+                </div>
+                <div class="cell">
+                  <div class="cell-content"><div class="cell-content-text">master@dwer.kr</div></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="cell-color-title">
+                  <div class="cell-content"><div class="cell-content-text">Phone Number</div></div>
+                </div>
+                <div class="cell">
+                  <div class="cell-content"><div class="cell-content-text">+82 10-3299-6574-1234</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <img class="matching-line" src="/img/unwell/line-5.svg" />
 
         </div>
 <!-- @TODO HERE -->

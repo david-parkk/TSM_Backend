@@ -40,12 +40,12 @@ for (var i = 0; i < endDates.length; i++) { // 배열의 길이만큼 반복하�
 
 
     // Submit the parent form element
-  console.log(parent);
-    parent.submit();
+    console.log(parent);
+    parent.submit()
     console.log("부모");
     console.log(parent);
     alert("HELP Requested");
-    //location.href="http://localhost:8080/matching/request";
+
   });
 }
 

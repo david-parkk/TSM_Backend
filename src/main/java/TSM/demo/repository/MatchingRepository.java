@@ -88,6 +88,32 @@ public class MatchingRepository {
         return matchings;
     }
 
+    public List<Matching> findAllInfoWithCourseByUnwellId(int sickId){
+        return em.createQuery("select m from matching m " +
+                        " join fetch m.userHealth h" +
+                        " where m.sickId=:sickId and" +
+                        " m.requestType=1",Matching.class)
+                .setParameter("sickId",sickId)
+                .getResultList();
+    }
+    public List<Matching> findAllInfoWithPlaceByUnwellId(int sickId,int requestType){
+        return em.createQuery("select m from matching m " +
+                        " join fetch m.userHealth h" +
+                        " where m.sickId=:sickId and" +
+                        " m.requestType=:requestType",Matching.class)
+                .setParameter("sickId",sickId)
+                .setParameter("requestType",requestType)
+                .getResultList();
+    }
+    public List<Matching>findAllInfoByUnwellId(int sickId){
+        List<Matching>matchings=new ArrayList<>();
+        matchings.addAll(findAllInfoWithCourseByUnwellId(sickId));
+        for(int i=2;i<=5;i++){
+            matchings.addAll(findAllInfoWithPlaceByUnwellId(sickId,i));
+        }
+        System.out.println("size: "+matchings.size());
+        return matchings;
+    }
     public void addMatchingByVolunteer(int volunteerId,Matching matching){
 
         Matching newMatching =new Matching(matching.getRequestId(), State.WAIT,matching.getSickId(),volunteerId,matching.getStartTime(),matching.getEndTime(),matching.getRequestType(),matching.getRequestId(),matching.getUserHealth());
