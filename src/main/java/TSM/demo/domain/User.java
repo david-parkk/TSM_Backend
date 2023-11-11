@@ -1,6 +1,6 @@
 package TSM.demo.domain;
 
-import TSM.demo.repository.query.UserQueryDto;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -58,6 +58,17 @@ public class User {
         this.oauthId = oauthId;
     }
 
+
+    /*public UserQueryDto toDto() {
+        return UserQueryDto.builder()
+                .email(this.email)
+                .isVolunteer(this.isVolunteer)
+                .name(this.name)
+                .phoneNum(this.phoneNum)
+                .rating(this.rating)
+                .build();
+    }*/
+
 //    public UserQueryDto toDto() {
 //        return UserQueryDto.builder()
 //                .email(this.email)
@@ -67,4 +78,5 @@ public class User {
 //                .rating(this.rating)
 //                .build();
 //    }
+
 }

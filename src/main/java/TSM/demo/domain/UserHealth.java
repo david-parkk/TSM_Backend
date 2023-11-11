@@ -1,12 +1,9 @@
 package TSM.demo.domain;
 
-import TSM.demo.repository.query.UserHealthQueryDto;
+import TSM.demo.repository.query.UserHealthDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 @Entity(name = "user_health")
 @Getter
@@ -70,7 +67,7 @@ public class UserHealth {
                 && this.depression >= courseDifficulty.getDepression();
     }
 
-    public UserHealthQueryDto toDto() {
-        return new UserHealthQueryDto(walk, see, talk, listen, depression, bipolarDisorder, iq);
+    public UserHealthDto toDto() {
+        return new UserHealthDto(walk, see, talk, listen, depression, bipolarDisorder, iq);
     }
 }

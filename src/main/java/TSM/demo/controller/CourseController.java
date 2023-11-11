@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -21,15 +23,22 @@ public class CourseController {
         String email = httpSession.getAttribute("email").toString();
 
         mav.setViewName("unwell_search");
-        mav.addObject("course", courseService.recommendCourse(email));
-        mav.addObject("test", "test");
+
+        List<RecommendCourseResponseDto> recommendCourseResponseDtos=courseService.recommendCourse(email);
+
+        mav.addObject("courses",recommendCourseResponseDtos);
+        
+
         return mav;
     }
 
     @GetMapping("/description/{name}")
     public ModelAndView requestCourseDescription(@PathVariable("name") String name, ModelAndView mav) {
         mav.setViewName("unwell_deepsearch");
-        //mav.addObject(courseService.findCourse(name));
+
+        CourseDto courseDto=courseService.findCourse(name);
+
+        mav.addObject("course",courseService.findCourse(name));
         return mav;
     }
 

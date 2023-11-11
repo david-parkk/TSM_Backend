@@ -1,7 +1,6 @@
 package TSM.demo.repository.query;
 
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -24,18 +23,18 @@ public class CourseQueryDto {
 
     private String url;
 
-    private UserHealthQueryDto userHealth;
+    private UserHealthDto userHealth;
 
-    private List<RestaurantQueryDto> restaurantList;
-
-
-    private List<RoomQueryDto> roomList;
+    private List<RestaurantDto> restaurantList;
 
 
-    private List<TransportQueryDto> transportList;
+    private List<RoomDto> roomList;
 
 
-    private List<TravelPlaceQueryDto> travelPlaces;
+    private List<TransportDto> transportList;
+
+
+    private List<TravelPlaceDto> travelPlaces;
 
     public CourseQueryDto(int courseId, String name, String region, String description, String url) {
         this.courseId = courseId;

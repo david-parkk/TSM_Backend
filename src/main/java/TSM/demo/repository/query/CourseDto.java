@@ -14,16 +14,16 @@ import java.util.List;
 @Setter
 @ToString
 public class CourseDto {
-
+    private int id;
     private String name;
-    
+
     private String region;
 
     private String description;
 
     private String url;
 
-    private UserHealthQueryDto userHealth;
+    private UserHealthDto userHealth;
 
     private List<RestaurantDto> restaurantList;
 
@@ -31,9 +31,10 @@ public class CourseDto {
     
     private List<TransportDto> transportList;
 
-    private List<TravelPlaceDto> travelPlaces;
+    private List<TravelPlaceDto> travelPlaceList;
 
-    public CourseDto(String name, String region, String description, String url) {
+    public CourseDto(int id,String name, String region, String description, String url) {
+        this.id=id;
         this.name = name;
         this.region = region;
         this.description = description;
@@ -41,7 +42,7 @@ public class CourseDto {
         restaurantList = new ArrayList<>();
         roomList = new ArrayList<>();
         transportList = new ArrayList<>();
-        travelPlaces = new ArrayList<>();
+        travelPlaceList = new ArrayList<>();
     }
 
     public void setRestaurantList(List<Restaurant> restaurantList) {
@@ -71,7 +72,7 @@ public class CourseDto {
     public void setTravelPlaces(List<TravelPlace> travelPlaces) {
         if(!travelPlaces.isEmpty()) {
             for (TravelPlace travelPlace : travelPlaces) {
-                this.travelPlaces.add(travelPlace.toDto());
+                this.travelPlaceList.add(travelPlace.toDto());
             }
         }
     }
