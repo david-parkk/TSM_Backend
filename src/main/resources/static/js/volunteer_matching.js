@@ -268,6 +268,7 @@ xhr.onreadystatechange = function() {
   // 요청이 완료되고 응답이 성공적인 경우
   if (xhr.readyState == 4 && xhr.status == 200) {
     console.log(xhr.responseText);
+    location.href = 'volunteer_matching.html';
   }
 };
 });

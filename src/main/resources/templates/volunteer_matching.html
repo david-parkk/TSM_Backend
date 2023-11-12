@@ -122,25 +122,25 @@
             </div>
 
 <!-- @TODO HERE -->
-<form action="http://localhost:8080/matching/approve" method="post" class="form">
-<input type="hidden" class="groupId" name="groupId" value=1111 />
-<input type="hidden" class="userId" name="userId" value=1 />
-<input type="hidden" class="isVolunteer" name="isVolunteer" value=1 />
+<form  action="http://localhost:8080/matching/select" th:each="matching :${matchings}"method="post" class="form">
+<input type="hidden" class="groupId" name="groupId" th:value="${matching.getGroupId()}" />
+<input type="hidden" class="userId" name="userId" th:value="${matching.getVolunteerId()}" />
+<input type="hidden" class="isVolunteer" name="isVolunteer" th:value="${matching.getIsVolunteer()}" />
             <div class="row">
               <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">Yoon Seok Yeol</div></div>
+                <div class="cell-content"><div class="cell-content-text" th:text="${matching.getVolunteerName()}"></div></div>
               </div>
               <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">Course</div></div>
+                <div class="cell-content"><div class="cell-content-text" th:text="${matching.getRequestString()}"></div></div>
               </div>
               <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">YongSan Base</div></div>
+                <div class="cell-content"><div class="cell-content-text" th:text="${matching.getName()}"></div></div>
               </div>
               <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">2023-01-01</div></div>
+                <div class="cell-content"><div class="cell-content-text" th:text="${mathing.getStartTime()}"></div></div>
               </div>
               <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">2023-12-31</div></div>
+                <div class="cell-content"><div class="cell-content-text" th:text="${mathing.getEndTime()}"></div></div>
               </div>
               <div class="cell-color-button request-area">
                 <div class="cell-content"><div class="cell-content-text">REQUEST</div></div>

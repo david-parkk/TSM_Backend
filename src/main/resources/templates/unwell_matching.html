@@ -38,9 +38,9 @@
                 </div>
               </div>
 
-              <form action="http://localhost:8080/matching/select" method="post" class="form">
-                <input type="hidden" class="groupId" name="groupId" value=1111 />
-                <input type="hidden" class="userId" name="userId" value=1 />
+              <form action="http://localhost:8080/matching/approve" method="post" class="form">
+                <input type="hidden" class="groupId" name="groupId" th:value="${matching.getGroupId()}" />
+                <input type="hidden" class="userId" name="userId" th:value="${matching.getVolunteerId()}" />
                 <input type="hidden" class="isVolunteer" name="isVolunteer" value=0 />
                 <div class="row">
                   <div class="cell">

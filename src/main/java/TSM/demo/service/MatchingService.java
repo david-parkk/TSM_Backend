@@ -4,11 +4,8 @@ import TSM.demo.domain.Matching;
 import TSM.demo.domain.User;
 import TSM.demo.domain.UserHealth;
 import TSM.demo.repository.MatchingRepository;
-import TSM.demo.repository.UserRepository;
 
-import TSM.demo.repository.query.MatchingDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.expression.spel.ast.NullLiteral;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,7 +68,7 @@ public class MatchingService {
     public List<Matching>findAll(){
         return matchingRepository.findAll();
     }
-    public List<Matching>findALLUnMatchingByVolunteer(){
+    public List<Matching> findAllUnMatchingByVolunteer(){
         List<Matching> matchings = findAll();
         List<Matching> result=new ArrayList<>();
         for (Matching matching : matchings) {
