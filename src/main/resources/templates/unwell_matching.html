@@ -19,7 +19,7 @@
           <div class="match-overlay">
             <a class="match-name" th:text="'Match ' + ${matching.getGroupId()}"></a>
             <a class="match-info" th:text="'Course Name  ' + ${matching.getName()}"></a>
-            <a class="match-info" th:text="'Type Of Help  '+ ${matching.getRequestType()}"></a>
+            <a class="match-info" th:text="'Type Of Help  '+ ${matching.getRequestString()}"></a>
             <a class="match-info" th:text="'Start Date ' + ${matching.getStartTime()}">: 2023-11-15</a>
             <a class="match-info" th:text="'End Date ' +${matching.getStartTime()}"></a>
 
@@ -44,7 +44,7 @@
                 <input type="hidden" class="isVolunteer" name="isVolunteer" value=0 />
                 <div class="row">
                   <div class="cell">
-                    <div class="cell-content"><div class="cell-content-text" th:text="${matching.getVolunteerId()}"></div></div>
+                    <div class="cell-content"><div class="cell-content-text" th:text="${matching.getVolunteerName()}"></div></div>
                   </div>
                   <div class="cell">
                     <div class="cell-content"><div class="cell-content-text">2 / 5<br>None</div></div>

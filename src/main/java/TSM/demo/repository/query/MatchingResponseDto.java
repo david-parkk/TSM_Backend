@@ -1,14 +1,11 @@
 package TSM.demo.repository.query;
 
 import TSM.demo.domain.State;
-import ch.qos.logback.core.status.Status;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 @Setter
 @Getter
@@ -19,9 +16,11 @@ public class MatchingResponseDto {
 
     private int requestType;
 
+    private String requestString;
+
     private Timestamp startTime;
 
-    private Timestamp end_time;
+    private Timestamp endTime;
     private int isVolunteer;
     private int id;
 
@@ -29,7 +28,11 @@ public class MatchingResponseDto {
 
     private int sickId;
 
+    private String sickName;
+
     private int volunteerId;
+
+    private String volunteerName;
 
     private State state;
 
@@ -37,7 +40,7 @@ public class MatchingResponseDto {
         this.name = name;
         this.requestType = requestType;
         this.startTime = startTime;
-        this.end_time = end_time;
+        this.endTime = end_time;
         this.isVolunteer = isVolunteer;
         this.id = id;
         this.groupId = groupId;

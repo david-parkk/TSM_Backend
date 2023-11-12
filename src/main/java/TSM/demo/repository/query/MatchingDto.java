@@ -27,11 +27,11 @@ public class MatchingDto {
 
     private Timestamp startTime;
 
-    private Timestamp end_time;
+    private Timestamp endTime;
 
-    private int request_type;
+    private int requestType;
 
-    private int request_id;
+    private int requestId;
 
     private Course course;
     private Restaurant restaurant;
@@ -47,9 +47,9 @@ public class MatchingDto {
         this.sickId = matching.getSickId();
         this.volunteerId = matching.getVolunteerId();
         this.startTime = matching.getStartTime();
-        this.end_time = matching.getEndTime();
-        this.request_type = matching.getRequestType();
-        this.request_id = matching.getRequestId();
+        this.endTime = matching.getEndTime();
+        this.requestType = matching.getRequestType();
+        this.requestId = matching.getRequestId();
 
     }
 
@@ -60,9 +60,9 @@ public class MatchingDto {
         this.sickId = sickId;
         this.volunteerId = volunteerId;
         this.startTime = startTime;
-        this.end_time = end_time;
-        this.request_type = request_type;
-        this.request_id = request_id;
+        this.endTime = end_time;
+        this.requestType = request_type;
+        this.requestId = request_id;
         this.userHealth=userHealth;
     }
 }
