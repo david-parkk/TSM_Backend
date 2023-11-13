@@ -263,14 +263,35 @@ xhr.open("GET", url + "?" + params);
 xhr.send();
 console.log(url + "?" + params);
 
+xhr.onload = () => {
+    if(xhr.status == 200){
+        console.log(xhr);
+        const res = xhr.responseText;
+        document.write("");
+        document.write(res);
+        /*
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(res, "text/html");
+        const title = doc.querySelector("title").;
+        const body = doc.querySelector("body").innerHTML;
+
+        document.title = title;
+        document.body.innerHTML = body;
+*/
+
+    }
+
+};
+/*
 // 요청 상태 변화에 대한 이벤트 핸들러 정의
 xhr.onreadystatechange = function() {
   // 요청이 완료되고 응답이 성공적인 경우
   if (xhr.readyState == 4 && xhr.status == 200) {
     console.log(xhr.responseText);
-    location.href = 'volunteer_matching.html';
+      //location.href="http://localhost:8080/matching";
   }
 };
+*/
 });
 
 

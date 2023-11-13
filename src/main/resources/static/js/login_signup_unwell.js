@@ -245,7 +245,7 @@ console.log(JSON.stringify(data));
   xhr.onload = function() {
     // Check the status code
     if (xhr.status == 200) {
-      location.href='volunteer_matching.html';
+      location.href='http://localhost:8080/course';
     } else {
       // Error
       alert("Signup failed: " + xhr.statusText);

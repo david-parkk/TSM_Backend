@@ -21,6 +21,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -51,14 +52,14 @@ public class MatchingController {
         else{
             matchings.addAll(matchingService.findAllByUnwellId(finduser.getId()));
         }
-        //System.out.println("matchings.size() = " + matchings.size());
+        System.out.println("matchings.size() = " + matchings.size());
         List<Course>courses=courseService.findAllCourseByMatching(matchings);
         List<Restaurant> restaurants = placeService.findAllRestaurantByMatching(matchings);
         List<Room> rooms = placeService.findAllRoomByMatching(matchings);
         List<Transport> transports = placeService.findAllTransportByMatching(matchings);
         List<TravelPlace> travelPlaces=placeService.findAllTravelPlaceByMatching(matchings);
         for(Matching matching:matchings){
-            if(matching.getVolunteerId()==0)
+            if(matching.getVolunteerId()==0&&finduser.getIsVolunteer()==1)
                 continue;
             if(matching.getRequestType()==1){
                 for(Course course: courses){
@@ -203,6 +204,7 @@ public class MatchingController {
         return matchingDtos;
     }
 
+    
     @PostMapping("/select")
     public CreateMatchingResponse CreateMatchingRequest(@RequestBody @Valid MatchingSelect matchingSelect) {
         if(matchingSelect.getIsVolunteer()==1) {
@@ -220,14 +222,15 @@ public class MatchingController {
         return new CreateMatchingResponse("success");
     }
 
+    //volunteer matching 검색 기능
     @GetMapping("/list")
     public ModelAndView requestHelp(@RequestParam("walk") int walk,
-                              @RequestParam("see") int see,
-                              @RequestParam("talk") int talk,
-                              @RequestParam("listen") int listen,
-                              @RequestParam("depression") int depression,
-                              @RequestParam("bipolar_disorder") int bipolar_disorder,
-                                    ModelAndView mav,HttpSession httpSession){
+                             @RequestParam("see") int see,
+                             @RequestParam("talk") int talk,
+                             @RequestParam("listen") int listen,
+                             @RequestParam("depression") int depression,
+                             @RequestParam("bipolar_disorder") int bipolar_disorder,
+                             ModelAndView mav, HttpSession httpSession){
 
         List<Matching> matchings1 = matchingService.findAllUnMatchingByVolunteer();
         User finduser = userService.findOneByEmail((String) httpSession.getAttribute("email"));
@@ -235,7 +238,7 @@ public class MatchingController {
         List<Matching> matchings=new ArrayList<>();
         System.out.println("matchings1.size() = " + matchings1.size());
         for(Matching matching:matchings1){
-            if(matching.getUserHealth().isPossibleCourse(walk,see,talk,listen,bipolar_disorder,depression)==true)
+            if(matching.getUserHealth().isPossibleCourse(walk,see,talk,listen,bipolar_disorder,depression)==false)
                 matchings.add(matching);
         }
         System.out.println("matchings.size() = " + matchings.size());
@@ -293,10 +296,10 @@ public class MatchingController {
         }
         System.out.println("matchingResponseDtos.size() = " + matchingResponseDtos.size());
         for (MatchingResponseDto matchingResponseDto: matchingResponseDtos){
-            if(matchingResponseDto.getVolunteerId()==0)
-                continue;
-            User findUser = userService.findOne(matchingResponseDto.getVolunteerId());
-            matchingResponseDto.setVolunteerName(findUser.getName());
+            /*if(matchingResponseDto.getVolunteerId()==0)
+                continue;*/
+            User findUser = userService.findOne(matchingResponseDto.getSickId());
+            matchingResponseDto.setSickName(findUser.getName());
             if(matchingResponseDto.getRequestType()==1){
                 matchingResponseDto.setRequestString("Course");
             }
@@ -314,6 +317,7 @@ public class MatchingController {
             }
 
         }
+
 
         mav.addObject("matchings",matchingResponseDtos);
         mav.setViewName("volunteer_matching");

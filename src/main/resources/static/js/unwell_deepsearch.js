@@ -45,6 +45,7 @@ for (var i = 0; i < endDates.length; i++) { // 배열의 길이만큼 반복하�
     console.log("부모");
     console.log(parent);
     alert("HELP Requested");
+    location.href="http://localhost:8080/course";
 
   });
 }
