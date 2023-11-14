@@ -14,6 +14,6 @@ public class Room extends Place{
     }
 
     public RoomDto toDto() {
-        return new RoomDto(getName(), getDescription(), getUrl());
+        return new RoomDto(getId(),getName(), getDescription(), getUrl());
     }
 }

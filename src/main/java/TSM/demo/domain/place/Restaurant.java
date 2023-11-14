@@ -14,6 +14,6 @@ public class Restaurant extends Place{
         super(name, description, url);
     }
     public RestaurantDto toDto() {
-        return new RestaurantDto(getName(), getDescription(), getUrl());
+        return new RestaurantDto(getId(),getName(), getDescription(), getUrl());
     }
 }

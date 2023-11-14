@@ -15,6 +15,6 @@ public class Transport extends Place{
         super(name, description, url);
     }
     public TransportDto toDto() {
-        return new TransportDto(getName(), getDescription(), getUrl());
+        return new TransportDto(getId(),getName(), getDescription(), getUrl());
     }
 }

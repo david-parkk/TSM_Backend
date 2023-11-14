@@ -30,23 +30,44 @@ public class MatchingResponseDto {
 
     private String sickName;
 
+    private String sickEmail;
+
+    private String sickPhoneNum;
+
     private int volunteerId;
 
     private String volunteerName;
 
+    private String volunteerEmail;
+
+    private String volunteerPhoneNum;
+
     private State state;
 
-    public MatchingResponseDto(String name, int requestType, Timestamp startTime, Timestamp end_time, int isVolunteer, int id, int groupId, int sickId, int volunteerId, State state) {
+    public MatchingResponseDto(String name, int requestType, Timestamp startTime, Timestamp endTime, int isVolunteer, int id, int groupId, int sickId, int volunteerId, State state,String requestString) {
         this.name = name;
         this.requestType = requestType;
         this.startTime = startTime;
-        this.endTime = end_time;
+        this.endTime = endTime;
         this.isVolunteer = isVolunteer;
         this.id = id;
         this.groupId = groupId;
         this.volunteerId=volunteerId;
         this.sickId=sickId;
         this.state = state;
+        this.requestString=requestString;
+    }
+
+    public void setVolunteerInfo(String name,String email,String phoneNum){
+        this.volunteerName=name;
+        this.volunteerEmail=email;
+        this.volunteerPhoneNum=phoneNum;
+    }
+
+    public void setUnwellInfo(String name,String email,String phoneNum){
+        this.sickName=name;
+        this.sickEmail=email;
+        this.sickPhoneNum=phoneNum;
     }
 
 

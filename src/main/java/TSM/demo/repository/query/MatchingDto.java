@@ -31,6 +31,8 @@ public class MatchingDto {
 
     private int requestType;
 
+    private String requestString;
+
     private int requestId;
 
     private Course course;

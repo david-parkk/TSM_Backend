@@ -317,6 +317,6 @@ console.log(parent);
 
     parent.style.display="none";
     alert("Matching Requested");
-    location.href="volunteer_matching.html";
+    //location.href="volunteer_matching.html";
   });
 }
