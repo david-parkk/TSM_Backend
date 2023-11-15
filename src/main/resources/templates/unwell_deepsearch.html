@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <link rel="stylesheet" href="/css/globals.css" />
+    <link rel="stylesheet" href="/css/unwell_deepsearch.css" />
+    <link rel="stylesheet" href="/css/unwell_tabbar.css" />
+  </head>
+  <body>
+
+    <div class="unwell">
+      <div class="div">
+
+<!-- #1 전체 설명, 1:1 -->
+        <div class="content1">
+            <div class="cate-wrapper">Course</div>
+            <img class="line-wrapper" src="/img/unwell/line-7.svg" />
+
+<!-- @TODO HERE -->
+            <!-- IMG -->
+            <img class="img-wrapper" th:src="@{'https://cdn.dwicd.com/konkuk/lab/img'+${course.getUrl()}}" />
+            <!-- TITLE -->
+            <div class="title-wrapper" th:text="${course.getName()}">
+
+            </div>
+            <!-- DESC -->
+            <div class="desc-wrapper" th:text="${course.getDescription()}">
+
+            </div>
+<!-- @TODO HERE -->
+
+<form action="http://localhost:8080/matching/request" method="post" class="form">
+<input type="hidden" class="typeId" name="typeId" value=1 />
+<input type="hidden" class="uId" name="uId" th:value="${course.getId()}" />
+<input type="hidden" class="startDatetime" name="startDateTime" />
+<input type="hidden" class="endDatetime" name="endDateTime" />
+<input type="date" class="startDate" name="startDate"/>
+<input type="time" class="startTime" name="startTime"/>
+<input type="date" class="endDate" name="endDate"/>
+<input type="time" class="endTime" name="endTime"/>
+            <div class="submit-wrapper"><div class="submit-wrapper-inner request-area">
+              <div class="rect"></div><div class="text">Request HELP</div>
+            </div></div>
+</form>
+        </div>
+<!-- #1 전체 설명, 1:1 -->
+
+<!-- #2 이동수단, 1:N -->
+        <div class="content2">
+            <div class="cate-wrapper">Transportation</div>
+            <img class="line-wrapper" src="/img/unwell/line-7.svg" />
+
+<!-- @TODO HERE -->
+            <!-- IMG #1 -->
+
+            <div th:each="tranport : ${course.getTransportList()}" >
+
+                <img class="img-wrapper" th:src="@{'https://cdn.dwicd.com/konkuk/lab/img'+${tranport.getUrl()}}" />
+                <div class="title-wrapper" th:text="${tranport.getName()}">
+                </div>
+                <div class="desc-wrapper" th:text="${tranport.getDescription()}">
+                </div>
+            </div>
+
+<!-- @TODO HERE -->
+
+<form action="http://localhost:8080/matching/request" method="post" class="form">
+<input type="hidden" class="typeId" name="typeId" value=4 />
+    <input type="hidden" class="uId" name="uId" th:value="${course.getTransportList().get(0).getId()}" />
+<input type="hidden" class="startDatetime" name="startDateTime" />
+<input type="hidden" class="endDatetime" name="endDateTime" />
+<input type="date" class="startDate" name="startDate"/>
+<input type="time" class="startTime" name="startTime"/>
+<input type="date" class="endDate" name="endDate"/>
+<input type="time" class="endTime" name="endTime"/>
+            <div class="submit-wrapper"><div class="submit-wrapper-inner request-area">
+              <div class="rect"></div><div class="text">Request HELP</div>
+            </div></div>
+</form>
+        </div>
+<!-- #2 이동수단, 1:N -->
+
+<!-- #3 숙박, 1:N -->
+        <div class="content3">
+            <div class="cate-wrapper">Lodgment</div>
+            <img class="line-wrapper" src="/img/unwell/line-7.svg" />
+
+<!-- @TODO HERE -->
+            <div th:each="room : ${course.getRoomList()}" >
+
+                <img class="img-wrapper" th:src="@{'https://cdn.dwicd.com/konkuk/lab/img'+${room.getUrl()}}" />
+                <div class="title-wrapper" th:text="${room.getName()}">
+                </div>
+                <div class="desc-wrapper" th:text="${room.getDescription()}">
+                </div>
+            </div>
+
+<!-- @TODO HERE -->
+
+<form action="http://localhost:8080/matching/request" method="post" class="form">
+<input type="hidden" class="typeId" name="typeId" value=3 />
+    <input type="hidden" class="uId" name="uId" th:value="${course.getRoomList().get(0).getId()}" />
+<input type="hidden" class="startDatetime" name="startDateTime" />
+<input type="hidden" class="endDatetime" name="endDateTime" />
+<input type="date" class="startDate" name="startDate"/>
+<input type="time" class="startTime" name="startTime"/>
+<input type="date" class="endDate" name="endDate"/>
+<input type="time" class="endTime" name="endTime"/>
+            <div class="submit-wrapper"><div class="submit-wrapper-inner request-area">
+              <div class="rect"></div><div class="text">Request HELP</div>
+            </div></div>
+</form>
+        </div>
+<!-- #3 숙박, 1:N -->
+
+<!-- #4 식당, 1:N -->
+        <div class="content4">
+            <div class="cate-wrapper">Restaurant</div>
+            <img class="line-wrapper" src="/img/unwell/line-7.svg" />
+
+<!-- @TODO HERE -->
+            <div th:each="restaurant : ${course.getRestaurantList()}" >
+
+                <img class="img-wrapper" th:src="@{'https://cdn.dwicd.com/konkuk/lab/img'+${restaurant.getUrl()}}" />
+                <div class="title-wrapper" th:text="${restaurant.getName()}">
+                </div>
+                <div class="desc-wrapper" th:text="${restaurant.getDescription()}">
+                </div>
+            </div>
+<!-- @TODO HERE -->
+
+<form action="http://localhost:8080/matching/request" method="post" class="form">
+<input type="hidden" class="typeId" name="typeId" value=2 />
+    <input type="hidden" class="uId" name="uId" th:value="${course.getRestaurantList().get(0).getId()}" />
+<input type="hidden" class="startDatetime" name="startDateTime" />
+<input type="hidden" class="endDatetime" name="endDateTime" />
+<input type="date" class="startDate" name="startDate"/>
+<input type="time" class="startTime" name="startTime"/>
+<input type="date" class="endDate" name="endDate"/>
+<input type="time" class="endTime" name="endTime"/>
+            <div class="submit-wrapper"><div class="submit-wrapper-inner request-area">
+              <div class="rect"></div><div class="text">Request HELP</div>
+            </div></div>
+</form>
+        </div>
+<!-- #4 식당, 1:N -->
+
+<!-- #5 관광지, 1:N -->
+        <div class="content5">
+            <div class="cate-wrapper">Travel Site</div>
+            <img class="line-wrapper" src="/img/unwell/line-7.svg" />
+
+<!-- @TODO HERE -->
+            <div th:each="travelPlace : ${course.getTravelPlaceList()}" >
+
+                <img class="img-wrapper" th:src="@{'https://cdn.dwicd.com/konkuk/lab/img'+${travelPlace.getUrl()}}" />
+                <div class="title-wrapper" th:text="${travelPlace.getName()}">
+                </div>
+                <div class="desc-wrapper" th:text="${travelPlace.getDescription()}">
+                </div>
+            </div>
+<!-- @TODO HERE -->
+
+<form action="http://localhost:8080/matching/request" method="post" class="form">
+<input type="hidden" class="typeId" name="typeId" value=5 />
+    <input type="hidden" class="uId" name="uId" th:value="${course.getTravelPlaceList().get(0).getId()}" />
+<input type="hidden" class="startDatetime" name="startDateTime" />
+<input type="hidden" class="endDatetime" name="endDateTime" />
+<input type="date" class="startDate" name="startDate"/>
+<input type="time" class="startTime" name="startTime"/>
+<input type="date" class="endDate" name="endDate"/>
+<input type="time" class="endTime" name="endTime"/>
+            <div class="submit-wrapper"><div class="submit-wrapper-inner request-area">
+              <div class="rect"></div><div class="text">Request HELP</div>
+            </div></div>
+</form>
+        </div>
+<!-- #5 관광지, 1:N -->
+
+<br><br><br><br>
+
+        <div class="menubar-sudong">
+          <div class="nav-item-sudong" onclick='location.href="http://localhost:8080/course"'>
+            <img class="img-sudong" src="/img/unwell/find.svg" />
+            <div class="text-wrapper-sudong">Explore</div>
+          </div>
+          <div class="nav-item-sudong" onclick='location.href="http://localhost:8080/matching"'>
+            <img class="img-sudong" src="/img/unwell/table.svg" />
+            <div class="text-wrapper-sudong">Result</div>
+          </div>
+          <div class="nav-item-sudong" onclick='location.href="unwell_personalize.html"'>
+            <img class="img-sudong" src="/img/unwell/recommend.svg" />
+            <div class="text-wrapper-sudong">Recommend</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+<script src="/js/unwell_deepsearch.js"></script>
+
+  </body>
+</html>

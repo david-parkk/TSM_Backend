@@ -1,0 +1,112 @@
+.unwell {
+  background-color: #ffffff;
+//  display: flex;
+//  flex-direction: row;
+//  justify-content: center;
+  width: 100%;
+}
+
+.unwell .div {
+  background-color: #ffffff;
+//  width: 393px;
+//  height: 1275px;
+  position: relative;
+}
+
+.unwell .logo {
+width:90%;
+margin-top:50px;
+margin-bottom:50px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.unwell .logoimg {
+//  width: 300px;
+//  height: 52px;
+//  top: 34px;
+//  left: 47px;
+  position: relative;
+  object-fit: cover;
+display:block;
+margin-left:auto;
+margin-right:auto;
+width:90%;
+}
+
+.unwell .line {
+//  position: absolute;
+//  width: 360px;
+//  height: 2px;
+//  top: 125px;
+//  left: 17px;
+  object-fit: cover;
+margin-top : 50px;
+width:100%;
+}
+
+
+.unwell .overlap-group {
+  position: relative;
+/*
+  width: 362px;
+  height: 251px;
+  top: 419px;
+  left: 17px;
+*/
+width:75%;
+margin-left:auto;
+margin-right:auto;
+display:block;
+
+//top:0%;
+//bottom:90%;
+
+}
+
+.unwell .overlap-wrapper {
+  position: relative;
+//  width: 360px;
+//  height: 251px;
+//  background-color: #ffffff;
+  border: 1px solid;
+//  border-color: #c9c9c9;
+
+width:100%;
+margin-left:auto;
+margin-right:auto;
+margin-bottom:75px;
+padding:25px;
+padding-bottom:0px;
+}
+
+.unwell .desc_img {
+/*
+  width: 350px;
+  height: 208px;
+  top: 7px;
+  left: 4px;
+*/
+  position: relative;
+  object-fit: cover;
+width:100%;
+}
+
+.unwell .desc_text {
+  position: relative;
+/*
+  width: 350px;
+  top: 215px;
+  left: 4px;
+*/
+  font-family: "Times New Roman-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 40px;
+text-align:center;
+//  letter-spacing: -0.05px;
+//line-height: 32.4px;
+  white-space: nowrap;
+margin-top:36px;
+margin-bottom:36px;
+}
