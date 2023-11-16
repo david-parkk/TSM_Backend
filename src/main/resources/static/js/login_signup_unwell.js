@@ -227,7 +227,7 @@ depression = 0;
   var data = {
     name: username.innerText,
     email: email.innerText,
-    phoneNum: phone.innerText,
+    phoneNum: phone.value,
     see: see,
     walk: walk,
     talk: talk,

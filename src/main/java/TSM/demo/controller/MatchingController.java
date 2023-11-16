@@ -271,7 +271,7 @@ public class MatchingController {
         List<Matching> matchings=new ArrayList<>();
         System.out.println("matchings = " + matchings1.size());
         for(Matching matching:matchings1){
-            if(matching.getUserHealth().isPossibleCourse(walk,see,talk,listen,bipolar_disorder,depression)==true)
+            if(matching.getUserHealth().isPossibleCourse(walk,see,talk,listen,bipolar_disorder,depression)==false)
                 matchings.add(matching);
         }
         List<Course>courses=courseService.findAllCourseByMatching(matchings);
