@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
   <head>
     <link rel="stylesheet" href="/css/globals.css" />
     <link rel="stylesheet" href="/css/login_signup_volunteer.css" />
@@ -9,13 +9,14 @@
       <div class="div">Create an account</div>
       <p class="text-wrapper">Connect with your friends today!</p>
       <div class="user-name-field-text">
-        <div class="overlap-group"><div class="text-wrapper-2">Google username</div></div>
+        <div class="overlap-group"><div class="text-wrapper-2" th:text="${session.name}">Default Username</div></div>
       </div>
       <div class="email-field-text">
-        <div class="overlap-group"><div class="text-wrapper-2">Google E-Mail</div></div>
+        <div class="overlap-group"><div class="text-wrapper-2" th:text="${session.email}">Default Email</div></div>
       </div>
       <div class="phone-number-field">
-        <div class="overlap-group"><div class="text-wrapper-2">Google Phone Number</div></div>
+        <div class="overlap-group"><input type="text" class="text-wrapper-2" placeholder="Enter your phone number" /></div>
+        <!-- <div class="overlap-group"><div class="text-wrapper-2">Google Phone Number</div></div> -->
       </div>
       <div class="signup-field-text">
         <div class="overlap"><div class="text-wrapper-3">Sign Up</div></div>

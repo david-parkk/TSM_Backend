@@ -67,15 +67,17 @@ public class UserHealth {
                 && this.bipolarDisorder >= courseDifficulty.getBipolarDisorder()
                 && this.depression >= courseDifficulty.getDepression();
     }
-    public boolean isPossibleCourse(int walk, int see, int talk, int listen, int depression, int bipolar_disorder) {
-        return this.see >= see
-                && this.walk >= walk
-                && this.talk >= talk
-                && this.listen >= listen
-                && this.iq >= iq
-                && this.bipolarDisorder >= bipolar_disorder
-                && this.depression >= depression;
+
+    public boolean isPossibleMatching(int walk, int see, int talk, int listen, int iq, int depression, int bipolar_disorder) {
+        return this.see <= see
+                && this.walk <= walk
+                && this.talk <= talk
+                && this.listen <= listen
+                && this.iq <= iq
+                && this.bipolarDisorder <= bipolar_disorder
+                && this.depression <= depression;
     }
+
     public UserHealthDto toDto() {
         return new UserHealthDto(walk, see, talk, listen, depression, bipolarDisorder, iq);
     }
