@@ -236,13 +236,13 @@ public class MatchingController {
         return matchingResponseDtos;
     }
     @GetMapping("/volunteer")
-    public ModelAndView requestHelp(@RequestParam("walk") int walk,
-                                    @RequestParam("see") int see,
-                                    @RequestParam("talk") int talk,
-                                    @RequestParam("listen") int listen,
-                                    @RequestParam("iq") int iq,
-                                    @RequestParam("depression") int depression,
-                                    @RequestParam("bipolar_disorder") int bipolar_disorder,
+    public ModelAndView requestHelp(@RequestParam(value = "walk" ,required = false, defaultValue = "3") int walk,
+                                    @RequestParam(value = "see",required = false, defaultValue = "3") int see,
+                                    @RequestParam(value = "talk",required = false, defaultValue = "3") int talk,
+                                    @RequestParam(value = "listen",required = false, defaultValue = "3") int listen,
+                                    @RequestParam(value = "iq",required = false, defaultValue = "3") int iq,
+                                    @RequestParam(value = "depression",required = false, defaultValue = "3") int depression,
+                                    @RequestParam(value = "bipolar_disorder",required = false, defaultValue = "3") int bipolar_disorder,
                                     ModelAndView mav, HttpSession httpSession) {
         //matching완료되지 않은 모든 matching가져옴
         List<Matching> matchings1 = matchingService.findAllUnMatchingByVolunteer();
