@@ -171,37 +171,23 @@ public class MatchingController {
 
         return mav;
     }
-    @GetMapping("/volunteer")
-    public ModelAndView requestHelp(@RequestParam("walk") int walk,
-                                    @RequestParam("see") int see,
-                                    @RequestParam("talk") int talk,
-                                    @RequestParam("listen") int listen,
-                                    @RequestParam("iq") int iq,
-                                    @RequestParam("depression") int depression,
-                                    @RequestParam("bipolar_disorder") int bipolar_disorder,
-                                    ModelAndView mav, HttpSession httpSession) {
 
-        List<Matching> matchings1 = matchingService.findAllUnMatchingByVolunteer();
-        User finduser = userService.findOneByEmail((String) httpSession.getAttribute("email"));
+    public List<MatchingResponseDto> findVolunteerMatchingResponseDto(User volunteer,List<Matching>matchings){
+
+
         List<MatchingResponseDto> matchingResponseDtos = new ArrayList<>();
-        List<Matching> matchings = new ArrayList<>();
-        System.out.println("matchings = " + matchings1.size());
-        for (Matching matching : matchings1) {
-            if (matching.getUserHealth().isPossibleMatching(walk, see, talk, listen, iq, bipolar_disorder, depression) == true)
-                matchings.add(matching);
-        }
         List<Course> courses = courseService.findAllCourseByMatching(matchings);
         List<Restaurant> restaurants = placeService.findAllRestaurantByMatching(matchings);
         List<Room> rooms = placeService.findAllRoomByMatching(matchings);
         List<Transport> transports = placeService.findAllTransportByMatching(matchings);
         List<TravelPlace> travelPlaces = placeService.findAllTravelPlaceByMatching(matchings);
-        System.out.println("matchings = " + matchings.size());
+
         for (Matching matching : matchings) {
             if (matching.getRequestType() == 1) {
 
                 for (Course course : courses) {
                     if (course.getId() == matching.getRequestId()) {
-                        matchingResponseDtos.add(new MatchingResponseDto(course.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), finduser.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
+                        matchingResponseDtos.add(new MatchingResponseDto(course.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), volunteer.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
                                 , matching.getState(), "Course"));
                         break;
                     }
@@ -209,7 +195,7 @@ public class MatchingController {
             } else if (matching.getRequestType() == 2) {
                 for (Restaurant restaurant : restaurants) {
                     if (restaurant.getId() == matching.getRequestId()) {
-                        matchingResponseDtos.add(new MatchingResponseDto(restaurant.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), finduser.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
+                        matchingResponseDtos.add(new MatchingResponseDto(restaurant.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), volunteer.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
                                 , matching.getState(), "Restaurant"));
                         break;
                     }
@@ -217,7 +203,7 @@ public class MatchingController {
             } else if (matching.getRequestType() == 3) {
                 for (Room room : rooms) {
                     if (room.getId() == matching.getRequestId()) {
-                        matchingResponseDtos.add(new MatchingResponseDto(room.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), finduser.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
+                        matchingResponseDtos.add(new MatchingResponseDto(room.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), volunteer.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
                                 , matching.getState(), "Room"));
                         break;
                     }
@@ -225,7 +211,7 @@ public class MatchingController {
             } else if (matching.getRequestType() == 4) {
                 for (Transport transport : transports) {
                     if (transport.getId() == matching.getRequestId()) {
-                        matchingResponseDtos.add(new MatchingResponseDto(transport.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), finduser.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
+                        matchingResponseDtos.add(new MatchingResponseDto(transport.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), volunteer.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
                                 , matching.getState(), "Transport"));
                         break;
                     }
@@ -233,7 +219,7 @@ public class MatchingController {
             } else if (matching.getRequestType() == 5) {
                 for (TravelPlace travelPlace : travelPlaces) {
                     if (travelPlace.getId() == matching.getRequestId()) {
-                        matchingResponseDtos.add(new MatchingResponseDto(travelPlace.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), finduser.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
+                        matchingResponseDtos.add(new MatchingResponseDto(travelPlace.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), volunteer.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
                                 , matching.getState(), "TravelPlace"));
                         break;
                     }
@@ -245,21 +231,31 @@ public class MatchingController {
                 continue;*/
             User findUser = userService.findOne(matchingResponseDto.getSickId());
             matchingResponseDto.setSickName(findUser.getName());
-            if (matchingResponseDto.getRequestType() == 1) {
-                matchingResponseDto.setRequestString("Course");
-            } else if (matchingResponseDto.getRequestType() == 2) {
-                matchingResponseDto.setRequestString("Restaurant");
-            } else if (matchingResponseDto.getRequestType() == 3) {
-                matchingResponseDto.setRequestString("Room");
-            } else if (matchingResponseDto.getRequestType() == 4) {
-                matchingResponseDto.setRequestString("Transport");
-            } else if (matchingResponseDto.getRequestType() == 5) {
-                matchingResponseDto.setRequestString("Travel_Place");
-            }
 
         }
+        return matchingResponseDtos;
+    }
+    @GetMapping("/volunteer")
+    public ModelAndView requestHelp(@RequestParam("walk") int walk,
+                                    @RequestParam("see") int see,
+                                    @RequestParam("talk") int talk,
+                                    @RequestParam("listen") int listen,
+                                    @RequestParam("iq") int iq,
+                                    @RequestParam("depression") int depression,
+                                    @RequestParam("bipolar_disorder") int bipolar_disorder,
+                                    ModelAndView mav, HttpSession httpSession) {
+        //matching완료되지 않은 모든 matching가져옴
+        List<Matching> matchings1 = matchingService.findAllUnMatchingByVolunteer();
+        User finduser = userService.findOneByEmail((String) httpSession.getAttribute("email"));
+        List<Matching> matchings = new ArrayList<>();
+        //검색 범위에 알맞는 matching 정렬
+        for (Matching matching : matchings1) {
+            if (matching.getUserHealth().isPossibleMatching(walk, see, talk, listen, iq, bipolar_disorder, depression) == true)
+                matchings.add(matching);
+        }
+        //matching 정보설정
+        List<MatchingResponseDto> matchingResponseDtos = findVolunteerMatchingResponseDto(finduser,matchings);
 
-        System.out.println("matchings = " + matchings.size());
         mav.addObject("matchings", matchingResponseDtos);
 
         mav.setViewName("volunteer_matching");
@@ -268,100 +264,11 @@ public class MatchingController {
 
     @GetMapping("/volunteer_result")
     public ModelAndView volunteerMatching(ModelAndView mav, HttpSession httpSession) {
-        List<Matching> matchings = new ArrayList<>();
-        List<MatchingResponseDto> matchingResponseDtos = new ArrayList<>();
-        List<UnwellSuccessMatchingDto> successMatchingDtos = new ArrayList<>();
         User finduser = userService.findOneByEmail((String) httpSession.getAttribute("email"));
+        List<Matching> matchings = matchingService.findAllByVolunteerId(finduser.getId());
+        List<MatchingResponseDto> matchingResponseDtos = findVolunteerMatchingResponseDto(finduser,matchings);
 
-        if (finduser.getIsVolunteer() == 1) {
-            matchings.addAll(matchingService.findAllByVolunteerId(finduser.getId()));
-        } else {
-            matchings.addAll(matchingService.findAllByUnwellId(finduser.getId()));
-        }
-        System.out.println("matchings.size() = " + matchings.size());
-        List<Course> courses = courseService.findAllCourseByMatching(matchings);
-        List<Restaurant> restaurants = placeService.findAllRestaurantByMatching(matchings);
-        List<Room> rooms = placeService.findAllRoomByMatching(matchings);
-        List<Transport> transports = placeService.findAllTransportByMatching(matchings);
-        List<TravelPlace> travelPlaces = placeService.findAllTravelPlaceByMatching(matchings);
-        for (Matching matching : matchings) {
-            if (matching.getVolunteerId() == 0 && finduser.getIsVolunteer() == 1)
-                continue;
-            if (matching.getRequestType() == 1) {
-                for (Course course : courses) {
-                    if (course.getId() == matching.getRequestId()) {
-
-                        matchingResponseDtos.add(new MatchingResponseDto(course.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), finduser.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
-                                , matching.getState(), "Course"));
-                        break;
-                    }
-                }
-            } else if (matching.getRequestType() == 2) {
-                for (Restaurant restaurant : restaurants) {
-                    if (restaurant.getId() == matching.getRequestId()) {
-                        matchingResponseDtos.add(new MatchingResponseDto(restaurant.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), finduser.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
-                                , matching.getState(), "Restaurant"));
-                        break;
-                    }
-                }
-            } else if (matching.getRequestType() == 3) {
-                for (Room room : rooms) {
-                    if (room.getId() == matching.getRequestId()) {
-                        matchingResponseDtos.add(new MatchingResponseDto(room.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), finduser.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
-                                , matching.getState(), "Room"));
-                        break;
-                    }
-                }
-            } else if (matching.getRequestType() == 4) {
-                for (Transport transport : transports) {
-                    if (transport.getId() == matching.getRequestId()) {
-                        matchingResponseDtos.add(new MatchingResponseDto(transport.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), finduser.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
-                                , matching.getState(), "Transport"));
-                        break;
-                    }
-                }
-            } else if (matching.getRequestType() == 5) {
-                for (TravelPlace travelPlace : travelPlaces) {
-                    if (travelPlace.getId() == matching.getRequestId()) {
-
-                        matchingResponseDtos.add(new MatchingResponseDto(travelPlace.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), finduser.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
-                                , matching.getState(), "Travel_Place"));
-                        break;
-                    }
-                }
-            }
-        }
-        for (MatchingResponseDto matchingResponseDto : matchingResponseDtos) {
-            if (matchingResponseDto.getVolunteerId() == 0)
-                continue;
-            User findUser = userService.findOne(matchingResponseDto.getVolunteerId());
-            matchingResponseDto.setVolunteerName(findUser.getName());
-
-        }
-        System.out.println("matchingResponseDtos.size() = " + matchingResponseDtos.size());
-        for (MatchingResponseDto matchingResponseDto : matchingResponseDtos) {
-            //System.out.println("matchingResponseDto.getRequestString() = " + matchingResponseDto.getRequestString());
-            if (finduser.getIsVolunteer() == 0) {
-                User user = userService.findOne(matchingResponseDto.getVolunteerId());
-                if (user == null)
-                    continue;
-                matchingResponseDto.setVolunteerInfo(user.getName(), user.getEmail(), user.getPhoneNum());
-                matchingResponseDto.setSickName(finduser.getName());
-                if (matchingResponseDto.getState() == State.SUCCESS) {
-                    successMatchingDtos.add(new UnwellSuccessMatchingDto(matchingResponseDto.getName(), matchingResponseDto.getRequestString(),
-                            matchingResponseDto.getStartTime(), matchingResponseDto.getEndTime(), user.getName(), user.getEmail(), user.getPhoneNum(), matchingResponseDto.getGroupId()));
-                }
-
-            } else {
-                User user = userService.findOne(matchingResponseDto.getSickId());
-                matchingResponseDto.setUnwellInfo(user.getName(), user.getEmail(), user.getPhoneNum());
-                matchingResponseDto.setVolunteerName(finduser.getName());
-            }
-        }
-        if (finduser.getIsVolunteer() == 0)
-            mav.setViewName("unwell_matching");
-        else
-            mav.setViewName("volunteer_matching_result");
+        mav.setViewName("volunteer_matching_result");
         return mav;
 
     }
