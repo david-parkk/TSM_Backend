@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
   <head>
     <link rel="stylesheet" href="/css/globals.css" />
     <link rel="stylesheet" href="/css/volunteer_matching_result.css" />
@@ -37,119 +37,35 @@
             </div>
 
 <!-- @TODO HERE -->
-            <div class="row">
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">Yoon Seok Yeol</div></div>
+              <div th:each="matching : ${matchings}" style="width:100%;">
+                  <div class="row">
+                      <div class="cell">
+                          <div class="cell-content"><div class="cell-content-text" th:text="${matching.getSickName()}"></div></div>
+                      </div>
+                      <div class="cell">
+                          <div class="cell-content"><div class="cell-content-text" th:text="${matching.getRequestString()}"></div></div>
+                      </div>
+                      <div class="cell">
+                          <div class="cell-content"><div class="cell-content-text" th:text="${matching.getStartTime()}"></div></div>
+                      </div>
+                      <div class="cell">
+                          <div class="cell-content"><div class="cell-content-text" th:text="${matching.getEndTime()}"></div></div>
+                      </div>
+                      <div class="cell-color-button popup-button">
+                          <div class="cell-content"><div class="cell-content-text" th:text="${matching.getState}"></div></div>
+                      </div>
+                  </div>
+                  <div class="popup">
+                      <img src="/img/volunteer/close.png" class="popup-close" />
+                      <a>Unwell Information</a><br><br>
+                      <a>Phone</a><br>
+                      <a th:text="${matching.getSickPhoneNum()}"></a><br><br>
+                      <a>E-Mail</a><br>
+                      <a th:text="${matching.getSickEmail()}"></a>
+                  </div>
               </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">Course</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">2023-01-01</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">2023-12-31</div></div>
-              </div>
-              <div class="cell-color-button popup-button">
-                <div class="cell-content"><div class="cell-content-text">MATCHED</div></div>
-              </div>
-            </div>
-  <div class="popup">
-    <img src="/img/volunteer/close.png" class="popup-close" />
-    <a>Unwell Information</a><br><br>
-    <a>Phone</a><br>
-    <a>+82 010-1111-1111</a><br><br>
-    <a>E-Mail</a><br>
-    <a>master@dwer.kr</a>
-  </div>
 
-            <div class="row">
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">Moon Jae In</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">Transportation</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">2023-01-01</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">2023-12-31</div></div>
-              </div>
-              <div class="cell-color-button popup-button">
-                <div class="cell-content"><div class="cell-content-text">MATCHED</div></div>
-              </div>
-            </div>
-  <div class="popup">
-    <img src="/img/volunteer/close.png" class="popup-close" />
-    <a>Unwell Information</a><br><br>
-    <a>Phone</a><br>
-    <a>+82 010-2222-2222</a><br><br>
-    <a>E-Mail</a><br>
-    <a>master@dwer.kr</a>
-  </div>
 
-            <div class="row">
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">Park Gyun Hae</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">Lodgment</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">2023-01-01</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">2023-12-31</div></div>
-              </div>
-              <div class="cell-color-button popup-button">
-                <div class="cell-content"><div class="cell-content-text">MATCHED</div></div>
-              </div>
-            </div>
-  <div class="popup">
-    <img src="/img/volunteer/close.png" class="popup-close" />
-    <a>Unwell Information</a><br><br>
-    <a>Phone</a><br>
-    <a>+82 010-3333-3333</a><br><br>
-    <a>E-Mail</a><br>
-    <a>master@dwer.kr</a>
-  </div>
-
-            <div class="row">
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">Lee Myung Bak</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">Restaurant</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">2023-01-01</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">2023-12-31</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">PENDING</div></div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">Noh Moo Hyun</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">Travel Site</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">2023-01-01</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">2023-12-31</div></div>
-              </div>
-              <div class="cell">
-                <div class="cell-content"><div class="cell-content-text">PENDING</div></div>
-              </div>
-            </div>
 <!-- @TODO HERE -->
           </div>
         </div>
@@ -160,14 +76,14 @@
 <br><br><br><br>
 
         <div class="menubar-sudong">
-          <div class="nav-item-sudong" onclick='location.href="volunteer_matching.html"'>
-            <img class="img-sudong" src="/img/volunteer/find.svg" />
-            <div class="text-wrapper-sudong">Explore</div>
-          </div>
-          <div class="nav-item-sudong" onclick='location.href="volunteer_matching_result.html"'>
-            <img class="img-sudong" src="/img/volunteer/table.svg" />
-            <div class="text-wrapper-sudong">Result</div>
-          </div>
+            <div class="nav-item-sudong" onclick='location.href="http://localhost:8080/matching/volunteer/matching/view"'>
+                <img class="img-sudong" src="/img/volunteer/find.svg"/>
+                <div class="text-wrapper-sudong">Explore</div>
+            </div>
+            <div class="nav-item-sudong" onclick='location.href="http://localhost:8080/matching"'>
+                <img class="img-sudong" src="/img/volunteer/table.svg"/>
+                <div class="text-wrapper-sudong">Result</div>
+            </div>
           <div class="nav-item-sudong" onclick='location.href="volunteer_personalize.html"'>
             <img class="img-sudong" src="/img/volunteer/recommend.svg" />
             <div class="text-wrapper-sudong">Recommend</div>

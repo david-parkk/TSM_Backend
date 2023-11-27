@@ -33,7 +33,7 @@ public class LoginController {
             httpSession.setAttribute("userHealth", loginResponseDto.getUserHealth());
             // unwell, volunteer 페이지 구분
             if (loginResponseDto.getIsVolunteer() == 1) {
-                response.sendRedirect("/matching");
+                response.sendRedirect("/matching/volunteer/matching/view");
                 return;
             } else {
                 response.sendRedirect("/course");

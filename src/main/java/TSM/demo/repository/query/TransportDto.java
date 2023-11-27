@@ -10,13 +10,16 @@ import lombok.ToString;
 @ToString
 public class TransportDto {
 
+    private int id;
+
     private String name;
 
     private String description;
 
     private String url;
 
-    public TransportDto(String name, String description, String url) {
+    public TransportDto(int id,String name, String description, String url) {
+        this.id=id;
         this.name = name;
         this.description = description;
         this.url = url;

@@ -13,6 +13,6 @@ public class TravelPlace extends Place{
         super(name, description, url);
     }
     public TravelPlaceDto toDto() {
-        return new TravelPlaceDto(getName(), getDescription(), getUrl());
+        return new TravelPlaceDto(getId(),getName(), getDescription(), getUrl());
     }
 }

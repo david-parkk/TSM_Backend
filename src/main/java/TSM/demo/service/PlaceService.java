@@ -61,7 +61,7 @@ public class PlaceService {
         List<Restaurant> restaurants = findAllRestaurants();
         Map<Integer,Integer> map=new HashMap<>();
         for (Matching matching : matchings) {
-            map.put(matching.getRequestId(),2);
+            map.put(matching.getRequestId(),1);
 
         }
         List<Restaurant> result=new ArrayList<>();
@@ -78,7 +78,7 @@ public class PlaceService {
         List<Room> rooms = findAllRooms();
         Map<Integer,Integer> map=new HashMap<>();
         for (Matching matching : matchings) {
-            map.put(matching.getRequestId(),3);
+            map.put(matching.getRequestId(),1);
 
         }
         List<Room> result=new ArrayList<>();
@@ -95,7 +95,7 @@ public class PlaceService {
         List<Transport> transports= findAllTransports();
         Map<Integer,Integer> map=new HashMap<>();
         for (Matching matching : matchings) {
-            map.put(matching.getRequestId(),4);
+            map.put(matching.getRequestId(),1);
 
         }
         List<Transport> result=new ArrayList<>();
@@ -112,7 +112,7 @@ public class PlaceService {
         List<TravelPlace> travelPlaces= findAllTravelPlaces();
         Map<Integer,Integer> map=new HashMap<>();
         for (Matching matching : matchings) {
-            map.put(matching.getRequestId(),5);
+            map.put(matching.getRequestId(),1);
 
         }
         List<TravelPlace> result=new ArrayList<>();

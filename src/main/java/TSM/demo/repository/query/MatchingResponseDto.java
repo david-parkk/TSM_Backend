@@ -1,14 +1,11 @@
 package TSM.demo.repository.query;
 
 import TSM.demo.domain.State;
-import ch.qos.logback.core.status.Status;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 @Setter
 @Getter
@@ -19,9 +16,11 @@ public class MatchingResponseDto {
 
     private int requestType;
 
+    private String requestString;
+
     private Timestamp startTime;
 
-    private Timestamp end_time;
+    private Timestamp endTime;
     private int isVolunteer;
     private int id;
 
@@ -29,21 +28,46 @@ public class MatchingResponseDto {
 
     private int sickId;
 
+    private String sickName;
+
+    private String sickEmail;
+
+    private String sickPhoneNum;
+
     private int volunteerId;
+
+    private String volunteerName;
+
+    private String volunteerEmail;
+
+    private String volunteerPhoneNum;
 
     private State state;
 
-    public MatchingResponseDto(String name, int requestType, Timestamp startTime, Timestamp end_time, int isVolunteer, int id, int groupId, int sickId, int volunteerId, State state) {
+    public MatchingResponseDto(String name, int requestType, Timestamp startTime, Timestamp endTime, int isVolunteer, int id, int groupId, int sickId, int volunteerId, State state,String requestString) {
         this.name = name;
         this.requestType = requestType;
         this.startTime = startTime;
-        this.end_time = end_time;
+        this.endTime = endTime;
         this.isVolunteer = isVolunteer;
         this.id = id;
         this.groupId = groupId;
         this.volunteerId=volunteerId;
         this.sickId=sickId;
         this.state = state;
+        this.requestString=requestString;
+    }
+
+    public void setVolunteerInfo(String name,String email,String phoneNum){
+        this.volunteerName=name;
+        this.volunteerEmail=email;
+        this.volunteerPhoneNum=phoneNum;
+    }
+
+    public void setUnwellInfo(String name,String email,String phoneNum){
+        this.sickName=name;
+        this.sickEmail=email;
+        this.sickPhoneNum=phoneNum;
     }
 
 

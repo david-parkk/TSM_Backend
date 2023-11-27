@@ -9,6 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class RoomDto {
+    private int id;
 
     private String name;
 
@@ -16,7 +17,8 @@ public class RoomDto {
 
     private String url;
 
-    public RoomDto(String name, String description, String url) {
+    public RoomDto(int id,String name, String description, String url) {
+        this.id=id;
         this.name = name;
         this.description = description;
         this.url = url;

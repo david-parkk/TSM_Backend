@@ -38,7 +38,7 @@ public class CourseController {
 
         CourseDto courseDto=courseService.findCourse(name);
 
-        mav.addObject("course",courseService.findCourse(name));
+        mav.addObject("course",courseDto);
         return mav;
     }
 

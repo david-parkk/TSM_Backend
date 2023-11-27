@@ -8,6 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class TravelPlaceDto {
+    private int id;
 
     private String name;
 
@@ -15,7 +16,8 @@ public class TravelPlaceDto {
 
     private String url;
 
-    public TravelPlaceDto(String name, String description, String url) {
+    public TravelPlaceDto(int id,String name, String description, String url) {
+        this.id=id;
         this.name = name;
         this.description = description;
         this.url = url;

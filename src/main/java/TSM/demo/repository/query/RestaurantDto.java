@@ -14,13 +14,16 @@ import lombok.ToString;
 @ToString
 public class RestaurantDto {
 
+    private int id;
+
     private String name;
 
     private String description;
 
     private String url;
 
-    public RestaurantDto( String name, String description, String url) {
+    public RestaurantDto( int id,String name, String description, String url) {
+        this.id=id;
         this.name = name;
         this.description = description;
         this.url = url;

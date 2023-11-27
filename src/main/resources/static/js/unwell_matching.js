@@ -20,6 +20,6 @@ console.log(parent);
 
     parent.style.display="none";
     alert("Matching Accepted");
-    location.href="unwell_matching.html";
+    //location.href="unwell_matching.html";
   });
 }

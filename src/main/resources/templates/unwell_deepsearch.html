@@ -64,8 +64,8 @@
 <!-- @TODO HERE -->
 
 <form action="http://localhost:8080/matching/request" method="post" class="form">
-<input type="hidden" class="typeId" name="typeId" value=2 />
-<input type="hidden" class="uId" name="uId" value=2222 />
+<input type="hidden" class="typeId" name="typeId" value=4 />
+    <input type="hidden" class="uId" name="uId" th:value="${course.getTransportList().get(0).getId()}" />
 <input type="hidden" class="startDatetime" name="startDateTime" />
 <input type="hidden" class="endDatetime" name="endDateTime" />
 <input type="date" class="startDate" name="startDate"/>
@@ -98,7 +98,7 @@
 
 <form action="http://localhost:8080/matching/request" method="post" class="form">
 <input type="hidden" class="typeId" name="typeId" value=3 />
-<input type="hidden" class="uId" name="uId" value=3333 />
+    <input type="hidden" class="uId" name="uId" th:value="${course.getRoomList().get(0).getId()}" />
 <input type="hidden" class="startDatetime" name="startDateTime" />
 <input type="hidden" class="endDatetime" name="endDateTime" />
 <input type="date" class="startDate" name="startDate"/>
@@ -129,8 +129,8 @@
 <!-- @TODO HERE -->
 
 <form action="http://localhost:8080/matching/request" method="post" class="form">
-<input type="hidden" class="typeId" name="typeId" value=4 />
-<input type="hidden" class="uId" name="uId" value=4444 />
+<input type="hidden" class="typeId" name="typeId" value=2 />
+    <input type="hidden" class="uId" name="uId" th:value="${course.getRestaurantList().get(0).getId()}" />
 <input type="hidden" class="startDatetime" name="startDateTime" />
 <input type="hidden" class="endDatetime" name="endDateTime" />
 <input type="date" class="startDate" name="startDate"/>
@@ -162,7 +162,7 @@
 
 <form action="http://localhost:8080/matching/request" method="post" class="form">
 <input type="hidden" class="typeId" name="typeId" value=5 />
-<input type="hidden" class="uId" name="uId" value=5555 />
+    <input type="hidden" class="uId" name="uId" th:value="${course.getTravelPlaceList().get(0).getId()}" />
 <input type="hidden" class="startDatetime" name="startDateTime" />
 <input type="hidden" class="endDatetime" name="endDateTime" />
 <input type="date" class="startDate" name="startDate"/>

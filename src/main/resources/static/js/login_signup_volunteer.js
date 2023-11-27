@@ -31,10 +31,11 @@ console.log(JSON.stringify(data));
 
   // Handle the response
   xhr.onload = function() {
+    location.href="http://localhost:8080/matching/volunteer/matching/view";
     // Check the status code
     if (xhr.status == 200) {
       // Success
-      location.href="http://localhost:8080/matching";
+
     } else {
       // Error
       alert("Signup failed: " + xhr.statusText);
