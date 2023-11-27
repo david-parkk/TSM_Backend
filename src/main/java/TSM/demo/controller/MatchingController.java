@@ -245,6 +245,7 @@ public class MatchingController {
                                     @RequestParam(value = "bipolar_disorder",required = false, defaultValue = "3") int bipolar_disorder,
                                     ModelAndView mav, HttpSession httpSession) {
         //matching완료되지 않은 모든 matching가져옴
+        
         List<Matching> matchings1 = matchingService.findAllUnMatchingByVolunteer();
         User finduser = userService.findOneByEmail((String) httpSession.getAttribute("email"));
         List<Matching> matchings = new ArrayList<>();
@@ -255,7 +256,7 @@ public class MatchingController {
         }
         //matching 정보설정
         List<MatchingResponseDto> matchingResponseDtos = findVolunteerMatchingResponseDto(finduser,matchings);
-
+        System.out.println("matchingResponseDtos.size() = " + matchingResponseDtos.size());
         mav.addObject("matchings", matchingResponseDtos);
 
         mav.setViewName("volunteer_matching");
@@ -287,7 +288,7 @@ public class MatchingController {
         UserHealth userHealth = (UserHealth) httpSession.getAttribute("userHealth");
         matchingService.requestHelpByUnwell(finduser, requestType, Timestamp.valueOf(startDataTime), Timestamp.valueOf(endDataTime), requestId, userHealth);
         System.out.println("good");
-        response.sendRedirect("/matching");
+        response.sendRedirect("/matching/unwell");
         return "success";
     }
 

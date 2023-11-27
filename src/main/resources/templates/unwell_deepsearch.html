@@ -28,7 +28,7 @@
             </div>
 <!-- @TODO HERE -->
 
-<form action="http://localhost:8080/matching/request" method="post" class="form">
+<form action="http://localhost:8080/matching/syn" method="post" class="form">
 <input type="hidden" class="typeId" name="typeId" value=1 />
 <input type="hidden" class="uId" name="uId" th:value="${course.getId()}" />
 <input type="hidden" class="startDatetime" name="startDateTime" />
@@ -63,7 +63,7 @@
 
 <!-- @TODO HERE -->
 
-<form action="http://localhost:8080/matching/request" method="post" class="form">
+<form action="http://localhost:8080/matching/syn" method="post" class="form">
 <input type="hidden" class="typeId" name="typeId" value=4 />
     <input type="hidden" class="uId" name="uId" th:value="${course.getTransportList().get(0).getId()}" />
 <input type="hidden" class="startDatetime" name="startDateTime" />
@@ -96,7 +96,7 @@
 
 <!-- @TODO HERE -->
 
-<form action="http://localhost:8080/matching/request" method="post" class="form">
+<form action="http://localhost:8080/matching/syn" method="post" class="form">
 <input type="hidden" class="typeId" name="typeId" value=3 />
     <input type="hidden" class="uId" name="uId" th:value="${course.getRoomList().get(0).getId()}" />
 <input type="hidden" class="startDatetime" name="startDateTime" />
@@ -128,7 +128,7 @@
             </div>
 <!-- @TODO HERE -->
 
-<form action="http://localhost:8080/matching/request" method="post" class="form">
+<form action="http://localhost:8080/matching/syn" method="post" class="form">
 <input type="hidden" class="typeId" name="typeId" value=2 />
     <input type="hidden" class="uId" name="uId" th:value="${course.getRestaurantList().get(0).getId()}" />
 <input type="hidden" class="startDatetime" name="startDateTime" />
@@ -160,7 +160,7 @@
             </div>
 <!-- @TODO HERE -->
 
-<form action="http://localhost:8080/matching/request" method="post" class="form">
+<form action="http://localhost:8080/matching/syn" method="post" class="form">
 <input type="hidden" class="typeId" name="typeId" value=5 />
     <input type="hidden" class="uId" name="uId" th:value="${course.getTravelPlaceList().get(0).getId()}" />
 <input type="hidden" class="startDatetime" name="startDateTime" />
@@ -183,7 +183,7 @@
             <img class="img-sudong" src="/img/unwell/find.svg" />
             <div class="text-wrapper-sudong">Explore</div>
           </div>
-          <div class="nav-item-sudong" onclick='location.href="http://localhost:8080/matching"'>
+          <div class="nav-item-sudong" onclick='location.href="http://localhost:8080/matching/unwell"'>
             <img class="img-sudong" src="/img/unwell/table.svg" />
             <div class="text-wrapper-sudong">Result</div>
           </div>
