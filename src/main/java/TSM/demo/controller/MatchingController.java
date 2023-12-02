@@ -9,15 +9,12 @@ import TSM.demo.repository.query.MatchingResponseDto;
 import TSM.demo.repository.query.unwell.UnwellSuccessMatchingDto;
 import TSM.demo.repository.query.unwell.UnwellMatchingColumnDto;
 import TSM.demo.repository.query.unwell.UnwellMatchingDto;
-import TSM.demo.service.CourseService;
+import TSM.demo.service.*;
 
 import TSM.demo.domain.User;
 import TSM.demo.domain.UserHealth;
 
 
-import TSM.demo.service.MatchingService;
-import TSM.demo.service.PlaceService;
-import TSM.demo.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
@@ -41,7 +38,7 @@ public class MatchingController {
     private final PlaceService placeService;
     private final CourseService courseService;
     private final UserService userService;
-
+    private final RatingService ratingService;
 
     public List<MatchingResponseDto> findUnwellMatchingResponseDto(User unwell){
         List<Matching> matchings = new ArrayList<>();
@@ -149,7 +146,7 @@ public class MatchingController {
                 continue;
             for(UnwellMatchingDto unwellMatchingDto: unwellMatchingDtos){
                 if(unwellMatchingDto.getGroupId()==matching.getGroupId()){
-                    unwellMatchingDto.getUnwellMatchingColumnDtoList().add(new UnwellMatchingColumnDto(matching.getVolunteerName(),matching.getVolunteerId(),matching.getState(),matching.getId(),matching.getGroupId()));
+                    unwellMatchingDto.getUnwellMatchingColumnDtoList().add(new UnwellMatchingColumnDto(matching.getVolunteerName(),matching.getVolunteerId(),matching.getState(),matching.getId(),matching.getGroupId(), ratingService.getRatingAverage(matching.getVolunteerId())));
                     isInsert=true;
                     break;
                 }
@@ -158,7 +155,7 @@ public class MatchingController {
                 UnwellMatchingDto unwellMatchingDto = new UnwellMatchingDto(matching.getName(), matching.getRequestType(), matching.getRequestString(), matching.getStartTime(), matching.getEndTime(), matching.getGroupId());
                 unwellMatchingDtos.add(unwellMatchingDto);
                 if(matching.getVolunteerId()!=0){
-                    unwellMatchingDto.getUnwellMatchingColumnDtoList().add(new UnwellMatchingColumnDto(matching.getVolunteerName(),matching.getVolunteerId(),matching.getState(),matching.getId(),matching.getGroupId()));
+                    unwellMatchingDto.getUnwellMatchingColumnDtoList().add(new UnwellMatchingColumnDto(matching.getVolunteerName(),matching.getVolunteerId(),matching.getState(),matching.getId(),matching.getGroupId(), ratingService.getRatingAverage(matching.getVolunteerId())));
                 }
             }
         }
@@ -245,7 +242,7 @@ public class MatchingController {
                                     @RequestParam(value = "bipolar_disorder",required = false, defaultValue = "3") int bipolar_disorder,
                                     ModelAndView mav, HttpSession httpSession) {
         //matching완료되지 않은 모든 matching가져옴
-        
+
         List<Matching> matchings1 = matchingService.findAllUnMatchingByVolunteer();
         User finduser = userService.findOneByEmail((String) httpSession.getAttribute("email"));
         List<Matching> matchings = new ArrayList<>();
@@ -288,7 +285,7 @@ public class MatchingController {
         UserHealth userHealth = (UserHealth) httpSession.getAttribute("userHealth");
         matchingService.requestHelpByUnwell(finduser, requestType, Timestamp.valueOf(startDataTime), Timestamp.valueOf(endDataTime), requestId, userHealth);
         System.out.println("good");
-        response.sendRedirect("/matching/unwell");
+        response.sendRedirect("/matching");
         return "success";
     }
 
