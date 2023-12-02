@@ -121,7 +121,7 @@ public class MatchingController {
         for (MatchingResponseDto matchingResponseDto : matchingResponseDtos) {
             if (matchingResponseDto.getState() == State.SUCCESS) {
                 unwellSuccessMatchingDtos.add(new UnwellSuccessMatchingDto(matchingResponseDto.getName(), matchingResponseDto.getRequestString(),
-                        matchingResponseDto.getStartTime(), matchingResponseDto.getEndTime(), matchingResponseDto.getVolunteerName(), matchingResponseDto.getVolunteerName(), matchingResponseDto.getVolunteerPhoneNum(), matchingResponseDto.getGroupId()));
+                        matchingResponseDto.getStartTime(), matchingResponseDto.getEndTime(), matchingResponseDto.getVolunteerName(), matchingResponseDto.getVolunteerEmail(), matchingResponseDto.getVolunteerPhoneNum(), matchingResponseDto.getGroupId()));
             }
 
         }
@@ -184,7 +184,6 @@ public class MatchingController {
 
         for (Matching matching : matchings) {
             if (matching.getRequestType() == 1) {
-
                 for (Course course : courses) {
                     if (course.getId() == matching.getRequestId()) {
                         matchingResponseDtos.add(new MatchingResponseDto(course.getName(), matching.getRequestType(), matching.getStartTime(), matching.getEndTime(), volunteer.getIsVolunteer(), matching.getId(), matching.getGroupId(), matching.getSickId(), matching.getVolunteerId()
@@ -230,7 +229,8 @@ public class MatchingController {
             /*if(matchingResponseDto.getVolunteerId()==0)
                 continue;*/
             User findUser = userService.findOne(matchingResponseDto.getSickId());
-            matchingResponseDto.setSickName(findUser.getName());
+
+            matchingResponseDto.setUnwellInfo(findUser.getName(),findUser.getEmail(),findUser.getPhoneNum());
 
         }
         return matchingResponseDtos;
@@ -268,7 +268,7 @@ public class MatchingController {
         User finduser = userService.findOneByEmail((String) httpSession.getAttribute("email"));
         List<Matching> matchings = matchingService.findAllByVolunteerId(finduser.getId());
         List<MatchingResponseDto> matchingResponseDtos = findVolunteerMatchingResponseDto(finduser,matchings);
-
+        mav.addObject("matchings", matchingResponseDtos);
         mav.setViewName("volunteer_matching_result");
         return mav;
 
@@ -296,11 +296,11 @@ public class MatchingController {
     @PostMapping("/synack")
     public String CreateMatchingRequest(@RequestParam("groupId") int matchingGroupId, @RequestParam("isVolunteer") int isVolunteer, HttpSession httpSession, HttpServletResponse response) throws IOException {
         User finduser = userService.findOneByEmail((String) httpSession.getAttribute("email"));
-        if (isVolunteer == 1) {
+        if (finduser.getIsVolunteer() == 1) {
             matchingService.addMatchingByUnwell(finduser.getId(), matchingGroupId);
 
         }
-        response.sendRedirect("/matching/volunteer/matching/view");
+        response.sendRedirect("/matching/volunteer_result");
         return "success";
     }
 
@@ -309,7 +309,7 @@ public class MatchingController {
                                                         @RequestParam("isVolunteer") int isVolunteer, HttpServletResponse response) throws IOException {
         if (isVolunteer == 0) {
             matchingService.selectMatchingByVolunteer(userId, groupId);
-            response.sendRedirect("/matching");
+            response.sendRedirect("/matching/unwell");
         }
         return new CreateMatchingResponse("success");
     }
