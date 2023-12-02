@@ -27,20 +27,44 @@
 
             </div>
 <!-- @TODO HERE -->
+            <!-- 선-->
+            <form action="http://localhost:8080/matching/syn" method="post" class="form">
+                <input type="hidden" class="typeId" name="typeId" value="1">
+                <input type="hidden" class="uId" name="uId" th:value="${course.getId()}" />
+                <input type="hidden" class="startDatetime" name="startDateTime">
+                <input type="hidden" class="endDatetime" name="endDateTime">
 
-<form action="http://localhost:8080/matching/syn" method="post" class="form">
-<input type="hidden" class="typeId" name="typeId" value=1 />
-<input type="hidden" class="uId" name="uId" th:value="${course.getId()}" />
-<input type="hidden" class="startDatetime" name="startDateTime" />
-<input type="hidden" class="endDatetime" name="endDateTime" />
-<input type="date" class="startDate" name="startDate"/>
-<input type="time" class="startTime" name="startTime"/>
-<input type="date" class="endDate" name="endDate"/>
-<input type="time" class="endTime" name="endTime"/>
-            <div class="submit-wrapper"><div class="submit-wrapper-inner request-area">
-              <div class="rect"></div><div class="text">Request HELP</div>
-            </div></div>
-</form>
+                <div class="date-time-picker">
+                    <div class="date-time-input">
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" id="startDate" class="startDate" name="startDate">
+                    </div>
+                    <div class="date-time-input">
+                        <label for="startTime">Start Time:</label>
+                        <input type="time" id="startTime" class="startTime" name="startTime">
+                    </div>
+                </div>
+
+                <div class="date-time-picker">
+                    <div class="date-time-input">
+                        <label for="endDate">End Date:</label>
+                        <input type="date" id="endDate" class="endDate" name="endDate">
+                    </div>
+                    <div class="date-time-input">
+                        <label for="endTime">End Time:</label>
+                        <input type="time" id="endTime" class="endTime" name="endTime">
+                    </div>
+                </div>
+
+                <div class="submit-wrapper">
+                    <div class="submit-wrapper-inner request-area">
+                        <div class="rect"></div>
+                        <div class="text">Request Help</div>
+                    </div>
+                </div>
+            </form>
+<!-- 선-->
+
         </div>
 <!-- #1 전체 설명, 1:1 -->
 
