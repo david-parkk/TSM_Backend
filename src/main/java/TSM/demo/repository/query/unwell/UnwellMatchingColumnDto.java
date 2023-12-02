@@ -21,11 +21,14 @@ public class UnwellMatchingColumnDto {
     //matching groupid
     private int groupId;
 
-    public UnwellMatchingColumnDto(String volunteerName, int volunteerId, State state, int id, int groupId) {
+    private double rating;
+
+    public UnwellMatchingColumnDto(String volunteerName, int volunteerId, State state, int id, int groupId, double rating) {
         this.volunteerName = volunteerName;
         this.volunteerId = volunteerId;
         this.state = state;
         this.id = id;
         this.groupId = groupId;
+        this.rating = rating;
     }
 }
