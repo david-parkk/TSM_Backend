@@ -1,4 +1,4 @@
-package TSM.demo.repository.query;
+package TSM.demo.repository.query.unwell;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @ToString
-public class SuccessMatchingDto {
+public class UnwellSuccessMatchingDto {
 
     private String name;
 
@@ -33,7 +33,7 @@ public class SuccessMatchingDto {
 
     private int groupId;
 
-    public SuccessMatchingDto(String courseName, String requestTypeString, Timestamp startDate, Timestamp endDate, String volunteerName, String volunteerEmail, String volunteerPhoneNum,int groupId) {
+    public UnwellSuccessMatchingDto(String courseName, String requestTypeString, Timestamp startDate, Timestamp endDate, String volunteerName, String volunteerEmail, String volunteerPhoneNum, int groupId) {
         this.name = courseName;
         this.requestString = requestTypeString;
         this.startDate = startDate;

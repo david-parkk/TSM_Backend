@@ -1,7 +1,6 @@
 package TSM.demo.service;
 
 import TSM.demo.domain.Matching;
-import TSM.demo.domain.State;
 import TSM.demo.domain.User;
 import TSM.demo.domain.UserHealth;
 import TSM.demo.domain.place.*;
@@ -15,14 +14,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.expression.spel.ast.NullLiteral;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-import java.lang.reflect.Member;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -163,37 +160,37 @@ public class MatchingServiceTest {
         travelPlaces.addAll(placeService.findAllTravelPlaceByMatching(matchings));
         courses.addAll(courseService.findAllCourseByMatching(matchings));
         for(MatchingDto matchingDto:matchingDtos) {
-            if (matchingDto.getRequest_type() == 1) {
+            if (matchingDto.getRequestType() == 1) {
                 for (Course course : courses) {
-                    if (course.getId() == matchingDto.getRequest_id()) {
+                    if (course.getId() == matchingDto.getRequestId()) {
                         matchingDto.setCourse(course);
                         break;
                     }
                 }
-            } else if (matchingDto.getRequest_type() == 2) {
+            } else if (matchingDto.getRequestType() == 2) {
                 for (Restaurant restaurant : restaurants) {
-                    if (restaurant.getId() == matchingDto.getRequest_id()) {
+                    if (restaurant.getId() == matchingDto.getRequestId()) {
                         matchingDto.setRestaurant(restaurant);
                         break;
                     }
                 }
-            } else if (matchingDto.getRequest_type() == 3) {
+            } else if (matchingDto.getRequestType() == 3) {
                 for (Room room : rooms) {
-                    if (room.getId() == matchingDto.getRequest_id()) {
+                    if (room.getId() == matchingDto.getRequestId()) {
                         matchingDto.setRoom(room);
                         break;
                     }
                 }
-            } else if (matchingDto.getRequest_type() == 4) {
+            } else if (matchingDto.getRequestType() == 4) {
                 for (Transport transport : transports) {
-                    if (transport.getId() == matchingDto.getRequest_id()) {
+                    if (transport.getId() == matchingDto.getRequestId()) {
                         matchingDto.setTransport(transport);
                         break;
                     }
                 }
-            } else if (matchingDto.getRequest_type() == 5) {
+            } else if (matchingDto.getRequestType() == 5) {
                 for (TravelPlace travelPlace : travelPlaces) {
-                    if (travelPlace.getId() == matchingDto.getRequest_id()) {
+                    if (travelPlace.getId() == matchingDto.getRequestId()) {
                         System.out.println("set!!");
                         matchingDto.setTravelPlace(travelPlace);
                         break;

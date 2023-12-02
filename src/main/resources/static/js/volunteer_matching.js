@@ -254,7 +254,7 @@ var xhr = new XMLHttpRequest();
 var params = "see=" + see + "&walk=" + walk + "&talk=" + talk + "&listen=" + listen + "&iq=" + iq + "&bipolar_disorder=" + bipolar_disorder + "&depression=" + depression;
 
 // 요청 URL 설정
-var url = "http://localhost:8080/matching/list";
+var url = "http://localhost:8080/matching/volunteer";
 
 // 요청 방식과 URL을 열기
 xhr.open("GET", url + "?" + params);

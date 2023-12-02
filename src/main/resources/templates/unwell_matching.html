@@ -80,19 +80,19 @@
                 </div>
               </div>
 
-              <form action="http://localhost:8080/matching/approve" method="post" class="form">
-                <input type="hidden" class="groupId" name="groupId" th:value="${matching.getGroupId()}" />
-                  <input type="hidden" class="userId" name="userId" th:value="${matching.getVolunteerId()}" />
+              <form action="http://localhost:8080/matching/ack" method="post" class="form" th:each="unwellMatchingColumnDto : ${matching.getUnwellMatchingColumnDtoList()}">
+                <input type="hidden" class="groupId" name="groupId" th:value="${unwellMatchingColumnDto.getGroupId()}" />
+                  <input type="hidden" class="userId" name="userId" th:value="${unwellMatchingColumnDto.getVolunteerId()}" />
                 <input type="hidden" class="isVolunteer" name="isVolunteer" value=0 />
                 <div class="row">
                   <div class="cell">
-                    <div class="cell-content"><div class="cell-content-text" th:text="${matching.getVolunteerName()}"></div></div>
+                    <div class="cell-content"><div class="cell-content-text" th:text="${unwellMatchingColumnDto.getVolunteerName()}"></div></div>
                   </div>
                   <div class="cell">
                     <div class="cell-content"><div class="cell-content-text">2 / 5<br>None</div></div>
                   </div>
                   <div class="cell-color-button request-area">
-                    <div class="cell-content"><div class="cell-content-text"  th:text="${matching.getState()}"></div></div>
+                    <div class="cell-content"><div class="cell-content-text"  th:text="${unwellMatchingColumnDto.getState()}"></div></div>
                   </div>
                 </div>
               </form>
@@ -125,7 +125,7 @@
                 <img class="img-sudong" src="/img/unwell/find.svg" />
                 <div class="text-wrapper-sudong">Explore</div>
             </div>
-            <div class="nav-item-sudong" onclick='location.href="http://localhost:8080/matching"'>
+            <div class="nav-item-sudong" onclick='location.href="http://localhost:8080/matching/unwell"'>
                 <img class="img-sudong" src="/img/unwell/table.svg" />
                 <div class="text-wrapper-sudong">Result</div>
             </div>
