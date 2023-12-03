@@ -33,7 +33,9 @@ public class UnwellSuccessMatchingDto {
 
     private int groupId;
 
-    public UnwellSuccessMatchingDto(String courseName, String requestTypeString, Timestamp startDate, Timestamp endDate, String volunteerName, String volunteerEmail, String volunteerPhoneNum, int groupId) {
+    private boolean isRated;
+
+    public UnwellSuccessMatchingDto(String courseName, String requestTypeString, Timestamp startDate, Timestamp endDate, String volunteerName, String volunteerEmail, String volunteerPhoneNum, int groupId, boolean isRated) {
         this.name = courseName;
         this.requestString = requestTypeString;
         this.startDate = startDate;
@@ -42,5 +44,6 @@ public class UnwellSuccessMatchingDto {
         this.volunteerEmail = volunteerEmail;
         this.volunteerPhoneNum = volunteerPhoneNum;
         this.groupId=groupId;
+        this.isRated = isRated;
     }
 }

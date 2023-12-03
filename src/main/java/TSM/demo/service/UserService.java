@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional
 public class UserService {
     private final UserRepository userRepository;
-    private final String phoneNumPrefix = "+84";
+    private final String phoneNumPrefix = "+82";
 
     //회원 가입
     @Transactional

@@ -24,7 +24,11 @@ public class RatingService {
     }
 
     public double getRatingAverage(int userId) {
-        return calculateRatingAverage(ratingRepository.findRatingsByUserId(userId));
+        return calculateRatingAverage(ratingRepository.findRatingsByReceiverId(userId));
+    }
+
+    public boolean isRated(int senderId, int receiverId) {
+        return !(ratingRepository.isReceiverIdRatedBySenderId(senderId, receiverId).isEmpty());
     }
 
     private double calculateRatingAverage(List<Rating> ratings) {
