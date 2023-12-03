@@ -46,4 +46,8 @@ public class UnwellSuccessMatchingDto {
         this.groupId=groupId;
         this.isRated = isRated;
     }
+
+    public boolean getIsRated() {
+        return isRated;
+    }
 }
