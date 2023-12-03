@@ -16,9 +16,16 @@ public class RatingRepository {
         em.persist(rating);
     }
 
-    public List<Rating> findRatingsByUserId(int userId) {
+    public List<Rating> findRatingsByReceiverId(int userId) {
         return em.createQuery("select r from rating r where r.receiverId.id = :userId", Rating.class)
                 .setParameter("userId", userId)
+                .getResultList();
+    }
+
+    public List<Rating> isReceiverIdRatedBySenderId(int senderId, int receiverId) {
+        return em.createQuery("select r from rating r where r.senderId.id = :senderId and r.receiverId.id = :receiverId", Rating.class)
+                .setParameter("senderId", senderId)
+                .setParameter( "receiverId", receiverId)
                 .getResultList();
     }
 }

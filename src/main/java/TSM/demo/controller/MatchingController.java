@@ -117,8 +117,17 @@ public class MatchingController {
         List<UnwellSuccessMatchingDto> unwellSuccessMatchingDtos=new ArrayList<>();
         for (MatchingResponseDto matchingResponseDto : matchingResponseDtos) {
             if (matchingResponseDto.getState() == State.SUCCESS) {
-                unwellSuccessMatchingDtos.add(new UnwellSuccessMatchingDto(matchingResponseDto.getName(), matchingResponseDto.getRequestString(),
-                        matchingResponseDto.getStartTime(), matchingResponseDto.getEndTime(), matchingResponseDto.getVolunteerName(), matchingResponseDto.getVolunteerEmail(), matchingResponseDto.getVolunteerPhoneNum(), matchingResponseDto.getGroupId()));
+                unwellSuccessMatchingDtos.add(
+                        new UnwellSuccessMatchingDto(
+                                matchingResponseDto.getName(),
+                                matchingResponseDto.getRequestString(),
+                                matchingResponseDto.getStartTime(),
+                                matchingResponseDto.getEndTime(),
+                                matchingResponseDto.getVolunteerName(),
+                                matchingResponseDto.getVolunteerEmail(),
+                                matchingResponseDto.getVolunteerPhoneNum(),
+                                matchingResponseDto.getGroupId(),
+                                ratingService.isRated(matchingResponseDto.getSickId(), matchingResponseDto.getVolunteerId())));
             }
 
         }
@@ -285,7 +294,7 @@ public class MatchingController {
         UserHealth userHealth = (UserHealth) httpSession.getAttribute("userHealth");
         matchingService.requestHelpByUnwell(finduser, requestType, Timestamp.valueOf(startDataTime), Timestamp.valueOf(endDataTime), requestId, userHealth);
         System.out.println("good");
-        response.sendRedirect("/matching");
+        response.sendRedirect("/matching/unwell");
         return "success";
     }
 
