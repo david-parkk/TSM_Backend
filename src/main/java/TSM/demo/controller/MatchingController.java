@@ -38,7 +38,6 @@ public class MatchingController {
     private final PlaceService placeService;
     private final CourseService courseService;
     private final UserService userService;
-    private final RatingService ratingService;
 
     public List<MatchingResponseDto> findUnwellMatchingResponseDto(User unwell){
         List<Matching> matchings = new ArrayList<>();
@@ -129,13 +128,24 @@ public class MatchingController {
                                 matchingResponseDto.getVolunteerEmail(),
                                 matchingResponseDto.getVolunteerPhoneNum(),
                                 matchingResponseDto.getGroupId(),
-                                ratingService.isRated(matchingResponseDto.getSickId(), matchingResponseDto.getVolunteerId()),
+                                matchingService.isRated(matchingResponseDto.getId()),
                                 count++
                         ));
+
+
+
+
+
+
             }
 
         }
         return unwellSuccessMatchingDtos;
+    }
+
+    @PostMapping("/rating")
+    public void rateUser(@RequestParam int matchingId, @RequestParam int star) {
+        matchingService.rateVolunteerByMatchingId(matchingId, star);
     }
 
     @GetMapping("/unwell")
@@ -159,7 +169,7 @@ public class MatchingController {
                 continue;
             for(UnwellMatchingDto unwellMatchingDto: unwellMatchingDtos){
                 if(unwellMatchingDto.getGroupId()==matching.getGroupId()){
-                    unwellMatchingDto.getUnwellMatchingColumnDtoList().add(new UnwellMatchingColumnDto(matching.getVolunteerName(),matching.getVolunteerId(),matching.getState(),matching.getId(),matching.getGroupId(), ratingService.getRatingAverage(matching.getVolunteerId())));
+                    unwellMatchingDto.getUnwellMatchingColumnDtoList().add(new UnwellMatchingColumnDto(matching.getVolunteerName(),matching.getVolunteerId(),matching.getState(),matching.getId(),matching.getGroupId(), matchingService.getRatingAverage(matching.getVolunteerId())));
                     isInsert=true;
                     break;
                 }
@@ -168,7 +178,7 @@ public class MatchingController {
                 UnwellMatchingDto unwellMatchingDto = new UnwellMatchingDto(matching.getName(), matching.getRequestType(), matching.getRequestString(), matching.getStartTime(), matching.getEndTime(), matching.getGroupId());
                 unwellMatchingDtos.add(unwellMatchingDto);
                 if(matching.getVolunteerId()!=0){
-                    unwellMatchingDto.getUnwellMatchingColumnDtoList().add(new UnwellMatchingColumnDto(matching.getVolunteerName(),matching.getVolunteerId(),matching.getState(),matching.getId(),matching.getGroupId(), ratingService.getRatingAverage(matching.getVolunteerId())));
+                    unwellMatchingDto.getUnwellMatchingColumnDtoList().add(new UnwellMatchingColumnDto(matching.getVolunteerName(),matching.getVolunteerId(),matching.getState(),matching.getId(),matching.getGroupId(), matchingService.getRatingAverage(matching.getVolunteerId())));
                 }
             }
         }

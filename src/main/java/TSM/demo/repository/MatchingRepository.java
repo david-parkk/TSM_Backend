@@ -1,10 +1,9 @@
 package TSM.demo.repository;
 
 import TSM.demo.domain.Matching;
+import TSM.demo.domain.Rating;
 import TSM.demo.domain.State;
 import TSM.demo.domain.UserHealth;
-import TSM.demo.domain.place.*;
-import TSM.demo.repository.query.MatchingDto;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -134,4 +133,20 @@ public class MatchingRepository {
         this.save(matching);
     }
 
+    public void rateVolunteerByMatchingId(int matchingId, int rating) {
+        Matching matching = findOneById(matchingId);
+        matching.setRating(rating);
+    }
+
+    public List<Matching> findMatchingsByVolunteerId(int userId) {
+        return em.createQuery("select m from matching m where m.volunteerId = :userId", Matching.class)
+                .setParameter("userId", userId)
+                .getResultList();
+    }
+
+    public List<Matching> isMatchingRatedByMatchingId(int matchingId) {
+        return em.createQuery("select m from matching m where m.id = :matchingId", Matching.class)
+                .setParameter("matchingId", matchingId)
+                .getResultList();
+    }
 }
