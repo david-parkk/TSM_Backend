@@ -86,20 +86,42 @@
             </div>
 
 <!-- @TODO HERE -->
+            <form action="http://localhost:8080/matching/request" method="post" class="form">
+                <input type="hidden" class="typeId" name="typeId" value="1">
+                <input type="hidden" class="uId" name="uId" th:value="${course.getTransportList().get(0).getId()}">
+                <input type="hidden" class="startDatetime" name="startDateTime">
+                <input type="hidden" class="endDatetime" name="endDateTime">
 
-<form action="http://localhost:8080/matching/syn" method="post" class="form">
-<input type="hidden" class="typeId" name="typeId" value=4 />
-    <input type="hidden" class="uId" name="uId" th:value="${course.getTransportList().get(0).getId()}" />
-<input type="hidden" class="startDatetime" name="startDateTime" />
-<input type="hidden" class="endDatetime" name="endDateTime" />
-<input type="date" class="startDate" name="startDate"/>
-<input type="time" class="startTime" name="startTime"/>
-<input type="date" class="endDate" name="endDate"/>
-<input type="time" class="endTime" name="endTime"/>
-            <div class="submit-wrapper"><div class="submit-wrapper-inner request-area">
-              <div class="rect"></div><div class="text">Request HELP</div>
-            </div></div>
-</form>
+                <div class="date-time-picker">
+                    <div class="date-time-input">
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" id="startDate" class="startDate" name="startDate">
+                    </div>
+                    <div class="date-time-input">
+                        <label for="startTime">Start Time:</label>
+                        <input type="time" id="startTime" class="startTime" name="startTime">
+                    </div>
+                </div>
+
+                <div class="date-time-picker">
+                    <div class="date-time-input">
+                        <label for="endDate">End Date:</label>
+                        <input type="date" class="endDate" name="endDate">
+                    </div>
+                    <div class="date-time-input">
+                        <label for="endTime">End Time:</label>
+                        <input type="time" class="endTime" name="endTime">
+                    </div>
+                </div>
+
+                <div class="submit-wrapper">
+                    <div class="submit-wrapper-inner request-area">
+                        <div class="rect"></div>
+                        <div class="text">Request Help</div>
+                    </div>
+                </div>
+            </form>
+
         </div>
 <!-- #2 이동수단, 1:N -->
 
@@ -120,19 +142,41 @@
 
 <!-- @TODO HERE -->
 
-<form action="http://localhost:8080/matching/syn" method="post" class="form">
-<input type="hidden" class="typeId" name="typeId" value=3 />
-    <input type="hidden" class="uId" name="uId" th:value="${course.getRoomList().get(0).getId()}" />
-<input type="hidden" class="startDatetime" name="startDateTime" />
-<input type="hidden" class="endDatetime" name="endDateTime" />
-<input type="date" class="startDate" name="startDate"/>
-<input type="time" class="startTime" name="startTime"/>
-<input type="date" class="endDate" name="endDate"/>
-<input type="time" class="endTime" name="endTime"/>
-            <div class="submit-wrapper"><div class="submit-wrapper-inner request-area">
-              <div class="rect"></div><div class="text">Request HELP</div>
-            </div></div>
-</form>
+            <form action="http://localhost:8080/matching/request" method="post" class="form">
+                <input type="hidden" class="typeId" name="typeId" value="1">
+                <input type="hidden" class="uId" name="uId" th:value="${course.getRoomList().get(0).getId()}">
+                <input type="hidden" class="startDatetime" name="startDateTime">
+                <input type="hidden" class="endDatetime" name="endDateTime">
+
+                <div class="date-time-picker">
+                    <div class="date-time-input">
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" id="startDate" class="startDate" name="startDate">
+                    </div>
+                    <div class="date-time-input">
+                        <label for="startTime">Start Time:</label>
+                        <input type="time" id="startTime" class="startTime" name="startTime">
+                    </div>
+                </div>
+
+                <div class="date-time-picker">
+                    <div class="date-time-input">
+                        <label for="endDate">End Date:</label>
+                        <input type="date" id="endDate" class="endDate" name="endDate">
+                    </div>
+                    <div class="date-time-input">
+                        <label for="endTime">End Time:</label>
+                        <input type="time" id="endTime" class="endTime" name="endTime">
+                    </div>
+                </div>
+
+                <div class="submit-wrapper">
+                    <div class="submit-wrapper-inner request-area">
+                        <div class="rect"></div>
+                        <div class="text">Request Help</div>
+                    </div>
+                </div>
+            </form>
         </div>
 <!-- #3 숙박, 1:N -->
 
@@ -152,19 +196,41 @@
             </div>
 <!-- @TODO HERE -->
 
-<form action="http://localhost:8080/matching/syn" method="post" class="form">
-<input type="hidden" class="typeId" name="typeId" value=2 />
-    <input type="hidden" class="uId" name="uId" th:value="${course.getRestaurantList().get(0).getId()}" />
-<input type="hidden" class="startDatetime" name="startDateTime" />
-<input type="hidden" class="endDatetime" name="endDateTime" />
-<input type="date" class="startDate" name="startDate"/>
-<input type="time" class="startTime" name="startTime"/>
-<input type="date" class="endDate" name="endDate"/>
-<input type="time" class="endTime" name="endTime"/>
-            <div class="submit-wrapper"><div class="submit-wrapper-inner request-area">
-              <div class="rect"></div><div class="text">Request HELP</div>
-            </div></div>
-</form>
+            <form action="http://localhost:8080/matching/request" method="post" class="form">
+                <input type="hidden" class="typeId" name="typeId" value="1">
+                <input type="hidden" class="uId" name="uId" th:value="${course.getRestaurantList().get(0).getId()}">
+                <input type="hidden" class="startDatetime" name="startDateTime">
+                <input type="hidden" class="endDatetime" name="endDateTime">
+
+                <div class="date-time-picker">
+                    <div class="date-time-input">
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" id="startDate" class="startDate" name="startDate">
+                    </div>
+                    <div class="date-time-input">
+                        <label for="startTime">Start Time:</label>
+                        <input type="time" id="startTime" class="startTime" name="startTime">
+                    </div>
+                </div>
+
+                <div class="date-time-picker">
+                    <div class="date-time-input">
+                        <label for="endDate">End Date:</label>
+                        <input type="date" id="endDate" class="endDate" name="endDate">
+                    </div>
+                    <div class="date-time-input">
+                        <label for="endTime">End Time:</label>
+                        <input type="time" id="endTime" class="endTime" name="endTime">
+                    </div>
+                </div>
+
+                <div class="submit-wrapper">
+                    <div class="submit-wrapper-inner request-area">
+                        <div class="rect"></div>
+                        <div class="text">Request Help</div>
+                    </div>
+                </div>
+            </form>
         </div>
 <!-- #4 식당, 1:N -->
 
@@ -183,20 +249,42 @@
                 </div>
             </div>
 <!-- @TODO HERE -->
+            <form action="http://localhost:8080/matching/request" method="post" class="form">
+                <input type="hidden" class="typeId" name="typeId" value="1">
+                <input type="hidden" class="uId" name="uId" th:value="${course.getTravelPlaceList().get(0).getId()}">
+                <input type="hidden" class="startDatetime" name="startDateTime">
+                <input type="hidden" class="endDatetime" name="endDateTime">
 
-<form action="http://localhost:8080/matching/syn" method="post" class="form">
-<input type="hidden" class="typeId" name="typeId" value=5 />
-    <input type="hidden" class="uId" name="uId" th:value="${course.getTravelPlaceList().get(0).getId()}" />
-<input type="hidden" class="startDatetime" name="startDateTime" />
-<input type="hidden" class="endDatetime" name="endDateTime" />
-<input type="date" class="startDate" name="startDate"/>
-<input type="time" class="startTime" name="startTime"/>
-<input type="date" class="endDate" name="endDate"/>
-<input type="time" class="endTime" name="endTime"/>
-            <div class="submit-wrapper"><div class="submit-wrapper-inner request-area">
-              <div class="rect"></div><div class="text">Request HELP</div>
-            </div></div>
-</form>
+                <div class="date-time-picker">
+                    <div class="date-time-input">
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" id="startDate" class="startDate" name="startDate">
+                    </div>
+                    <div class="date-time-input">
+                        <label for="startTime">Start Time:</label>
+                        <input type="time" id="startTime" class="startTime" name="startTime">
+                    </div>
+                </div>
+
+                <div class="date-time-picker">
+                    <div class="date-time-input">
+                        <label for="endDate">End Date:</label>
+                        <input type="date" id="endDate" class="endDate" name="endDate">
+                    </div>
+                    <div class="date-time-input">
+                        <label for="endTime">End Time:</label>
+                        <input type="time" id="endTime" class="endTime" name="endTime">
+                    </div>
+                </div>
+
+                <div class="submit-wrapper">
+                    <div class="submit-wrapper-inner request-area">
+                        <div class="rect"></div>
+                        <div class="text">Request Help</div>
+                    </div>
+                </div>
+            </form>
+
         </div>
 <!-- #5 관광지, 1:N -->
 

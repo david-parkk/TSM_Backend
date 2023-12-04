@@ -1,3 +1,44 @@
+.star {
+  width: 60px; /* Adjust the width as needed */
+  height: 60px; /* Adjust the height as needed */
+  display: inline-block;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.picked {
+  background-image: url('https://cdn.dwicd.com/konkuk/lab/img/unwell/pick.png');
+}
+
+.unpicked {
+  background-image: url('https://cdn.dwicd.com/konkuk/lab/img/unwell/unpick.png');
+}
+
+.row {
+  height: 80px; /* Set the desired height for each row */
+  display: flex;
+}
+
+.cell {
+  flex: 1;
+  border: 1px solid #ddd; /* Add border for better visibility */
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent overflow */
+  text-align: center;
+  height: 76px;
+  line-height: 76px;
+}
+.cell-color-title{
+  height: 76px;
+  line-height: 76px;
+}
+
+.cell-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
 .unwell {
   background-color: #ffffff;
 //  display: flex;

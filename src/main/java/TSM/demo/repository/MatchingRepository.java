@@ -145,7 +145,7 @@ public class MatchingRepository {
     }
 
     public List<Matching> isMatchingRatedByMatchingId(int matchingId) {
-        return em.createQuery("select m from matching m where m.id = :matchingId", Matching.class)
+        return em.createQuery("select m from matching m where m.id = :matchingId and m.rating <> null", Matching.class)
                 .setParameter("matchingId", matchingId)
                 .getResultList();
     }

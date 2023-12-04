@@ -267,7 +267,8 @@ xhr.onload = () => {
     if(xhr.status == 200){
         console.log(xhr);
         const res = xhr.responseText;
-        document.write("");
+        document.body.innerHTML = "";
+        //document.write("");
         document.write(res);
         /*
         const parser = new DOMParser();

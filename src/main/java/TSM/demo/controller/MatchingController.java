@@ -114,10 +114,12 @@ public class MatchingController {
 
     public List<UnwellSuccessMatchingDto> findUnwellSuccessMatchingDto(List<MatchingResponseDto> matchingResponseDtos,User unwell){
         List<UnwellSuccessMatchingDto> unwellSuccessMatchingDtos=new ArrayList<>();
+        int count=1;
         for (MatchingResponseDto matchingResponseDto : matchingResponseDtos) {
             if (matchingResponseDto.getState() == State.SUCCESS) {
                 unwellSuccessMatchingDtos.add(
                         new UnwellSuccessMatchingDto(
+                                matchingResponseDto.getId(),
                                 matchingResponseDto.getName(),
                                 matchingResponseDto.getRequestString(),
                                 matchingResponseDto.getStartTime(),
@@ -126,16 +128,25 @@ public class MatchingController {
                                 matchingResponseDto.getVolunteerEmail(),
                                 matchingResponseDto.getVolunteerPhoneNum(),
                                 matchingResponseDto.getGroupId(),
-                                matchingService.isRated(matchingResponseDto.getId())));
+                                matchingService.isRated(matchingResponseDto.getId()),
+                                count++
+                        ));
+
+
+
+
+
+
             }
 
         }
         return unwellSuccessMatchingDtos;
     }
 
-    @PostMapping("/rating")
-    public void rateUser(@RequestParam int matchingId, @RequestParam int star) {
-        matchingService.rateVolunteerByMatchingId(matchingId, star);
+    @GetMapping("/rating")
+    public String rateUser(@RequestParam(value = "matchingId") int matchingId, @RequestParam(value = "rating") int rating) {
+        matchingService.rateVolunteerByMatchingId(matchingId, rating);
+        return "success";
     }
 
     @GetMapping("/unwell")

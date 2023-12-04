@@ -11,6 +11,8 @@ import java.sql.Timestamp;
 @ToString
 public class UnwellSuccessMatchingDto {
 
+    private int matchingId;
+
     private String name;
 
     private String requestString;
@@ -35,7 +37,9 @@ public class UnwellSuccessMatchingDto {
 
     private boolean isRated;
 
-    public UnwellSuccessMatchingDto(String courseName, String requestTypeString, Timestamp startDate, Timestamp endDate, String volunteerName, String volunteerEmail, String volunteerPhoneNum, int groupId, boolean isRated) {
+    private int index;
+    public UnwellSuccessMatchingDto(int matchingId,String courseName, String requestTypeString, Timestamp startDate, Timestamp endDate, String volunteerName, String volunteerEmail, String volunteerPhoneNum, int groupId, boolean isRated,int index) {
+        this.matchingId=matchingId;
         this.name = courseName;
         this.requestString = requestTypeString;
         this.startDate = startDate;
@@ -45,5 +49,10 @@ public class UnwellSuccessMatchingDto {
         this.volunteerPhoneNum = volunteerPhoneNum;
         this.groupId=groupId;
         this.isRated = isRated;
+        this.index=index;
+    }
+
+    public boolean getIsRated() {
+        return isRated;
     }
 }

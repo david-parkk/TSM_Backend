@@ -91,15 +91,21 @@ public class MatchingService {
     }
 
     public boolean isRated(int matchingId) {
-        return !(matchingRepository.isMatchingRatedByMatchingId(matchingId).isEmpty());
+        boolean b = !(matchingRepository.isMatchingRatedByMatchingId(matchingId).isEmpty());
+
+        return b;
     }
 
     private double calculateRatingAverage(List<Matching> matchings) {
         int sum=0;
         int cnt=0;
         for (Matching matching : matchings) {
-            sum += matching.getRating();
-            cnt++;
+            try {
+                sum += matching.getRating();
+                cnt++;
+            } catch (NullPointerException e) {
+                continue;
+            }
         }
         return (double) sum / cnt;
     }

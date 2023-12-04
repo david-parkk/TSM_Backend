@@ -1,3 +1,19 @@
+.row {
+  height: 80px; /* Set the desired height for each row */
+  display: flex;
+}
+
+.cell {
+  flex: 1;
+  border: 1px solid #ddd; /* Add border for better visibility */
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent overflow */
+}
+
+.cell-content {
+  padding: 10px;
+}
+
 .volunteer {
   background-color: #ffffff;
 //  display: flex;

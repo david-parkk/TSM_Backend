@@ -2,8 +2,25 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
   <head>
     <link rel="stylesheet" href="./css/globals.css" />
-    <link rel="stylesheet" href="/css/unwell_matching.css" />
+        <link rel="stylesheet" href="/css/unwell_matching.css" />
     <link rel="stylesheet" href="/css/unwell_tabbar.css" />
+      <style>
+          .starMatch {
+              width: 60px; /* Adjust the width as needed */
+              height: 60px; /* Adjust the height as needed */
+              display: inline-block;
+              background-size: contain;
+              cursor: pointer;
+          }
+          .picked {
+
+              background-image: url('https://cdn.dwicd.com/konkuk/lab/img/unwell/pick.png');
+          }
+
+          .unpicked {
+              background-image: url('https://cdn.dwicd.com/konkuk/lab/img/unwell/unpick.png');
+          }
+      </style>
   </head>
   <body>
     <div class="unwell">
@@ -49,6 +66,30 @@
                           </div>
                           <div class="cell">
                               <div class="cell-content"><div class="cell-content-text" th:text="${matching.getVolunteerPhoneNum()}"></div></div>
+                          </div>
+                      </div>
+                      <div class="row" >
+                          <div class="cell-color-title">
+                              <div class="cell-content">
+                                  <div class="cell-content-text">Rating</div>
+                              </div>
+                          </div>
+                          <div class="cell">
+                              <!-- Use a div to hold the star images -->
+                              <div class="cell-content starRatingMatch">
+                                  <!-- Add five stars with unique IDs -->
+
+                                  <div class="starMatch unpicked" th:onclick="|setRating(${matching.getIndex()}, 1, ${matching.getMatchingId()})|"></div>
+                                  <div class="starMatch unpicked" th:onclick="|setRating(${matching.getIndex()}, 2, ${matching.getMatchingId()})|"></div>
+                                  <div class="starMatch unpicked" th:onclick="|setRating(${matching.getIndex()}, 3, ${matching.getMatchingId()})|"></div>
+                                  <div class="starMatch unpicked" th:onclick="|setRating(${matching.getIndex()}, 4, ${matching.getMatchingId()})|"></div>
+                                  <div class="starMatch unpicked" th:onclick="|setRating(${matching.getIndex()}, 5, ${matching.getMatchingId()})|"></div>
+
+
+
+
+
+                              </div>
                           </div>
                       </div>
                   </div>
@@ -136,9 +177,65 @@
         </div>
 
       </div>
-    </div>
+
 
 <script src="/js/unwell_matching.js"></script>
+    <script>
+        // 매칭 아이디로
+        function setRating(match_css_id, rating, match_id) {
+            // Showing - Star
 
+            var target_div_mother = document.getElementsByClassName("starRatingMatch")[match_css_id - 1];
+            for (let i = 1; i<= 5; ++i) {
+                var star = target_div_mother.getElementsByClassName("starMatch")[i - 1];
+                if (i <= rating) {
+                    star.classList.remove("unpicked");
+                    star.classList.add("picked");
+                } else {
+                    star.classList.remove("picked");
+                    star.classList.add("unpicked");
+                }
+            }
+
+            console.log(`Current Rating ${match_css_id}:`, rating);
+            console.log('Match ID:', match_id);
+
+            if (!match_id) {
+                console.error("MatchID not found.");
+                return;
+            }
+
+            // Prepare the data to be sent in the POST request
+            const data = {
+                matchingId: match_id,
+                rating: rating,
+            };
+
+            // Send the POST request to http://localhost:8080/rating
+            fetch('http://localhost:8080/matching/rating?matchingId=' + match_id + "&rating=" + rating, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+                // body: JSON.stringify(data),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(responseData => {
+                    // Handle the response data if needed
+                    console.log(responseData);
+                })
+                .catch(error => {
+                    // Handle errors
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+
+            // setRating(0,0,0)
+        }
+    </script>
   </body>
 </html>
