@@ -3,6 +3,7 @@ package TSM.demo.domain;
 
 import TSM.demo.domain.place.Course;
 import TSM.demo.repository.query.MatchingDto;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -46,6 +47,8 @@ public class Matching {
     @Column(name = "request_id")
     private int requestId;
 
+    @Column(name = "rating")
+    private int rating;
 
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "health_id")
@@ -87,6 +90,10 @@ public class Matching {
     public void setWait(){this.state=State.WAIT;}
 
     public void setVolunteerId(int volunteerId){this.volunteerId=volunteerId;}
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 
 
 }
