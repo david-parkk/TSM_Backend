@@ -130,7 +130,7 @@
                     <div class="cell-content"><div class="cell-content-text" th:text="${unwellMatchingColumnDto.getVolunteerName()}"></div></div>
                   </div>
                   <div class="cell">
-                    <div class="cell-content"><div class="cell-content-text" th:text="${unwellMatchingColumnDto.getRating()}"></div></div>
+                    <div class="cell-content"><div class="cell-content-text" th:text="${#numbers.formatDecimal(unwellMatchingColumnDto.getRating(),1,1)}"></div></div>
                   </div>
                   <div class="cell-color-button request-area">
                     <div class="cell-content"><div class="cell-content-text"  th:text="${unwellMatchingColumnDto.getState()}"></div></div>
