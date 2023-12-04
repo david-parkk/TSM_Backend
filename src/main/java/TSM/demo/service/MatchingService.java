@@ -1,6 +1,7 @@
 package TSM.demo.service;
 
 import TSM.demo.domain.Matching;
+import TSM.demo.domain.Rating;
 import TSM.demo.domain.User;
 import TSM.demo.domain.UserHealth;
 import TSM.demo.repository.MatchingRepository;
@@ -79,6 +80,28 @@ public class MatchingService {
 
         }
         return result;
+    }
+
+    public void rateVolunteerByMatchingId(int matchingId, int rating) {
+        matchingRepository.rateVolunteerByMatchingId(matchingId, rating);
+    }
+
+    public double getRatingAverage(int userId) {
+        return calculateRatingAverage(matchingRepository.findMatchingsByVolunteerId(userId));
+    }
+
+    public boolean isRated(int matchingId) {
+        return !(matchingRepository.isMatchingRatedByMatchingId(matchingId).isEmpty());
+    }
+
+    private double calculateRatingAverage(List<Matching> matchings) {
+        int sum=0;
+        int cnt=0;
+        for (Matching matching : matchings) {
+            sum += matching.getRating();
+            cnt++;
+        }
+        return (double) sum / cnt;
     }
 
 }
