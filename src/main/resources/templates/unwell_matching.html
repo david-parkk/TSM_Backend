@@ -4,6 +4,29 @@
     <link rel="stylesheet" href="./css/globals.css" />
         <link rel="stylesheet" href="/css/unwell_matching.css" />
     <link rel="stylesheet" href="/css/unwell_tabbar.css" />
+      <style>
+          .starMatch1 {
+              width: 60px; /* Adjust the width as needed */
+              height: 60px; /* Adjust the height as needed */
+              display: inline-block;
+              background-size: contain;
+              cursor: pointer;
+          }
+          .starMatch2 {
+              width: 60px; /* Adjust the width as needed */
+              height: 60px; /* Adjust the height as needed */
+              display: inline-block;
+              background-size: contain;
+              cursor: pointer;
+          }
+          .picked {
+              background-image: url('../static/img/unwell/pick.png');
+          }
+
+          .unpicked {
+              background-image: url('../static/img/unwell/unpick.png');
+          }
+      </style>
   </head>
   <body>
     <div class="unwell">
@@ -59,13 +82,17 @@
                           </div>
                           <div class="cell">
                               <!-- Use a div to hold the star images -->
-                              <div class="cell-content" id="starRating">
+                              <div class="cell-content" id="starRatingMatch1">
                                   <!-- Add five stars with unique IDs -->
-                                  <div class="star" id="star1" onclick="setRating(1)"></div>
-                                  <div class="star" id="star2" onclick="setRating(2)"></div>
-                                  <div class="star" id="star3" onclick="setRating(3)"></div>
-                                  <div class="star" id="star4" onclick="setRating(4)"></div>
-                                  <div class="star" id="star5" onclick="setRating(5)"></div>
+
+                                  <div class="starMatch" th:onclick="|'setRating('+${matching.getIndex()}+',1,'+${matching.getMatchingId()+')'"></div>
+                                  <div class="starMatch" th:onclick="|'setRating('+${matching.getIndex()}+',2,'+${matching.getMatchingId()+')'"></div>
+                                  <div class="starMatch" th:onclick="|'setRating('+${matching.getIndex()}+',3,'+${matching.getMatchingId()+')'"></div>
+                                  <div class="starMatch" th:onclick="|'setRating('+${matching.getIndex()}+',4,'+${matching.getMatchingId()+')'"></div>
+                                  <div class="starMatch" th:onclick="|'setRating('+${matching.getIndex()}+',5,'+${matching.getMatchingId()+')'"></div>
+
+
+
                               </div>
                           </div>
                       </div>

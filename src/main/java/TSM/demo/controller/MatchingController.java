@@ -115,10 +115,12 @@ public class MatchingController {
 
     public List<UnwellSuccessMatchingDto> findUnwellSuccessMatchingDto(List<MatchingResponseDto> matchingResponseDtos,User unwell){
         List<UnwellSuccessMatchingDto> unwellSuccessMatchingDtos=new ArrayList<>();
+        int count=0;
         for (MatchingResponseDto matchingResponseDto : matchingResponseDtos) {
             if (matchingResponseDto.getState() == State.SUCCESS) {
                 unwellSuccessMatchingDtos.add(
                         new UnwellSuccessMatchingDto(
+                                matchingResponseDto.getId(),
                                 matchingResponseDto.getName(),
                                 matchingResponseDto.getRequestString(),
                                 matchingResponseDto.getStartTime(),
@@ -127,7 +129,9 @@ public class MatchingController {
                                 matchingResponseDto.getVolunteerEmail(),
                                 matchingResponseDto.getVolunteerPhoneNum(),
                                 matchingResponseDto.getGroupId(),
-                                ratingService.isRated(matchingResponseDto.getSickId(), matchingResponseDto.getVolunteerId())));
+                                ratingService.isRated(matchingResponseDto.getSickId(), matchingResponseDto.getVolunteerId()),
+                                count++
+                        ));
             }
 
         }
