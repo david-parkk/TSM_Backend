@@ -22,7 +22,7 @@ signup.addEventListener("click", function() {
   var data = {
     name: username.innerText,
     email: email.innerText,
-    phoneNum: phone.innerText
+    phoneNum: phone.value.toString()
   };
 
   // Send the JSON object as a string
@@ -31,11 +31,11 @@ console.log(JSON.stringify(data));
 
   // Handle the response
   xhr.onload = function() {
-    location.href="http://localhost:8080/matching/volunteer";
+
     // Check the status code
     if (xhr.status == 200) {
       // Success
-
+      location.href="http://localhost:8080/matching/volunteer";
     } else {
       // Error
       alert("Signup failed: " + xhr.statusText);
