@@ -6,6 +6,7 @@ import TSM.demo.domain.User;
 import TSM.demo.domain.UserHealth;
 import TSM.demo.repository.MatchingRepository;
 
+import jakarta.validation.constraints.Null;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -88,6 +89,14 @@ public class MatchingService {
 
     public double getRatingAverage(int userId) {
         return calculateRatingAverage(matchingRepository.findMatchingsByVolunteerId(userId));
+    }
+
+    public int getRatingByMatchingId(int matchingId) {
+        try {
+            return matchingRepository.findOneById(matchingId).getRating();
+        }catch (NullPointerException e) {
+            return 0;
+        }
     }
 
     public boolean isRated(int matchingId) {

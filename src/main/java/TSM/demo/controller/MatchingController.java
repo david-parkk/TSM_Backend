@@ -128,7 +128,7 @@ public class MatchingController {
                                 matchingResponseDto.getVolunteerEmail(),
                                 matchingResponseDto.getVolunteerPhoneNum(),
                                 matchingResponseDto.getGroupId(),
-                                matchingService.isRated(matchingResponseDto.getId()),
+                                matchingService.getRatingByMatchingId(matchingResponseDto.getId()),
                                 count++
                         ));
 

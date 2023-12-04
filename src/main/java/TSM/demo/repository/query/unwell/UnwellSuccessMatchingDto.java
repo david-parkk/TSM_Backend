@@ -35,10 +35,10 @@ public class UnwellSuccessMatchingDto {
 
     private int groupId;
 
-    private boolean isRated;
+    private int rating;
 
     private int index;
-    public UnwellSuccessMatchingDto(int matchingId,String courseName, String requestTypeString, Timestamp startDate, Timestamp endDate, String volunteerName, String volunteerEmail, String volunteerPhoneNum, int groupId, boolean isRated,int index) {
+    public UnwellSuccessMatchingDto(int matchingId,String courseName, String requestTypeString, Timestamp startDate, Timestamp endDate, String volunteerName, String volunteerEmail, String volunteerPhoneNum, int groupId, int rating,int index) {
         this.matchingId=matchingId;
         this.name = courseName;
         this.requestString = requestTypeString;
@@ -48,11 +48,8 @@ public class UnwellSuccessMatchingDto {
         this.volunteerEmail = volunteerEmail;
         this.volunteerPhoneNum = volunteerPhoneNum;
         this.groupId=groupId;
-        this.isRated = isRated;
+        this.rating = rating;
         this.index=index;
     }
 
-    public boolean getIsRated() {
-        return isRated;
-    }
 }
