@@ -48,7 +48,7 @@ public class Matching {
     private int requestId;
 
     @Column(name = "rating")
-    private int rating;
+    private Integer rating;
 
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "health_id")

@@ -114,7 +114,7 @@ public class MatchingController {
 
     public List<UnwellSuccessMatchingDto> findUnwellSuccessMatchingDto(List<MatchingResponseDto> matchingResponseDtos,User unwell){
         List<UnwellSuccessMatchingDto> unwellSuccessMatchingDtos=new ArrayList<>();
-        int count=0;
+        int count=1;
         for (MatchingResponseDto matchingResponseDto : matchingResponseDtos) {
             if (matchingResponseDto.getState() == State.SUCCESS) {
                 unwellSuccessMatchingDtos.add(
@@ -143,9 +143,10 @@ public class MatchingController {
         return unwellSuccessMatchingDtos;
     }
 
-    @PostMapping("/rating")
-    public void rateUser(@RequestParam int matchingId, @RequestParam int star) {
-        matchingService.rateVolunteerByMatchingId(matchingId, star);
+    @GetMapping("/rating")
+    public String rateUser(@RequestParam(value = "matchingId") int matchingId, @RequestParam(value = "rating") int rating) {
+        matchingService.rateVolunteerByMatchingId(matchingId, rating);
+        return "success";
     }
 
     @GetMapping("/unwell")

@@ -7,11 +7,11 @@
 }
 
 .picked {
-  background-image: url("../img/unwell/pick.png");
+  background-image: url('https://cdn.dwicd.com/konkuk/lab/img/unwell/pick.png');
 }
 
 .unpicked {
-  background-image: url('../img/unwell/unpick.png');
+  background-image: url('https://cdn.dwicd.com/konkuk/lab/img/unwell/unpick.png');
 }
 
 .row {
