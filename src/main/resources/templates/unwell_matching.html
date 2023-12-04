@@ -79,11 +79,11 @@
                               <div class="cell-content starRatingMatch">
                                   <!-- Add five stars with unique IDs -->
 
-                                  <div class="starMatch unpicked" th:onclick="|setRating(${matching.getIndex()}, 1, ${matching.getMatchingId()})|"></div>
-                                  <div class="starMatch unpicked" th:onclick="|setRating(${matching.getIndex()}, 2, ${matching.getMatchingId()})|"></div>
-                                  <div class="starMatch unpicked" th:onclick="|setRating(${matching.getIndex()}, 3, ${matching.getMatchingId()})|"></div>
-                                  <div class="starMatch unpicked" th:onclick="|setRating(${matching.getIndex()}, 4, ${matching.getMatchingId()})|"></div>
-                                  <div class="starMatch unpicked" th:onclick="|setRating(${matching.getIndex()}, 5, ${matching.getMatchingId()})|"></div>
+                                  <div class="starMatch" th:class="${matching.getRating() >= 1 ? 'starMatch picked' : 'starMatch unpicked'}" th:onclick="|setRating(${matching.getIndex()}, 1, ${matching.getMatchingId()})|"></div>
+                                  <div class="starMatch" th:class="${matching.getRating() >= 2 ? 'starMatch picked' : 'starMatch unpicked'}" th:onclick="|setRating(${matching.getIndex()}, 2, ${matching.getMatchingId()})|"></div>
+                                  <div class="starMatch" th:class="${matching.getRating() >= 3 ? 'starMatch picked' : 'starMatch unpicked'}" th:onclick="|setRating(${matching.getIndex()}, 3, ${matching.getMatchingId()})|"></div>
+                                  <div class="starMatch" th:class="${matching.getRating() >= 4 ? 'starMatch picked' : 'starMatch unpicked'}" th:onclick="|setRating(${matching.getIndex()}, 4, ${matching.getMatchingId()})|"></div>
+                                  <div class="starMatch" th:class="${matching.getRating() == 5 ? 'starMatch picked' : 'starMatch unpicked'}" th:onclick="|setRating(${matching.getIndex()}, 5, ${matching.getMatchingId()})|"></div>
 
 
 
